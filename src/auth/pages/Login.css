@@ -1,0 +1,92 @@
+.login-container {
+    margin-top: 5%;
+    margin-left: 35%;
+
+}
+
+.login-form-1 h3 {
+    text-align: center;
+    color: #333;
+   
+}
+
+.login-form-2 h3 {
+    text-align: center;
+    color: #fff;
+
+}
+
+
+
+.form-control {
+    background: rgba(255, 184, 0, 0.7);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin-bottom:2rem;
+
+}
+
+.login-container form {
+    padding: 10%;
+}
+
+.btnSubmit {
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+    margin-left: 9rem;
+}
+
+.login-form-1 .btnSubmit {
+    background: #FFB800;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+
+.logo {
+    width: 70%;
+    margin-left: 5rem;
+}
+
+
+
+input[type="text"] {
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    border: 1px solid #e0e3e9;
+    padding: 0 10px;
+    padding-left: 30px;
+    outline: 0;
+    font-size: 13px
+}
+
+input[type="password"] {
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    border: 1px solid #e0e3e9;
+    padding: 0 10px;
+    padding-left: 30px;
+    padding-right: 27px;
+    outline: 0
+}
+
+.fa-user {
+    position: absolute;
+    top: 27.5rem;
+    left:47.5rem;
+}
+
+.fa-lock{
+    position: absolute;
+    top: 32.3rem;
+    left:47.5rem;
+}
+
+

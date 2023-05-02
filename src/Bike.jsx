@@ -1,12 +1,14 @@
+import { BrowserRouter } from "react-router-dom"
+import { AppRouter } from "./routes"
 
 
 export const Bike=()=> {
 
 
   return (
-    <>
-    <h1>Biciletita</h1>
-    </>
+    <BrowserRouter>
+      <AppRouter/>
+    </BrowserRouter>
   )
 }
 
