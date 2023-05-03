@@ -1,42 +1,40 @@
-
+import '../styles/AddGuard.css'
 
 export const AddGuard = () => {
     return (
-        <div className="container">
-            <form>
-                <div className="form-group mb-2">
-                    <input
-                        type="text"
-                        className=" form-control"
-                        placeholder="Nombre"
-                    />
-                 
-
-                </div>
-                <div className="form-group mb-2">
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Usuario"
-                    />
-                </div>
-                <div className="form-group mb-2">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Contraseña"
-                    />  
-                </div>
-                <div className="form-group mb-2">
+        <div className="container add-container">
+      
+        <div className="row">
+            <div className="col-md-6 add-form-1">
+        
+                <form>
+                    <div className="form-group mb-2">                     
                         <input 
-                            type="submit"
-                            className="btnSubmit"
-                            value="Registrar" 
-                        />
-                      
+                            type="text"
+                            className=" form-control-add"
+                            placeholder="Nombre"
+                        />                   
                     </div>
-            </form>
+                    <div className="form-group mb-2">                     
+                        <input 
+                            type="text"
+                            className=" form-control-add"
+                            placeholder="Usuario"
+                        />                   
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control-add"
+                            placeholder="contraseña"
+                        />
+                    </div>
+        
+                </form>
+            </div>
 
+            
         </div>
+    </div>
     )
 }
