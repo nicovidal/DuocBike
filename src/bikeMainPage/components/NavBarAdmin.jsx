@@ -11,7 +11,7 @@ export const NavBarAdmin = () => {
           <div className="navbar-nav">
           <a className="nav-item nav-link active" href="">Registro Guardia<span className="sr-only">(current)</span></a>
           </div>
-          <NavLink to="/*">
+          <NavLink to="/auth">
             Gestion
           </NavLink>
     

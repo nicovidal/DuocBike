@@ -14,7 +14,7 @@ export const AppRouter = () => {
             ? <Route path='/auth/*' element={<Login/>}/>
             :<Route path='/*' element={<RegisterGuard/>}/>
         } 
-        :
+        
         {
             (authStatus==='authenticatedAdmin')
             ? <Route path='/admin/' element={<Admin/>}/>
