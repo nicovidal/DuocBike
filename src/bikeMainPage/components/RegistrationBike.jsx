@@ -8,7 +8,7 @@ export const RegistrationBike = () => {
             <div className="form-group mb-2">
                 <input
                 type="text"
-                className=" form-control"
+                className=" form-control-addBike"
                 placeholder="Nombre"
                 />                
             </div>
@@ -16,7 +16,7 @@ export const RegistrationBike = () => {
             <div className="form-group mb-2">
                 <input
                 type="text"
-                className=" form-control"
+                className=" form-control-addBike"
                 placeholder="Rut"
                 />                
             </div>
@@ -24,10 +24,35 @@ export const RegistrationBike = () => {
             <div className="form-group mb-2">
                 <input
                 type="text"
-                className=" form-control"
+                className=" form-control-addBike"
                 placeholder="Carrera"
                 />                
             </div>
+
+            <div className="form-group mb-2">
+                <input
+                type="text"
+                className=" form-control-addBike"
+                placeholder="Marca"
+                />                
+            </div>
+
+            <div className="form-group mb-2">
+                <input
+                type="text"
+                className=" form-control-addBike"
+                placeholder="Color"
+                />                
+            </div>
+
+            <div className="form-group mb-2">
+                <input
+                type="text"
+                className=" form-control-addBike"
+                placeholder="ID"
+                />                
+            </div>
+
 
             <div className="form-group mb-2">
                 <input 
