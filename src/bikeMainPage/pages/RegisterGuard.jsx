@@ -1,7 +1,11 @@
+import { Navbar } from "../components/Navbar"
 
 
 export const RegisterGuard = () => {
   return (
-    <div>RegisterGuard</div>
+    
+    <>
+      <Navbar/>
+    </>
   )
 }
