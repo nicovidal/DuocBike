@@ -1,9 +1,10 @@
 import React from 'react'
+import '../styles/RegistrationBike.css'
 
 export const RegistrationBike = () => {
   return (
     <div className="container">
-        <img src="../assets/logo.png" className='logo'/>
+        <img src="../assets/logo.png" className='logo-addBike'/>
         <form>
             <div className="form-group mb-2">
                 <input
