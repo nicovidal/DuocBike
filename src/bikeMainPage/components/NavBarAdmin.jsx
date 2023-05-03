@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom"
 
 
 export const NavBarAdmin = () => {
@@ -8,8 +9,11 @@ export const NavBarAdmin = () => {
           Admin
           </span>
           <div className="navbar-nav">
-          <a className="nav-item nav-link active" href="#">Registro Guardia<span className="sr-only">(current)</span></a>
+          <a className="nav-item nav-link active" href="">Registro Guardia<span className="sr-only">(current)</span></a>
           </div>
+          <NavLink to="/*">
+            Gestion
+          </NavLink>
     
           <button className="btn btn-outline-danger">
             <i className="fas fa-sign-out-alt"></i>

@@ -10,7 +10,7 @@ export const AddGuard = () => {
                         className=" form-control"
                         placeholder="Nombre"
                     />
-                    <i className="fa-solid fa-user"></i>
+                 
 
                 </div>
                 <div className="form-group mb-2">
