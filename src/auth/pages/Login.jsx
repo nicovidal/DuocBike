@@ -1,5 +1,7 @@
-import { useRegister } from '../../hooks'
+import { useEffect } from 'react';
+import { useAuthStore, useRegister } from '../../hooks'
 import './Login.css'
+import Swal from 'sweetalert2';
 
 const loginFormFields={
     loginUser:'',
@@ -9,12 +11,28 @@ const loginFormFields={
 
 export const Login = () => {
 
+    const {startLogin,errorMessage}=useAuthStore();
+
+
+
     const {loginUser,loginPassword,onInputChange:onLoginInputChange}=useRegister(loginFormFields);
 
     const loginSubmit = (event)=>{
         event.preventDefault();
-        console.log({loginUser,loginPassword})
+ 
+        startLogin({guardUser:loginUser,guardPassword:loginPassword});
     }
+
+
+    useEffect(() => {
+      if(errorMessage !==undefined){
+        Swal.fire('Error en credenciales',errorMessage,'error')
+      }
+    
+   
+    }, [errorMessage])
+    
+
 
   return (
     

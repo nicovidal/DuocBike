@@ -3,10 +3,12 @@ import { Login } from "../auth";
  import { RegisterGuard } from "../bikeMainPage"; 
 import { Admin } from "../bikeMainPage/pages/Admin"; 
 
+
 export const AppRouter = () => {
 
     const authStatus='authenticated'; 
 
+    
   return (
     <Routes>
          {
