@@ -30,10 +30,8 @@ export const AppRouter = () => {
           : (
               <>
                 <Route path='/' element={<RegisterGuard />} />
-                <Route path='/*' element={<Navigate to="/" />} />
+                <Route path='/*' element={<Navigate to="/" />} />              
               </>
-
-
             )
       }
 
