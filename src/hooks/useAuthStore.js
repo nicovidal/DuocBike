@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import bikeApi from "../api/bikeApi";
 import { clearErrorMessage, onChecking, onLogin, onLogout } from "../store/auth/authSlice";
+import Swal from "sweetalert2";
 
 export const useAuthStore=()=>{
 
@@ -27,8 +28,26 @@ export const useAuthStore=()=>{
         }
     }
 
-    const startRegisterGuard=
+    
+    const startRegisterGuard=async({guardName,guardUser,guardPassword})=>{
 
+        dispatch(onChecking());
+
+        try{
+
+        
+            const {data}=await bikeApi.post('/auth/newg',{guardName,guardUser,guardPassword})
+            localStorage.setItem('usuario',data.name)
+            dispatch(onLogin({name:data.name,uid:data.uid}))
+            Swal.fire('Guardia creado correctamente','','success')
+
+        }catch(error){
+            dispatch(onLogout(error.response.data?.msg||'--'))
+            setTimeout(() => {
+                dispatch(clearErrorMessage())
+            }, 10);
+        }
+    }
 
     return{
         //propiedades
@@ -36,6 +55,7 @@ export const useAuthStore=()=>{
 
 
         //methods
-        startLogin
+        startLogin,
+        startRegisterGuard
     }
 }

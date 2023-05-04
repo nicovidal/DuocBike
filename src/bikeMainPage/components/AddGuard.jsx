@@ -1,5 +1,7 @@
-import { useRegister } from '../../hooks'
+import { useEffect } from 'react';
+import { useAuthStore, useRegister } from '../../hooks'
 import '../styles/AddGuard.css'
+import Swal from 'sweetalert2';
 
 const guardFormFields={
     guardName:'',
@@ -13,10 +15,21 @@ export const AddGuard = () => {
 
     const {guardName,guardUser,guardPassword,onInputChange:onGuardInputChange}=useRegister(guardFormFields);
 
+    const{startRegisterGuard,errorMessage}=useAuthStore();
+
     const registerSubmit = (event)=>{
         event.preventDefault();
-        console.log({guardName,guardUser,guardPassword})
+       startRegisterGuard({guardName:guardName,guardUser:guardUser,guardPassword:guardPassword})
     }
+
+    
+    useEffect(() => {
+        if(errorMessage !==undefined){
+          Swal.fire('Error en credenciales',errorMessage,'error')
+        }
+      
+     
+      }, [errorMessage])
 
     return (
         <div className="container add-container">
