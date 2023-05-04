@@ -15,6 +15,7 @@ export const useAuthStore=()=>{
 
         try{
 
+            
         
             const {data}=await bikeApi.post('/auth',{guardUser,guardPassword})
             localStorage.setItem('usuario',data.name)

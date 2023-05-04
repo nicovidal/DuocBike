@@ -8,4 +8,4 @@ const bikeApi=axios.create({
     baseURL:VITE_API_URL
 });
 
-export default bikeApi;
+export default bikeApi; 
