@@ -49,6 +49,12 @@ export const useAuthStore=()=>{
         }
     }
 
+
+    const startLogout=()=>{
+        localStorage.clear();
+        dispatch(onLogout());
+      }
+
     return{
         //propiedades
         status,user,errorMessage,
@@ -56,6 +62,7 @@ export const useAuthStore=()=>{
 
         //methods
         startLogin,
-        startRegisterGuard
+        startRegisterGuard,
+        startLogout
     }
 }
