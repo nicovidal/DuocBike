@@ -1,30 +1,30 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { Login } from "../auth";
  import { RegisterGuard } from "../bikeMainPage"; 
-import { Admin } from "../bikeMainPage/pages/Admin";
+import { Admin } from "../bikeMainPage/pages/Admin"; 
 
 export const AppRouter = () => {
 
-   /*  const authStatus='authenticatedAdmin'; */
+    const authStatus='authenticated'; 
 
   return (
     <Routes>
-{/*         {
-            (authStatus==='authenticated')
+         {
+            (authStatus==='not-authenticated')
             ? <Route path='/auth/*' element={<Login/>}/>
-            :
+            :<Route path='/*' element={<RegisterGuard/>}/>
         } 
         
-        {
+{/*         {
             (authStatus==='authenticatedAdmin')
             ? 
             :
 
-        } */}
-<Route path='/*' element={<RegisterGuard/>}/>
+        }  */}
+
 <Route path='/admin/' element={<Admin/>}/>
-<Route path='/auth/*' element={<Login/>}/>
-        <Route path='/*' element={<Navigate to="/auth/login"/>}/>
+{/* <Route path='/auth/*' element={<Login/>}/>  */}
+        <Route path='/*' element={<Navigate to="/admin"/>}/>
     </Routes>
   )
 }
