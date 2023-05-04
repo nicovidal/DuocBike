@@ -1,4 +1,5 @@
 import { Navbar } from "../components/Navbar"
+import { RegistrationBike } from "../components/RegistrationBike"
 
 
 export const RegisterGuard = () => {
@@ -6,6 +7,7 @@ export const RegisterGuard = () => {
     
     <>
       <Navbar/>
+      <RegistrationBike/>
     </>
   )
 }
