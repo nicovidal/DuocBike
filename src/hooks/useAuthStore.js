@@ -49,6 +49,24 @@ export const useAuthStore=()=>{
             }, 10);
         }
     }
+    const startRegisterAlumno=async({registerName,registerRut,registerCarrer,registerBrand,registerColor,registerID})=>{
+
+
+
+        try{
+        
+            const {data}=await bikeApi.post('/auth/newa',{registerName,registerRut,registerCarrer,registerBrand,registerColor,registerID})
+            localStorage.setItem('usuario',data.name)
+            
+            Swal.fire('Guardia creado correctamente','','success')
+
+        }catch(error){
+  
+            setTimeout(() => {
+                dispatch(clearErrorMessage())
+            }, 10);
+        }
+    }
 
 
     const startLogout=()=>{
@@ -64,6 +82,7 @@ export const useAuthStore=()=>{
         //methods
         startLogin,
         startRegisterGuard,
-        startLogout
+        startLogout,
+        startRegisterAlumno
     }
 }
