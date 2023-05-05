@@ -10,47 +10,32 @@ export const AppRouter = () => {
 
   const {status} = useAuthStore();
 
- if (status === 'checking') {
+  if (status === 'checking') {
     return (
       <h3>Cargando...</h3>
     )
-
   } 
-
   return (
     <Routes>
-      {
-        (status === 'not-authenticated')
-          //si no estoy autenticado
-          ? (<>
-                <Route path='/auth/*' element={<Login />} />
-                <Route path='/auth/admin' element={<AdminLogin />} />
-                <Route path='/*' element={<Navigate to="/auth/login" />} />
-            </>
-            )
-
-          : (
-              <>
-                <Route path='/' element={<RegisterGuard />} />
-                
-                <Route path='/*' element={<Navigate to="/" />} />              
-              </>
-            )
-      }
-
-      {/*         {
-            (authStatus==='authenticatedAdmin')
-            ? 
-            :
-
-        }  */}
-      {/*  <Route path='/admin/profile' element={<Admin />} /> */}
-
-      {/* <Route path='/admin/' element={<Admin />} /> */}
-      {/* <Route path='/auth/*' element={<Login/>}/>  */}
-      {/* <Route path='/auth/admin' element={<AdminLogin />} />
-      <Route path='/admin' element={<Admin />} />
-       */}
+      {status === 'checking' ? (
+        <h3>Cargando...</h3>
+      ) : status === 'not-authenticated' ? (
+        <>
+          <Route path='/auth/*' element={<Login />} />
+          <Route path='/auth/admin' element={<AdminLogin />} />
+          <Route path='/*' element={<Navigate to="/auth/login" />} />
+        </>
+      ) : status === 'authenticated' ? (
+        <>
+          <Route path='/' element={<RegisterGuard />} />
+          <Route path='/*' element={<Navigate to="/" />} />
+        </>
+      ) : status === 'admin' ? (
+        <>
+          <Route path='/administracion' element={<Admin />} />
+          <Route path='/*' element={<Navigate to="/administracion" />} />
+        </>
+      ) : null}
     </Routes>
-  )
+  );
 }

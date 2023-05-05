@@ -27,10 +27,11 @@ export const authSlice=createSlice({
             state.errorMessage=undefined;
         },
         onLoginAdmin:(state,{payload})=>{
-            state.status='Admin';
+            state.status='admin';
             state.user=payload;
             state.errorMessage=undefined;
         },
+
     }
 })
 

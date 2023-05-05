@@ -86,6 +86,8 @@ export const useAuthStore=()=>{
         localStorage.clear();
         dispatch(onLogout());
       }
+      
+
 
     return{
         //propiedades
@@ -97,6 +99,7 @@ export const useAuthStore=()=>{
         startRegisterGuard,
         startLogout,
         startRegisterAlumno,
-        startLoginAdmin
+        startLoginAdmin,
+       
     }
 }
