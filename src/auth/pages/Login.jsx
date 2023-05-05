@@ -52,7 +52,7 @@ export const Login = () => {
                             value={loginUser}
                             onChange={onLoginInputChange}
                         />
-                        <i className="fa-solid fa-user"></i>
+                  {/*       <i className="fa-solid fa-user"></i> */}
                      
                     </div>
                     <div className="form-group mb-2">
@@ -71,7 +71,7 @@ export const Login = () => {
                             className="btnSubmit"
                             value="Entrar" 
                         />
-                        <i className="fa-solid fa-lock"></i>
+                        {/* <i className="fa-solid fa-lock"></i> */}
                     </div>
                 </form>
             </div>
