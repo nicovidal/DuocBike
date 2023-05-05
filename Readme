@@ -5,3 +5,5 @@ yarn add @reduxjs/toolkit react-redux
 axios
 
 yarn add axios
+
+yarn install sweetalert2
