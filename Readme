@@ -6,4 +6,4 @@ axios
 
 yarn add axios
 
-yarn install sweetalert2
+yarn add sweetalert2
