@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { Login } from "../auth";
-import { RegisterGuard } from "../bikeMainPage";
+import { Admin, RegisterGuard } from "../bikeMainPage";
 import { useAuthStore } from "../hooks";
+import { AdminLogin } from "../auth/pages/adminLogin";
 /* import { Admin } from "../bikeMainPage/pages/Admin"; */
 
 
@@ -44,6 +45,8 @@ export const AppRouter = () => {
 
       {/* <Route path='/admin/' element={<Admin />} /> */}
       {/* <Route path='/auth/*' element={<Login/>}/>  */}
+      <Route path='/auth/admin' element={<AdminLogin />} />
+      <Route path='/admin' element={<Admin />} />
       
     </Routes>
   )
