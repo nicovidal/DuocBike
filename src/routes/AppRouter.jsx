@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { Login } from "../auth";
+import { AdminLogin, Login } from "../auth";
 import { Admin, RegisterGuard } from "../bikeMainPage";
 import { useAuthStore } from "../hooks";
-import { AdminLogin } from "../auth/pages/adminLogin";
+
 /* import { Admin } from "../bikeMainPage/pages/Admin"; */
 
 
@@ -24,6 +24,7 @@ export const AppRouter = () => {
           //si no estoy autenticado
           ? (<>
                 <Route path='/auth/*' element={<Login />} />
+                <Route path='/auth/admin' element={<AdminLogin />} />
                 <Route path='/*' element={<Navigate to="/auth/login" />} />
             </>
             )
@@ -31,6 +32,7 @@ export const AppRouter = () => {
           : (
               <>
                 <Route path='/' element={<RegisterGuard />} />
+                
                 <Route path='/*' element={<Navigate to="/" />} />              
               </>
             )
@@ -42,12 +44,13 @@ export const AppRouter = () => {
             :
 
         }  */}
+      {/*  <Route path='/admin/profile' element={<Admin />} /> */}
 
       {/* <Route path='/admin/' element={<Admin />} /> */}
       {/* <Route path='/auth/*' element={<Login/>}/>  */}
-      <Route path='/auth/admin' element={<AdminLogin />} />
+      {/* <Route path='/auth/admin' element={<AdminLogin />} />
       <Route path='/admin' element={<Admin />} />
-      
+       */}
     </Routes>
   )
 }

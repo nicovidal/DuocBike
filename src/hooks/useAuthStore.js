@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import bikeApi from "../api/bikeApi";
-import { clearErrorMessage, onChecking, onLogin, onLogout } from "../store/auth/authSlice";
+import { clearErrorMessage, onChecking, onLogin, onLoginAdmin, onLogout } from "../store/auth/authSlice";
 import Swal from "sweetalert2";
 
 export const useAuthStore=()=>{
@@ -13,13 +13,26 @@ export const useAuthStore=()=>{
 
         dispatch(onChecking());
 
-        try{
-
-            
-        
+        try{       
             const {data}=await bikeApi.post('/auth',{guardUser,guardPassword})
             localStorage.setItem('usuario',data.name)
             dispatch(onLogin({name:data.name,uid:data.uid}))
+
+        }catch(error){
+            dispatch(onLogout('Credenciales Incorrectas'))
+            setTimeout(() => {
+                dispatch(clearErrorMessage())
+            }, 10);
+        }
+    }
+    const startLoginAdmin=async({adminUser,adminPassword})=>{
+
+        dispatch(onChecking());
+
+        try{       
+            const {data}=await bikeApi.post('/auth/adminLogin',{adminUser,adminPassword})
+            localStorage.setItem('usuario',data.name)
+            dispatch(onLoginAdmin({name:data.name,uid:data.uid}))
 
         }catch(error){
             dispatch(onLogout('Credenciales Incorrectas'))
@@ -83,6 +96,7 @@ export const useAuthStore=()=>{
         startLogin,
         startRegisterGuard,
         startLogout,
-        startRegisterAlumno
+        startRegisterAlumno,
+        startLoginAdmin
     }
 }
