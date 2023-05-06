@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { AdminLogin, Login } from "../auth";
-import { Admin, RegisterGuard } from "../bikeMainPage";
+import { Admin, BikeList, RegisterGuard } from "../bikeMainPage";
 import { useAuthStore } from "../hooks";
 
 /* import { Admin } from "../bikeMainPage/pages/Admin"; */
@@ -8,13 +8,13 @@ import { useAuthStore } from "../hooks";
 
 export const AppRouter = () => {
 
-  const {status} = useAuthStore();
+  const { status } = useAuthStore();
 
   if (status === 'checking') {
     return (
       <h3>Cargando...</h3>
     )
-  } 
+  }
   return (
     <Routes>
       {status === 'checking' ? (
@@ -27,15 +27,20 @@ export const AppRouter = () => {
         </>
       ) : status === 'authenticated' ? (
         <>
-          <Route path='/' element={<RegisterGuard />} />
-          <Route path='/*' element={<Navigate to="/" />} />
+          <Route path='/registrar' element={<RegisterGuard />} />
+          <Route path='/*' element={<Navigate to="/registrar" />} />
+          <Route path='/list' element={<BikeList />} />
+
         </>
       ) : status === 'admin' ? (
         <>
           <Route path='/administracion' element={<Admin />} />
           <Route path='/*' element={<Navigate to="/administracion" />} />
+          <Route path='/list' element={<BikeList />} />
+
         </>
       ) : null}
+     
     </Routes>
   );
 }
