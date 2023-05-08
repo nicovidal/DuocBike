@@ -5,19 +5,34 @@ import { useAlumnoStore } from "../../hooks";
 
 export const BikeList = () => {
 
-  const {startLoadingAlumnos } =useAlumnoStore();
+  const {alumno,startLoadingAlumno } =useAlumnoStore();
 
 
   useEffect(() => {
-    startLoadingAlumnos();
-
+   
+    startLoadingAlumno();
+   
   }, [])
   
 
   return (
     <>
     <Navbar/>
-    <div>Aqui se mostraran los cilistas</div>
+  
+  
+      {alumno.map(a=>{
+        return(
+          <tr key={a.id}>
+            <td>{a.registerName}</td>
+            <td>{a.registerRut}</td>
+            <td>{a.registerCarrer}</td>
+            <td>{a.registerBrand}</td>
+            <td>{a.registerColor}</td>
+            <td>{a.registerID}</td>    
+          </tr>
+        )
+      })}
+  
     </>
   )
 }

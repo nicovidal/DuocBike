@@ -4,7 +4,7 @@ export const alumnoSlice = createSlice({
     name: 'alumno',
     initialState: {
         isLoadingALumnos:true,
-        alumnoSlice:[],
+        alumno:[],
         
     },
     reducers: {
@@ -13,13 +13,15 @@ export const alumnoSlice = createSlice({
             payload.forEach(alumno=>{
                 const exists=state.alumno.some(dbAlumno=>dbAlumno.id===alumno.id)
                 if(!exists){
-                    state.events.push(alumno)
+                    state.alumno.push(alumno)
+                    
                 }
             })
         },
+      
     }
 });
 
 
 
-export const { increment } = alumnoSlice.actions;
+export const { onLoadingAlumnos } = alumnoSlice.actions;
