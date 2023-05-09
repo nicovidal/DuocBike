@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuthStore } from "../../hooks";
+import '../styles/NavBar.css'
 
 export const Navbar = () => {
   const { startLogout, user } = useAuthStore();
@@ -13,7 +14,7 @@ export const Navbar = () => {
       </div>
 
       <div className="nav-links">
-      <NavLink className="nav-link" activeClassName="active" to="/">
+      <NavLink className="nav-link" activeClassName="active" to="/ingreso">
             Ingreso Alumno
         </NavLink>
         <NavLink className="nav-link" activeClassName="active"  to="/registrar">
@@ -22,7 +23,7 @@ export const Navbar = () => {
         <NavLink className="nav-link" activeClassName="active" to="/list">
           Lista Alumnos
         </NavLink>
-        <NavLink className="nav-link" activeClassName="active" to="/">
+        <NavLink className="nav-link" activeClassName="active" to="/visitas">
           Visitas
         </NavLink>
      

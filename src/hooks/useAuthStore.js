@@ -45,21 +45,20 @@ export const useAuthStore=()=>{
     
     const startRegisterGuard=async({guardName,guardUser,guardPassword})=>{
 
-        dispatch(onChecking());
+   
 
         try{
 
         
-            const {data}=await bikeApi.post('/auth/newg',{guardName,guardUser,guardPassword})
-            localStorage.setItem('usuario',data.name)
-            dispatch(onLogin({name:data.name,uid:data.uid}))
+            await bikeApi.post('/auth/newg',{guardName,guardUser,guardPassword})
+
+     
             Swal.fire('Guardia creado correctamente','','success')
 
         }catch(error){
-            dispatch(onLogout(error.response.data?.msg||'--'))
-            setTimeout(() => {
-                dispatch(clearErrorMessage())
-            }, 10);
+         
+            Swal.fire('Error','Registro invalido','error')
+       
         }
     }
     const startRegisterAlumno=async({registerName,registerRut,registerCarrer,registerBrand,registerColor,registerID})=>{

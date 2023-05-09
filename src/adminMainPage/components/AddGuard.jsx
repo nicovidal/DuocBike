@@ -33,10 +33,13 @@ export const AddGuard = () => {
 
     return (
         <div className="container add-container">
+
+        
       
         <div className="row">
+
             <div className="col-md-6 add-form-1">
-        
+            <h1 className='titulo'>Ingresar Nuevo Guardia</h1>
                 <form onSubmit={registerSubmit}>
                     <div className="form-group mb-2">                     
                         <input 
@@ -60,7 +63,7 @@ export const AddGuard = () => {
                     </div>
                     <div className="form-group">
                         <input
-                            type="text"
+                            type="password"
                             className="form-control-add"
                             placeholder="contraseña"
                             name="guardPassword"
