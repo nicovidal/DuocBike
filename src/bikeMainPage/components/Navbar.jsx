@@ -1,21 +1,39 @@
-
-
+import { NavLink } from "react-router-dom";
+import { useAuthStore } from "../../hooks";
+import '../styles/NavBar.css'
 
 export const Navbar = () => {
+  const { startLogout, user } = useAuthStore();
+
   return (
-    <div className="navbar navbar-light bg-light mb-4 px-4">
-      <span className="navbar-brand">
-      <i className="fa-solid fa-person-military-pointing"></i>
-      Guardia
-      </span>
-      <div className="navbar-nav">
-      <a className="nav-item nav-link active" href="#">Registro<span className="sr-only">(current)</span></a>
+    <div className="navbar bg-light mb-4 px-4">
+      <div className="navbar-brand">
+        <i className="fa-solid fa-person-military-pointing"></i>
+        &nbsp;
+        <span>{user.name}</span>
       </div>
 
-      <button className="btn btn-outline-danger">
+      <div className="nav-links">
+      <NavLink className="nav-link" activeClassName="active" to="/ingreso">
+            Ingreso Alumno
+        </NavLink>
+        <NavLink className="nav-link" activeClassName="active"  to="/registrar">
+          Nuevo Alumno
+        </NavLink>
+        <NavLink className="nav-link" activeClassName="active" to="/list">
+          Lista Alumnos
+        </NavLink>
+        <NavLink className="nav-link" activeClassName="active" to="/visitas">
+          Visitas
+        </NavLink>
+     
+      </div>
+
+      <button className="btn btn-outline-danger" onClick={startLogout}>
         <i className="fas fa-sign-out-alt"></i>
+        &nbsp;
         <span>Salir</span>
       </button>
     </div>
-  )
-}
+  );
+};

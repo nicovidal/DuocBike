@@ -1,73 +1,116 @@
-import React from 'react'
+
+import { useAuthStore, useRegister } from '../../hooks';
+
 import '../styles/RegistrationBike.css'
 
+
+const registerFormFields = {
+    registerName: '',
+    registerRut: '',
+    registerCarrer: '',
+    registerBrand: '',
+    registerColor: '',
+    registerID: '',
+}
+
+
+
 export const RegistrationBike = () => {
-  return (
-    <div className="container">
-        <div className="row">
-            <div className="addBike-form">  
-                <img src="../assets/logo.png" className='logo-addBike'/>
-                <form>
 
-                    <div className="form-group mb-2">
-                        <input
-                        type="text"
-                        className=" form-control-addBike"
-                        placeholder="Nombre"
-                        />                
-                    </div>
 
-                    <div className="form-group mb-2">
-                        <input
-                        type="text"
-                        className=" form-control-addBike"
-                        placeholder="Rut"
-                        />                
-                    </div>
+    const { registerName, registerRut, registerCarrer, registerBrand, registerColor, registerID, onInputChange: onRegisterInputChange } = useRegister(registerFormFields);
 
-                    <div className="form-group mb-2">
-                        <input
-                        type="text"
-                        className=" form-control-addBike"
-                        placeholder="Carrera"
-                        />                
-                    </div>
+    const { startRegisterAlumno } = useAuthStore();
 
-                    <div className="form-group mb-2">
-                        <input
-                        type="text"
-                        className=" form-control-addBike"
-                        placeholder="Marca"
-                        />                
-                    </div>
+    const registerSubmit = (event) => {
+        event.preventDefault();
+        startRegisterAlumno({ registerName:registerName, registerRut:registerRut,registerCarrer: registerCarrer, registerBrand:registerBrand, registerColor:registerColor, registerID:registerID })
+    }
 
-                    <div className="form-group mb-2">
-                        <input
-                        type="text"
-                        className=" form-control-addBike"
-                        placeholder="Color"
-                        />                
-                    </div>
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="addBike-form">
+                    <img src="../assets/logo.png" className='logo-addBike' />
+                    <form onSubmit={registerSubmit}>
 
-                    <div className="form-group mb-2">
-                        <input
-                        type="text"
-                        className=" form-control-addBike"
-                        placeholder="ID"
-                        />                
-                    </div>
+                        <div className="form-group mb-2">
+                            <input
+                                type="text"
+                                className=" form-control-addBike"
+                                placeholder="Nombre"
+                                name="registerName"
+                                value={registerName}
+                                onChange={onRegisterInputChange}
+                            />
+                        </div>
 
-                    <div className="form-group mb-2">
-                        <input 
-                            type="submit"
-                            className="btnAddBike"
-                            value="Registrar" 
-                        />
-                    </div>
+                        <div className="form-group mb-2">
+                            <input
+                                type="text"
+                                className=" form-control-addBike"
+                                placeholder="Rut"
+                                name="registerRut"
+                                value={registerRut}
+                                onChange={onRegisterInputChange}
+                            />
+                        </div>
 
-                </form>
+                        <div className="form-group mb-2">
+                            <input
+                                type="text"
+                                className=" form-control-addBike"
+                                placeholder="Carrera"
+                                name="registerCarrer"
+                                value={registerCarrer}
+                                onChange={onRegisterInputChange}
+                            />
+                        </div>
+
+                        <div className="form-group mb-2">
+                            <input
+                                type="text"
+                                className=" form-control-addBike"
+                                placeholder="Marca"
+                                name="registerBrand"
+                                value={registerBrand}
+                                onChange={onRegisterInputChange}
+                            />
+                        </div>
+
+                        <div className="form-group mb-2">
+                            <input
+                                type="text"
+                                className=" form-control-addBike"
+                                placeholder="Color"
+                                name="registerColor"
+                                value={registerColor}
+                                onChange={onRegisterInputChange}
+                            />
+                        </div>
+
+                        <div className="form-group mb-2">
+                            <input
+                                type="text"
+                                className=" form-control-addBike"
+                                placeholder="ID"
+                                name="registerID"
+                                value={registerID}
+                                onChange={onRegisterInputChange}
+                            />
+                        </div>
+
+                        <div className="form-group mb-2">
+                            <input
+                                type="submit"
+                                className="btnAddBike"
+                                value="Registrar"
+                            />
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }

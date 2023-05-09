@@ -1,4 +1,6 @@
-export * from './pages/RegisterGuard'
+export * from '../adminMainPage/styles/RegisterGuard'
 export * from './components/Navbar'
-export * from './components/NavBarAdmin'
-export * from './components/AddGuard'
+
+
+
+export * from './pages/BikeList'

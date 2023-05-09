@@ -1,30 +1,53 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { Login } from "../auth";
- import { RegisterGuard } from "../bikeMainPage"; 
-import { Admin } from "../bikeMainPage/pages/Admin";
+import { AdminLogin, Login } from "../auth";
+import { BikeList, RegisterGuard } from "../bikeMainPage";
+import { useAuthStore } from "../hooks";
+import { BikeListAdmin, GuardList } from "../adminMainPage/components";
+import { AdminMain } from "../adminMainPage/pages/adminMain";
+import { IngresoBike } from "../bikeMainPage/components/IngresoBike";
+import { Visitas } from "../bikeMainPage/components/Visitas";
+
+/* import { Admin } from "../bikeMainPage/pages/Admin"; */
+
 
 export const AppRouter = () => {
 
-   /*  const authStatus='authenticatedAdmin'; */
+  const { status } = useAuthStore();
 
+  if (status === 'checking') {
+    return (
+      <h3>Cargando...</h3>
+    )
+  }
   return (
     <Routes>
-{/*         {
-            (authStatus==='authenticated')
-            ? <Route path='/auth/*' element={<Login/>}/>
-            :
-        } 
-        
-        {
-            (authStatus==='authenticatedAdmin')
-            ? 
-            :
+      {status === 'checking' ? (
+        <h3>Cargando...</h3>
+      ) : status === 'not-authenticated' ? (
+        <>
+          <Route path='/auth/*' element={<Login />} />
+          <Route path='/auth/admin' element={<AdminLogin />} />
+          <Route path='/*' element={<Navigate to="/auth/login" />} />
+        </>
+      ) : status === 'authenticated' ? (
+        <>
+          <Route path='/registrar' element={<RegisterGuard />} />
+          <Route path='/*' element={<Navigate to="/registrar" />} />
+          <Route path='/list' element={<BikeList />} />
+          <Route path='/ingreso' element={<IngresoBike />} />
+          <Route path='/visitas' element={<Visitas />} />
 
-        } */}
-<Route path='/*' element={<RegisterGuard/>}/>
-<Route path='/admin/' element={<Admin/>}/>
-<Route path='/auth/*' element={<Login/>}/>
-        <Route path='/*' element={<Navigate to="/auth/login"/>}/>
+        </>
+      ) : status === 'admin' ? (
+        <>
+          <Route path='/administracion' element={<AdminMain/>} />
+          <Route path='/*' element={<Navigate to="/administracion" />} />
+          <Route path='/listAdmin' element={<BikeListAdmin />} />
+          <Route path='/listGuard' element={<GuardList />} />
+
+        </>
+      ) : null}
+     
     </Routes>
-  )
+  );
 }

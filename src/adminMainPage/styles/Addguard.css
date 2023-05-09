@@ -1,0 +1,62 @@
+.add-container{
+    margin-top: 5%;
+    margin-left: 35%;
+}
+
+.form-control-add {
+    background: rgba(255, 184, 0, 0.7);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin-bottom:2rem;
+
+}
+
+.titulo{
+  text-align: center;
+}
+
+.add-container form {
+    padding: 10%;
+}
+
+
+.add-container {
+  margin-top: 20px;
+}
+
+.add-form-1 {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control-add {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+}
+
+.btnAddGuard {
+  background-color:rgba(255, 184, 0, 0.7);
+  color: black;
+  padding: 10px 50px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btnAddGuard:hover {
+  background-color: rgba(255, 183, 0, 0.507);
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
