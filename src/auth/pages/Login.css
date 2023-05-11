@@ -123,9 +123,20 @@
     margin-bottom: -9px;
 }
 
-.wave {
+.fondo{
     width: 100%;
-    bottom: 0;
-    left: 0;
+    background-image: url(/assets/ola.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+}
+
+.copy{
+    text-align: center;
+    padding-top: 60px;
+    padding-left: 50px;
     position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Manrope', sans-serif;
 }
