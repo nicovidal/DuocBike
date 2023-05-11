@@ -28,11 +28,11 @@ export const RegistrationBike = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container cuerpo-bici">
             <div className="row">
                 <div className="addBike-form">
                     <img src="../assets/logo.png" className='logo-addBike' />
-                    <form onSubmit={registerSubmit}>
+                    <form className='form form-registro'onSubmit={registerSubmit}>
 
                         <div className="form-group mb-2">
                             <input

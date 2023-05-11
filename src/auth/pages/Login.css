@@ -5,7 +5,7 @@
 	box-sizing: border-box;
 }
 
-body {
+.cuerpo {
     font-family: 'Open Sans', sans-serif;
     display: flex;
     align-items: center;
@@ -13,7 +13,7 @@ body {
     min-height: 80vh;
     margin: 0;}
 
-.container {
+.login-cuerpo {
     border-radius: 5px;
     box-shadow: 7px 13px 37px;
     overflow: hidden;
@@ -21,7 +21,7 @@ body {
     max-width: 100%;
 }
 
-img{
+.imagencita{
     width: 120px;
     display: flex;
     align-items: center;
@@ -44,11 +44,11 @@ h2{
     margin-top: 10px;
 }
 
-.form{
+.form-loginPulento{
     padding: 30px 40px;
 }
 
-.form-control{
+.form-loginPulento-control{
     margin-bottom: 10px;
     padding-bottom: 0px;
     position: relative;
@@ -56,7 +56,7 @@ h2{
 }
 
 
-.form-control input{
+.form-loginPulento-control input{
     border: 1px solid #ffffff;
     border-radius: 4px;
     display: block;
@@ -66,12 +66,12 @@ h2{
     width: 100%;
 }
 
-.form-control input:focus{
+.form-loginPulento-control input:focus{
     outline: 0;
     border-color: #000000;
 }
 
-.form button{
+.form-loginPulento button{
     background-color: rgba(255, 184, 0, 1);
     font-weight: bold;
     border-radius: 4px;
@@ -88,7 +88,7 @@ h2{
     color: red;
 }
 
-input, textarea{
+.placecentrado, textarea{
 	font-family: 'Roboto', sans-serif;
 	width: 100%;
 	box-sizing: border-box;

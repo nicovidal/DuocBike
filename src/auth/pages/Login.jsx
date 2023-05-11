@@ -39,27 +39,32 @@ export const Login = () => {
 
 
   return (
-    <body>
-        <div className='container'>
+    <body className='cuerpo'>
+        <div className='container login-cuerpo'>
             {/* imagen */}
-            <img src="../assets/logo.png"/>
+            <img src="../assets/logo.png" className='imagencita'/>
             <h2>DuocBike</h2>
 
-            <form className='form' onSubmit={loginSubmit}>
+            <form className='form form-loginPulento' onSubmit={loginSubmit}>
                 {/* Usuario */}
-                <div className='form-control'>
+                <div className='form-control form-loginPulento-control'>
                     <FontAwesomeIcon icon={faUser} className='icono'></FontAwesomeIcon>
-                    <input type='text' placeholder='Usuario' className='placecentrado' name='loginUser' value={loginUser} onChange={onLoginInputChange} required></input>
+                    <input type='text' placeholder='Usuario' 
+                    className='placecentrado' 
+                    name='loginUser' 
+                    value={loginUser} 
+                    onChange={onLoginInputChange} required></input>
                 </div>
 
                 {/* Contraseña */}
-                <div className='form-control'>
+                <div className='form-control form-loginPulento-control' >
                     <FontAwesomeIcon icon={faLock} className='icono'></FontAwesomeIcon>
-                    <input type='password' placeholder='Contraseña' name='loginPassword' value={loginPassword} onChange={onLoginInputChange} required></input>
+                    <input type='password' placeholder='Contraseña' name='loginPassword' 
+                    value={loginPassword} className='placecentrado'  onChange={onLoginInputChange} required></input>
                 </div>
                 
                 {/* Boton Entrar */}
-                <button className='btn' value="Entrar">Entrar</button>
+                <button className='btn btn-login' value="Entrar">Entrar</button>
             </form>
 
         </div>
