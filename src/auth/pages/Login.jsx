@@ -39,10 +39,10 @@ export const Login = () => {
 
 
   return (
-    <body className='body1'>
+    <div className='body1'>
         {/* Fondo */}
-        <svg preserveAspectRatio='none' class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FFB800" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-        
+{/*         <svg preserveAspectRatio='none' class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FFB800" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+ */}        
         <div className='container1'>
             {/* imagen */}
             <img className='img1' src="../assets/logo.png"/>
@@ -52,7 +52,11 @@ export const Login = () => {
                 {/* Usuario */}
                 <div className='form-control1'>
                     <FontAwesomeIcon icon={faUser} className='icono1'></FontAwesomeIcon>
-                    <input type='text' placeholder='Usuario' className='input' name='loginUser' value={loginUser} onChange={onLoginInputChange} required></input>
+                    <input type='text' placeholder='Usuario' className='input'
+                     name='loginUser' 
+                     value={loginUser}
+                      onChange={onLoginInputChange} 
+                      required></input>
                 </div>
 
                 {/* Contraseña */}
@@ -66,7 +70,7 @@ export const Login = () => {
             </form>
 
         </div>
-    </body>
+    </div>
 
 
     // Login del nicosexo
