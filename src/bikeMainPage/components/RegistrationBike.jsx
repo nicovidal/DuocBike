@@ -28,89 +28,170 @@ export const RegistrationBike = () => {
     }
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="addBike-form">
-                    <img src="../assets/logo.png" className='logo-addBike' />
-                    <form onSubmit={registerSubmit}>
 
-                        <div className="form-group mb-2">
-                            <input
-                                type="text"
-                                className=" form-control-addBike"
-                                placeholder="Nombre"
-                                name="registerName"
-                                value={registerName}
-                                onChange={onRegisterInputChange}
-                            />
+        <div className='fondo3'>
+            <div className='body3'>
+                <div className='container3'>
+                    {/* imagen */}
+                    
+                    <h2 className='nuevoal'>Nuevo Alumno</h2>
+
+                    <form className='form3' onSubmit={registerSubmit}>
+                        {/* Nombre */}
+                        <div className="form-control3">
+                            
+                            <input type='text' placeholder='Nombre' className='input3' 
+                            name="registerName"
+                            value={registerName}
+                            onChange={onRegisterInputChange} required></input>
                         </div>
 
-                        <div className="form-group mb-2">
-                            <input
-                                type="text"
-                                className=" form-control-addBike"
-                                placeholder="Rut"
-                                name="registerRut"
-                                value={registerRut}
-                                onChange={onRegisterInputChange}
-                            />
+                        {/* Rut */}
+                        <div className="form-control3">
+                            
+                            <input type='text' placeholder='Rut' className='input3' 
+                            name="registerRut"
+                            value={registerRut}
+                            onChange={onRegisterInputChange} required></input>
                         </div>
 
-                        <div className="form-group mb-2">
-                            <input
-                                type="text"
-                                className=" form-control-addBike"
-                                placeholder="Carrera"
-                                name="registerCarrer"
-                                value={registerCarrer}
-                                onChange={onRegisterInputChange}
-                            />
+                        {/* Carrera */}
+                        <div className="form-control3">
+                            
+                            <input type='text' placeholder='Carrera' className='input3' 
+                            name="registerCarrer"
+                            value={registerCarrer}
+                            onChange={onRegisterInputChange} required></input>
                         </div>
 
-                        <div className="form-group mb-2">
-                            <input
-                                type="text"
-                                className=" form-control-addBike"
-                                placeholder="Marca"
-                                name="registerBrand"
-                                value={registerBrand}
-                                onChange={onRegisterInputChange}
-                            />
+                        {/* Marca */}
+                        <div className="form-control3">
+                            
+                            <input type='text' placeholder='Marca' className='input3' 
+                            name="registerBrand"
+                            value={registerBrand}
+                            onChange={onRegisterInputChange} required></input>
                         </div>
 
-                        <div className="form-group mb-2">
-                            <input
-                                type="text"
-                                className=" form-control-addBike"
-                                placeholder="Color"
-                                name="registerColor"
-                                value={registerColor}
-                                onChange={onRegisterInputChange}
-                            />
+                        {/* Color */}
+                        <div className="form-control3">
+                            
+                            <input type='text' placeholder='Color' className='input3' 
+                            name="registerColor"
+                            value={registerColor}
+                            onChange={onRegisterInputChange} required></input>
                         </div>
 
-                        <div className="form-group mb-2">
-                            <input
-                                type="text"
-                                className=" form-control-addBike"
-                                placeholder="ID"
-                                name="registerID"
-                                value={registerID}
-                                onChange={onRegisterInputChange}
-                            />
+                        {/* ID */}
+                        <div className="form-control3">
+                            
+                            <input type='text' placeholder='ID' className='input3' 
+                            name="registerID"
+                            value={registerID}
+                            onChange={onRegisterInputChange} required></input>
                         </div>
 
-                        <div className="form-group mb-2">
-                            <input
-                                type="submit"
-                                className="btnAddBike"
-                                value="Registrar"
-                            />
-                        </div>
+                        {/* Boton Registrar */}
+                        <button className='btn' value="Registrar">Registrar</button>
+
+                        
+
+                        
+
+                        
+
+                        
 
                     </form>
                 </div>
             </div>
+
         </div>
+
+
+        // <div className="container">
+        //     <div className="row">
+        //         <div className="addBike-form">
+        //             <img src="../assets/logo.png" className='logo-addBike' />
+        //             <form onSubmit={registerSubmit}>
+
+        //                 <div className="form-group mb-2">
+        //                     <input
+        //                         type="text"
+        //                         className=" form-control-addBike"
+        //                         placeholder="Nombre"xxxxxxxx
+        //                         name="registerName"xxxxx
+        //                         value={registerName}xxxxx
+        //                         onChange={onRegisterInputChange}xxxxxxxx
+        //                     />
+        //                 </div>
+
+        //                 <div className="form-group mb-2">
+        //                     <input
+        //                         type="text"
+        //                         className=" form-control-addBike"
+        //                         placeholder="Rut"xxxxx
+        //                         name="registerRut"xxxxx
+        //                         value={registerRut}xxxxx
+        //                         onChange={onRegisterInputChange}xxxxxxx
+        //                     />
+        //                 </div>
+
+        //                 <div className="form-group mb-2">
+        //                     <input
+        //                         type="text"
+        //                         className=" form-control-addBike"
+        //                         placeholder="Carrera"xxxxxx
+        //                         name="registerCarrer"xxxxx
+        //                         value={registerCarrer}xxxxxx
+        //                         onChange={onRegisterInputChange}xxxxxxx
+        //                     />
+        //                 </div>
+
+        //                 <div className="form-group mb-2">
+        //                     <input
+        //                         type="text"
+        //                         className=" form-control-addBike"
+        //                         placeholder="Marca"xxxxxxxxx
+        //                         name="registerBrand"xxxxxxxxxx
+        //                         value={registerBrand}xxxxxxx
+        //                         onChange={onRegisterInputChange}xxxxxxxx
+        //                     />
+        //                 </div>
+
+        //                 <div className="form-group mb-2">
+        //                     <input
+        //                         type="text"
+        //                         className=" form-control-addBike"
+        //                         placeholder="Color"xxxxxxxxx
+        //                         name="registerColor"xxxxxxxxx
+        //                         value={registerColor}xxxxxxxxxxx
+        //                         onChange={onRegisterInputChange}
+        //                     />
+        //                 </div>
+
+        //                 <div className="form-group mb-2">
+        //                     <input
+        //                         type="text"
+        //                         className=" form-control-addBike"
+        //                         placeholder="ID"XXXXXX
+        //                         name="registerID"XXXXXXX
+        //                         value={registerID}XXXXXXXX
+        //                         onChange={onRegisterInputChange}
+        //                     />
+        //                 </div>
+
+        //                 <div className="form-group mb-2">
+        //                     <input
+        //                         type="submit"
+        //                         className="btnAddBike"
+        //                         value="Registrar"
+        //                     />
+        //                 </div>
+
+        //             </form>
+        //         </div>
+        //     </div>
+        // </div>
     )
 }
