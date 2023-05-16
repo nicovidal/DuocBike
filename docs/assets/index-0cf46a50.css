@@ -12,7 +12,7 @@
     width: 100%;
     height: 100vh;
     padding-bottom: 190px;
-    background-image: url(/assets/fondo2.jpg);
+    background-image: url(./assets/fondo2.jpg);
     background-position: center
 }
 
@@ -93,7 +93,7 @@
 
 .fondo {
     width: 100%;
-    background-image: url(/assets/ola-914d9b6a.png);
+    background-image: url(./assets/ola-914d9b6a.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom
@@ -115,7 +115,7 @@
 
 .fondo2 {
     width: 100%;
-    background-image: url(/assets/ola-914d9b6a.png);
+    background-image: url(./assets/ola-914d9b6a.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom
@@ -234,7 +234,7 @@
 
 .fondo3 {
     width: 100%;
-    background-image: url(/assets/ola-914d9b6a.png);
+    background-image: url(./assets/ola-914d9b6a.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom
@@ -348,7 +348,7 @@
 
 .fondo3 {
     width: 100%;
-    background-image: url(/assets/ola-914d9b6a.png);
+    background-image: url(./assets/ola-914d9b6a.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom
