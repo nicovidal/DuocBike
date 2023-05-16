@@ -65,7 +65,7 @@ export const Login = () => {
                     
                     {/* Boton Entrar */}
                     <button className='btn' value="Entrar">Entrar</button>
-                    <h1 className='copy'>Copyright ©2023 PipeloveINC.</h1>
+                    <h1 className='copy'>Copyright ©2023 PipeloveINC</h1>
                 </form>
             </div>
         </div>
