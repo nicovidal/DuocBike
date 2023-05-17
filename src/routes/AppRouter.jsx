@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { AdminLogin, Login } from "../auth";
-import { BikeList, RegisterGuard } from "../bikeMainPage";
+import {RegisterGuard } from "../bikeMainPage";
 import { useAuthStore } from "../hooks";
 import { BikeListAdmin, GuardList } from "../adminMainPage/components";
 import { AdminMain } from "../adminMainPage/pages/adminMain";
