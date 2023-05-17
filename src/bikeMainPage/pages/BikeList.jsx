@@ -13,9 +13,9 @@ import { visuallyHidden } from '@mui/utils';
  const headCells=[
   {
     id:'id',
-    numeric:true,
+    numeric:false,
     disablePadding:true,
-    label:'ID'
+    label:'ID Bicicleta'
   },
   {
     id:'nombre',
@@ -76,7 +76,7 @@ import { visuallyHidden } from '@mui/utils';
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.numeric ? 'right' : 'center'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -170,7 +170,7 @@ EnhancedTableToolbar.propTypes = {
 export const BikeList = () => {
 
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('nombre');
+  const [orderBy, setOrderBy] = React.useState('');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -330,12 +330,13 @@ useEffect(() => {
                       scope="row"
                       padding="none"
                     >
-                      {a.registerName}
+                      {a.registerID}
                     </TableCell>
-                    <TableCell align="right">{a.registerRut}</TableCell>
-                    <TableCell align="right">{a.registerCarrer}</TableCell>
-                    <TableCell align="right">{a.registerBrand}</TableCell>
-                    <TableCell align="right">{a.registerColor}</TableCell>
+                    <TableCell align="left">{a.registerName}</TableCell>
+                    <TableCell align="left">{a.registerRut}</TableCell>
+                    <TableCell align="left">{a.registerCarrer}</TableCell>
+                    <TableCell align="left">{a.registerBrand}</TableCell>
+                    <TableCell align="left">{a.registerColor}</TableCell>
                   </TableRow>
                 );
               })}
