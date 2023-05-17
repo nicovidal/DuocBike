@@ -58,8 +58,8 @@ import { visuallyHidden } from '@mui/utils';
   };
 
   return (
+ 
 
-   
     <TableHead>
       <TableRow>
         <TableCell padding="checkbox">
@@ -113,6 +113,8 @@ function EnhancedTableToolbar(props) {
   const { numSelected } = props;
 
   return (
+    <>
+    <input placeholder="Buscar"/>
     <Toolbar
       sx={{
         pl: { sm: 2 },
@@ -157,6 +159,7 @@ function EnhancedTableToolbar(props) {
         </Tooltip>
       )}
     </Toolbar>
+    </>
   );
 }
 
@@ -170,7 +173,7 @@ EnhancedTableToolbar.propTypes = {
 export const BikeList = () => {
 
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('');
+  const [orderBy, setOrderBy] = React.useState('');//tengo que cachar como usar esto bien
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
