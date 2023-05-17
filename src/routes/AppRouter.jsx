@@ -6,6 +6,7 @@ import { BikeListAdmin, GuardList } from "../adminMainPage/components";
 import { AdminMain } from "../adminMainPage/pages/adminMain";
 import { IngresoBike } from "../bikeMainPage/components/IngresoBike";
 import { Visitas } from "../bikeMainPage/components/Visitas";
+import { ListaAlumnos } from "../bikeMainPage/pages/ListaAlumnos";
 
 /* import { Admin } from "../bikeMainPage/pages/Admin"; */
 
@@ -33,7 +34,7 @@ export const AppRouter = () => {
         <>
           <Route path='/registrar' element={<RegisterGuard />} />
           <Route path='/*' element={<Navigate to="/registrar" />} />
-          <Route path='/list' element={<BikeList />} />
+          <Route path='/list' element={<ListaAlumnos />} />
           <Route path='/ingreso' element={<IngresoBike />} />
           <Route path='/visitas' element={<Visitas />} />
 
