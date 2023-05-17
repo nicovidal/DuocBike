@@ -23,38 +23,6 @@ export const BikeList = () => {
   return (
     <>
       <Navbar />
-{/*       <table className="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Rut</th>
-            <th scope="col">Carrera</th>
-            <th scope="col">Marca</th>
-            <th scope="col">Color</th>
-
-          </tr>
-        </thead>
-
-        {alumno.map(a => {
-          return (
-            <>
-              <tbody key={a.id}>
-                <tr>
-                  <td>{a.registerID}</td>
-                  <td>{a.registerName}</td>
-                  <td>{a.registerRut}</td>
-                  <td>{a.registerCarrer}</td>
-                  <td>{a.registerBrand}</td>
-                  <td>{a.registerColor}</td>
-                </tr>
-              </tbody>
-            </>
-
-          )
-
-        })}
-      </table> */}
       <div className="fondo4">
         <div className="body4">
           <div className="container4">
@@ -77,9 +45,9 @@ export const BikeList = () => {
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <TableCell align="center">{a.registerID}</TableCell>
-                      <TableCell align="right">{a.registerName}</TableCell>
-                      <TableCell align="right">{a.registerRut}</TableCell>
-                      <TableCell align="right">{a.registerCarrer}</TableCell>
+                      <TableCell align="right"><input value={a.registerName}/></TableCell>
+                      <TableCell align="right"><input value={a.registerRut}/></TableCell>
+                      <TableCell align="right"><input value={a.registerCarrer} /></TableCell>
                       <TableCell align="right">{a.registerBrand}</TableCell>
                       <TableCell align="right">{a.registerColor}</TableCell>
 
