@@ -5,6 +5,7 @@ export const alumnoSlice = createSlice({
     initialState: {
         isLoadingALumnos:true,
         alumno:[],
+        activeAlumno:null,
         
     },
     reducers: {
@@ -17,11 +18,16 @@ export const alumnoSlice = createSlice({
                     
                 }
             })
+        },  
+        onSetActiveAlumno:(state,{payload})=>{
+            state.activeAlumno=payload;
         },
-      
+
+
+
     }
 });
 
 
 
-export const { onLoadingAlumnos } = alumnoSlice.actions;
+export const { onLoadingAlumnos,onDeleteAlumno ,onSetActiveAlumno} = alumnoSlice.actions;

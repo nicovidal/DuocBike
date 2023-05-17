@@ -110,7 +110,16 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
+  
   const { numSelected } = props;
+
+  const { startDeletingAlumno } = useAlumnoStore();
+
+  const handleDelete=()=>{
+
+    startDeletingAlumno();
+  }
+    
 
   return (
     <>
@@ -147,7 +156,7 @@ function EnhancedTableToolbar(props) {
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton>
+          <IconButton onClick={handleDelete}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
@@ -201,7 +210,7 @@ export const BikeList = () => {
     setOrderBy(property);
   };
 
-  const { alumno, startLoadingAlumno } = useAlumnoStore();
+  const { alumno, startLoadingAlumno} = useAlumnoStore();
 
   
   const handleSelectAllClick = (event) => {
@@ -280,7 +289,8 @@ useEffect(() => {
   startLoadingAlumno();
 
 })
-  
+
+
   
 
 
