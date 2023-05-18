@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 /* import { Navbar } from "../components/Navbar" */
 import { useAlumnoStore } from "../../hooks";
 import { Box, Checkbox, FormControlLabel, IconButton, Paper, Switch, Table, TableBody, TableCell, TableContainer, TableHead,TablePagination,TableRow, TableSortLabel, Toolbar, Tooltip, Typography, alpha } from "@mui/material";
@@ -7,6 +7,9 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import '../styles/BikeList.css'
 import PropTypes from 'prop-types';
 import { visuallyHidden } from '@mui/utils';
+import { AlumnoModal } from "../components/AlumnoModal";
+import { onOpenAlumnoModal, onSetActiveAlumno } from "../../store";
+import { alumnoEvent } from "../components/alumnoEvent";
 
 
 
@@ -188,6 +191,11 @@ export const BikeList = () => {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+
+  const saveDataToLocalStorage = (data) => {
+    localStorage.setItem("tableData", JSON.stringify(data));
+  };
+
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
       return -1;
@@ -210,7 +218,8 @@ export const BikeList = () => {
     setOrderBy(property);
   };
 
-  const { alumno, startLoadingAlumno} = useAlumnoStore();
+  const { alumno, startLoadingAlumno } = useAlumnoStore(saveDataToLocalStorage);
+
 
   
   const handleSelectAllClick = (event) => {
@@ -268,6 +277,8 @@ export const BikeList = () => {
     setDense(event.target.checked);
   };
 
+
+
   const isSelected = (registerName) => selected.indexOf(registerName) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -283,18 +294,31 @@ export const BikeList = () => {
       [order, orderBy, page, rowsPerPage],
     );
 
+    const {setActiveAlumno}=useAlumnoStore();
 
-useEffect(() => {
 
-  startLoadingAlumno();
 
-})
+    useEffect(() => {
 
+        startLoadingAlumno();
+   
+    }, []);
+
+    const onDoubleClick = (event) => {
+      /* console.log({ doubleClick: event }) */
+      onOpenAlumnoModal();
+    }
+
+    const onSelect = (event) => {
+       console.log({ click: event }) 
+      onSetActiveAlumno(event);
+    }
 
   
 
 
   return (
+    <>
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
@@ -319,6 +343,11 @@ useEffect(() => {
 
                 return (
                   <TableRow
+                  components={{
+                    event: alumnoEvent
+                  }}
+                    onDoubleClickEvent={onDoubleClick}
+                    onSelectEvent={onSelect}
                     hover
                     onClick={(event) => handleClick(event, a.id)}
                     role="checkbox"
@@ -380,6 +409,8 @@ useEffect(() => {
         label="Dense padding"
       />
     </Box>
+    <AlumnoModal/>
+   </>
     
   );
   

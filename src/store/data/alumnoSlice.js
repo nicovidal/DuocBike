@@ -23,6 +23,17 @@ export const alumnoSlice = createSlice({
             state.activeAlumno=payload;
         },
 
+        onUpdateAlumno:(state,{payload})=>{
+            state.alumno=state.alumno.map(alumno=>{
+                if(alumno.id===alumno.id){
+                    return payload;
+
+                }
+                return alumno;
+            });
+
+        },
+
 
 
     }
@@ -30,4 +41,4 @@ export const alumnoSlice = createSlice({
 
 
 
-export const { onLoadingAlumnos,onDeleteAlumno ,onSetActiveAlumno} = alumnoSlice.actions;
+export const { onLoadingAlumnos,onDeleteAlumno ,onSetActiveAlumno,onUpdateAlumno} = alumnoSlice.actions;
