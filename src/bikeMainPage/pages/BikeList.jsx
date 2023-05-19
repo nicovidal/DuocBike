@@ -14,7 +14,7 @@ import { AlumnoModal } from "../components/AlumnoModal";
 import { useAlumnoStore } from "../../hooks";
 
 export const BikeList = () => {
-  const { openAlumnoModal, closeAlumnoModal } = useModalStore();
+
   const { alumno, startLoadingAlumno, setActiveAlumno } = useAlumnoStore();
   const [selectedRow, setSelectedRow] = useState(null);
 
@@ -22,14 +22,21 @@ export const BikeList = () => {
     startLoadingAlumno();
   }, []);
 
-  const openModal = (alumno) => {
-    openAlumnoModal();
-  };
+  const { openAlumnoModal, closeAlumnoModal } = useModalStore();
+
+
+  const onDoubleClick = (event) => {
+    /* console.log({ doubleClick: event }) */
+    
+  }
+
+
+
 
   const onSelect = (alumno) => {
     setActiveAlumno(alumno);
-    setSelectedRow(alumno.id);
     openAlumnoModal();
+    setSelectedRow(alumno.id);
     console.log(alumno)
   };
 
@@ -53,8 +60,8 @@ export const BikeList = () => {
                 <TableBody>
                   {alumno.map((a) => (
                     <TableRow
-                      onClick={() => onSelect(a)}
-                      hover
+                      onDoubleClick={() => onSelect(a)}
+                      hover                    
                       key={a.id}
                       selected={selectedRow === a.id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -70,10 +77,12 @@ export const BikeList = () => {
                 </TableBody>
               </Table>
             </TableContainer>
+        
           </div>
-          <AlumnoModal />
+                    
         </div>
       </div>
+      <AlumnoModal/>
     </>
   );
 };
