@@ -17,7 +17,8 @@ export const alumnoSlice = createSlice({
                     state.alumno.push(alumno)
                     
                 }
-            })
+            });
+            state.alumno.sort((a, b) => a.registerID - b.registerID);
         },  
         onSetActiveAlumno:(state,{payload})=>{
             state.activeAlumno=payload;

@@ -19,7 +19,7 @@ Modal.setAppElement("#root");
 
 export const AlumnoModal = () => {
   const { isAlumnoModalOpen, closeAlumnoModal } = useModalStore();
-  const { activeAlumno, startSavingAlumno } = useAlumnoStore();
+  const { activeAlumno, startSavingAlumno ,startDeletingAlumno} = useAlumnoStore();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -64,6 +64,12 @@ export const AlumnoModal = () => {
     setFormSubmitted(false);
     
   };
+
+  const onDelete=()=>{
+    startDeletingAlumno();
+  }
+
+
 
   const onCloseModal = () => {
     closeAlumnoModal();
@@ -137,6 +143,9 @@ export const AlumnoModal = () => {
         </div>
         <button type="submit" className="btn btn-primary" onClick={onSubmit}>
           Guardar
+        </button>
+        <button type="submit" className="btn btn-danger" onClick={onDelete}>
+          Eliminar
         </button>
       </form>
     </Modal>
