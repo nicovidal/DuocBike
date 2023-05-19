@@ -22,6 +22,7 @@ export const useAlumnoStore = () => {
   };
 
   const setActiveAlumno=(alumnoEvent)=>{
+    
     dispatch(onSetActiveAlumno(alumnoEvent))
 
   }

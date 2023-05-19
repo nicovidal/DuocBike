@@ -30,13 +30,16 @@ export const BikeList = () => {
     
   }
 
-
-
-
-  const onSelect = (alumno) => {
-    setActiveAlumno(alumno);
+  const onDouble=()=>{
     openAlumnoModal();
+  }
+
+
+  const onSelectAlumno = (event,alumno) => {
+    setActiveAlumno(alumno);
+ 
     setSelectedRow(alumno.id);
+
     console.log(alumno)
   };
 
@@ -60,7 +63,8 @@ export const BikeList = () => {
                 <TableBody>
                   {alumno.map((a) => (
                     <TableRow
-                      onDoubleClick={() => onSelect(a)}
+                    onClick={(event) => onSelectAlumno(event, a)}
+                      onDoubleClick={onDouble}
                       hover                    
                       key={a.id}
                       selected={selectedRow === a.id}
