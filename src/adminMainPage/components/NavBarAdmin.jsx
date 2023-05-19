@@ -15,14 +15,14 @@ export const NavBarAdmin = () => {
           </span>
           <div className="nav-links">
 
-          <NavLink className="nav-link" activeClassName="active"  to="/administracion">
+          <NavLink className="nav-link"  to="/administracion">
             Nuevo Guardia
           </NavLink>
-          <NavLink  className="nav-link" activeClassName="active" to="/listAdmin">
+          <NavLink  className="nav-link"  to="/listAdmin">
             Gestion Alumnos
           </NavLink>
         
-          <NavLink  className="nav-link" activeClassName="active" to="/listGuard">
+          <NavLink  className="nav-link"  to="/listGuard">
             Gestion Guardias
           </NavLink>
         

@@ -14,16 +14,16 @@ export const Navbar = () => {
       </div>
 
       <div className="nav-links">
-      <NavLink className="nav-link" activeClassName="active" to="/ingreso">
+      <NavLink className="nav-link" to="/ingreso">
             Ingreso Alumno
         </NavLink>
-        <NavLink className="nav-link" activeClassName="active"  to="/registrar">
+        <NavLink className="nav-link"   to="/registrar">
           Nuevo Alumno
         </NavLink>
-        <NavLink className="nav-link" activeClassName="active" to="/list">
+        <NavLink className="nav-link"  to="/list">
           Lista Alumnos
         </NavLink>
-        <NavLink className="nav-link" activeClassName="active" to="/visitas">
+        <NavLink className="nav-link"  to="/visitas">
           Visitas
         </NavLink>
      

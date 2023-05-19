@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const modalAlumnoSlice = createSlice({
     name: 'modalAlumno',
     initialState: {
-        isAlumnoModalOpen:false
+        isAlumnoModalOpen:true
     },
     reducers: {
         onOpenAlumnoModal:(state)=>{
