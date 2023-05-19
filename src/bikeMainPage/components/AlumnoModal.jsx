@@ -56,11 +56,13 @@ export const AlumnoModal = () => {
     event.preventDefault();
     setFormSubmitted(true);
 
-    if (formValues.title.length <= 0) return;
+    if (formValues.registerName.length <= 0) return;
 
     await startSavingAlumno(formValues);
     closeAlumnoModal();
+
     setFormSubmitted(false);
+    
   };
 
   const onCloseModal = () => {

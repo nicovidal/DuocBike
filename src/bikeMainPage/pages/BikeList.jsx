@@ -17,18 +17,20 @@ export const BikeList = () => {
 
   const { alumno, startLoadingAlumno, setActiveAlumno } = useAlumnoStore();
   const [selectedRow, setSelectedRow] = useState(null);
+  const [shouldReloadData, setShouldReloadData] = useState(false);
+
 
   useEffect(() => {
-    startLoadingAlumno();
-  }, []);
+    const fetchData = async () => {
+      await startLoadingAlumno();
+    };
+  
+    fetchData();
+  }, [startLoadingAlumno]);
+  
+  const { openAlumnoModal } = useModalStore();
 
-  const { openAlumnoModal, closeAlumnoModal } = useModalStore();
 
-
-  const onDoubleClick = (event) => {
-    /* console.log({ doubleClick: event }) */
-    
-  }
 
   const onDouble=()=>{
     openAlumnoModal();
@@ -37,11 +39,22 @@ export const BikeList = () => {
 
   const onSelectAlumno = (event,alumno) => {
     setActiveAlumno(alumno);
- 
     setSelectedRow(alumno.id);
-
     console.log(alumno)
+
+    
   };
+
+  const handleDataUpdate = () => {
+    setShouldReloadData(!shouldReloadData);
+    startLoadingAlumno(); 
+
+  };
+
+  const filteredAlumno = alumno.filter((a, index) => {
+    return alumno.findIndex((b) => b.id === a.id) === index;
+  });
+  
 
   return (
     <>
@@ -61,9 +74,9 @@ export const BikeList = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {alumno.map((a) => (
+                  {filteredAlumno.map((a) => (
                     <TableRow
-                    onClick={(event) => onSelectAlumno(event, a)}
+                      onClick={(event) => onSelectAlumno(event, a)}
                       onDoubleClick={onDouble}
                       hover                    
                       key={a.id}
@@ -86,7 +99,7 @@ export const BikeList = () => {
                     
         </div>
       </div>
-      <AlumnoModal/>
+      <AlumnoModal onDataUpdate={handleDataUpdate}/>
     </>
   );
 };
