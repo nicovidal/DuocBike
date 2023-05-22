@@ -27,7 +27,7 @@ export const alumnoSlice = createSlice({
 
         onDeleteAlumno:(state)=>{
             if(state.activeAlumno){
-                state.alumno=state.alumnos.filter(alumnos=>alumnos.id !== state.activeAlumno.id);
+                state.alumno=state.alumno.filter(alumnos=>alumnos.id !== state.activeAlumno.id);
                 state.activeAlumno=null;
             }
         },

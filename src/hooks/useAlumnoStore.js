@@ -19,7 +19,7 @@ export const useAlumnoStore = () => {
       dispatch(onLoadingAlumnos(alumnos));
 
       // Guardar los datos en el almacenamiento local
-      localStorage.setItem("tableData", JSON.stringify(alumnos));
+
     } catch (error) {
       console.log("error cargar alumnos");
       console.log(error);
@@ -33,7 +33,7 @@ export const useAlumnoStore = () => {
   const startSavingAlumno = async (alumnoEvent) => {
     try {
       if (alumnoEvent.id) {
-        
+
         await bikeApi.put(`/info/alumnos/${alumnoEvent.id}`, alumnoEvent);
         dispatch(onUpdateAlumno({ ...alumnoEvent }));
         return;

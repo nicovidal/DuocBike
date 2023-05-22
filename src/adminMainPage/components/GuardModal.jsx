@@ -2,6 +2,7 @@ import Modal from "react-modal";
 import { useModalStore } from "../../hooks/useModalStore";
 import { useEffect, useMemo, useState } from "react";
 import { useGuardiaStore } from "../../hooks/useGuardiaStore";
+import Swal from "sweetalert2";
 
 const customStyles = {
   content: {
@@ -54,9 +55,23 @@ export const GuardModal = () => {
 
     if (formValues.guardName.length <= 0) return;
 
-    await startSavingGuardia(formValues);
-    closeGuardiaModal();
+    Swal.fire({
+      title: '¿Quiere guardar los cambios?',
+  /*     showDenyButton: true, */
+      icon:'question',
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+/*       denyButtonText: `Don't save`, */
+    }).then((result) => {
 
+      if (result.isConfirmed) {
+        Swal.fire('Guardado Correctamente!', '', 'success')
+        startSavingGuardia(formValues);
+        closeGuardiaModal();
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
     setFormSubmitted(false);
 
   };
@@ -69,10 +84,43 @@ export const GuardModal = () => {
 
 
 
-  const onDelete = () => {
-    startDeletingGuardia();
-  }
-
+  const onDelete = (event) => {
+    event.preventDefault();
+  
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success me-2', // Agrega una clase 'me-2' para el margen derecho
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    });
+  
+    swalWithBootstrapButtons.fire({
+      title: '¿Estás seguro que quieres eliminar?',
+      text: "Esto no se puede revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, Elimínalo!',
+      cancelButtonText: 'No, Cancela',
+      reverseButtons: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Eliminado',
+          'El Guardia ha sido eliminado correctamente.',
+          'success'
+        );
+        startDeletingGuardia();
+        closeGuardiaModal();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'El Guardia no ha sido eliminado.',
+          'error'
+        );
+      }
+    });
+  };
 
 
   const onCloseModal = () => {
@@ -121,10 +169,10 @@ export const GuardModal = () => {
               onChange={(event) => onInputChanged(event, "guardPassword")}
             />
           </div>
-          <button type="submit" className="btn btn-primary" onClick={onSubmit}>
+          <button type="submit" className="btn btn-primary me-2" onClick={onSubmit}>
             Guardar
           </button>
-          <button type="submit" className="btn btn-danger" onClick={onDelete}>
+          <button type="submit" className="btn btn-danger me-2" onClick={onDelete}>
             Eliminar
           </button>
         </form>

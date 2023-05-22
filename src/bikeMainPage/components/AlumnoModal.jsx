@@ -82,9 +82,43 @@ export const AlumnoModal = () => {
     
   };
 
-  const onDelete=()=>{
-    startDeletingAlumno();
-  }
+  const onDelete = (event) => {
+    event.preventDefault();
+  
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success me-2', // Agrega una clase 'me-2' para el margen derecho
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    });
+  
+    swalWithBootstrapButtons.fire({
+      title: '¿Estás seguro que quieres eliminar?',
+      text: "Esto no se puede revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, Elimínalo!',
+      cancelButtonText: 'No, Cancela',
+      reverseButtons: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Eliminado',
+          'El alumno ha sido eliminado correctamente.',
+          'success'
+        );
+        startDeletingAlumno();
+        closeAlumnoModal();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'El alumno no ha sido eliminado.',
+          'error'
+        );
+      }
+    });
+  };
 
 
 
@@ -158,10 +192,10 @@ export const AlumnoModal = () => {
             onChange={(event) => onInputChanged(event, "registerID")}
           />
         </div>
-        <button type="submit" className="btn btn-primary" onClick={onSubmit}>
+        <button type="submit" className="btn btn-primary me-2" onClick={onSubmit}>
           Guardar
         </button>
-        <button type="submit" className="btn btn-danger" onClick={onDelete}>
+        <button  className="btn btn-danger me-2" onClick={onDelete}>
           Eliminar
         </button>
       </form>
