@@ -1,7 +1,6 @@
-import { useModalStore } from "../../hooks/useModalStore";
-import { AlumnoModal } from "../components/AlumnoModal"
+
 import { Navbar } from "../components/Navbar"
-import { BikeList } from "./BikeList"
+import { BikeList } from "../components/BikeList"
 
 
 export const ListaAlumnos = () => {
