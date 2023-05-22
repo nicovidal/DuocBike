@@ -19,7 +19,7 @@ export const BikeListAdmin = () => {
   const { alumno, startLoadingAlumno, setActiveAlumno } = useAlumnoStore();
   const [selectedRow, setSelectedRow] = useState(null);
   const [shouldReloadData, setShouldReloadData] = useState(false);
-
+  const { openAlumnoModal } = useModalStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +29,7 @@ export const BikeListAdmin = () => {
     fetchData();
   }, [startLoadingAlumno]);
   
-  const { openAlumnoModal } = useModalStore();
+  
 
 
 
