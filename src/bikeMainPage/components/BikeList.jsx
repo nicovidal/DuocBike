@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import "../styles/BikeList.css";
 import { useModalStore } from "../../hooks/useModalStore";
-import { AlumnoModal } from "../components/AlumnoModal";
+import { AlumnoModal } from "./AlumnoModal";
 import { useAlumnoStore } from "../../hooks";
 
 export const BikeList = () => {
