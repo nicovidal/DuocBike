@@ -41,14 +41,24 @@ export const GuardModal = () => {
     return formValues.guardName.length > 0 ? '' : "is-invalid";
   }, [formValues.guardName, formSubmitted]);
 
-
-
-
   const onInputChanged = (event, field) => {
     setFormValues({
       ...formValues,
       [field]: event.target.value,
     });
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setFormSubmitted(true);
+
+    if (formValues.guardName.length <= 0) return;
+
+    await startSavingGuardia(formValues);
+    closeGuardiaModal();
+
+    setFormSubmitted(false);
+    
   };
 
   useEffect(() => {
@@ -59,6 +69,9 @@ export const GuardModal = () => {
 
 
 
+  const onDelete=()=>{
+    startDeletingGuardia();
+  }
 
 
 
@@ -108,6 +121,12 @@ export const GuardModal = () => {
             onChange={(event) => onInputChanged(event, "guardPassword")}
           />
         </div>
+        <button type="submit" className="btn btn-primary"onClick={onSubmit}>
+          Guardar
+        </button>
+        <button type="submit" className="btn btn-danger" onClick={onDelete}>
+          Eliminar
+        </button>
       </form>
     </Modal>
     </>

@@ -23,10 +23,26 @@ export const guardiasSlice = createSlice({
             state.activeGuardia=payload;
         },
 
+        onUpdateGuardia: (state, { payload }) => {
+            state.guardia = state.guardia
+              .map(guardia => (guardia.id === payload.id ? payload : guardia))
+              .sort((a, b) => a.registerID - b.registerID);
+          },
+
+
+        onDeleteGuardia:(state)=>{
+            if(state.activeGuardia){
+                state.guardia=state.guardias.filter(guardias=>guardias.id !== state.activeGuardia.id);
+                state.activeGuardia=null;
+            }
+        },
+
+
+
       
     }
 });
 
 
 
-export const { onLoadingGuardias,onSetActiveGuardia } = guardiasSlice.actions;
+export const { onLoadingGuardias,onSetActiveGuardia ,onUpdateGuardia,onDeleteGuardia} = guardiasSlice.actions;
