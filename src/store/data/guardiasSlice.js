@@ -5,6 +5,7 @@ export const guardiasSlice = createSlice({
     initialState: {
         isLoadingGuardias:true,
         guardia:[],
+        activeGuardia:null
         
     },
     reducers: {
@@ -18,10 +19,14 @@ export const guardiasSlice = createSlice({
                 }
             })
         },
+        onSetActiveGuardia:(state,{payload})=>{
+            state.activeGuardia=payload;
+        },
+
       
     }
 });
 
 
 
-export const { onLoadingGuardias } = guardiasSlice.actions;
+export const { onLoadingGuardias,onSetActiveGuardia } = guardiasSlice.actions;

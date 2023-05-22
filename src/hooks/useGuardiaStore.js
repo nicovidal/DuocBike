@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import bikeApi from "../api/bikeApi";
-import { onLoadingGuardias } from "../store";
+import { onLoadingGuardias, onSetActiveGuardia } from "../store";
 
 export const useGuardiaStore =  () => {
 
     const dispatch=useDispatch();
-    const {guardia}=useSelector((state)=>state.guardias);
+    const {guardia,activeGuardia}=useSelector((state)=>state.guardias);
+
+
+
 
 
   const startLoadingGuardias = async () => {
@@ -20,11 +23,20 @@ export const useGuardiaStore =  () => {
     }
   };
 
+
+  const setActiveGuardia=(guardiaEvent)=>{
+    
+    dispatch(onSetActiveGuardia(guardiaEvent))
+
+  }
+
   return {
     //propiedades
     guardia,
+    activeGuardia,
 
     //metodos
     startLoadingGuardias,
+    setActiveGuardia
   };
 };

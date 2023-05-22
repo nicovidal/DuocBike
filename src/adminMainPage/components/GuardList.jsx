@@ -1,16 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGuardiaStore } from "../../hooks/useGuardiaStore"
 import { NavBarAdmin } from "./NavBarAdmin"
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 
 export const GuardList = () => {
 
-  const {guardia,startLoadingGuardias}=useGuardiaStore();
+  const {guardia,startLoadingGuardias,setActiveGuardia}=useGuardiaStore();
+  const [selectedRow, setSelectedRow] = useState(null);
+
 
   useEffect(() => {
     startLoadingGuardias();
   }, )
   
+  const onSelectGuardia = (event,guardia) => {
+    setActiveGuardia(guardia);
+    setSelectedRow(guardia.id);
+    console.log(guardia)
+
+    
+  };
 
 
   return (
@@ -30,6 +39,9 @@ export const GuardList = () => {
         <TableBody>
           {guardia.map((g) => (
             <TableRow
+            onClick={(event) => onSelectGuardia(event, g)}
+            selected={selectedRow === g.id}
+            hover
               key={g.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
