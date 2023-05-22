@@ -3,6 +3,7 @@ import { useModalStore } from "../../hooks/useModalStore";
 import { useAlumnoStore } from "../../hooks/useAlumnoStore";
 import { useEffect, useState } from "react";
 import { useMemo } from "react";
+import Swal from "sweetalert2";
 
 const customStyles = {
   content: {
@@ -55,11 +56,27 @@ export const AlumnoModal = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     setFormSubmitted(true);
-
+    
     if (formValues.registerName.length <= 0) return;
+    
+    Swal.fire({
+      title: '¿Quiere guardar los cambios?',
+  /*     showDenyButton: true, */
+      icon:'question',
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+/*       denyButtonText: `Don't save`, */
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('Guardado Correctamente!', '', 'success')
+        startSavingAlumno(formValues);
+        closeAlumnoModal();
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
 
-    await startSavingAlumno(formValues);
-    closeAlumnoModal();
 
     setFormSubmitted(false);
     

@@ -5,13 +5,8 @@ import { NavBarAdmin } from "../components/NavBarAdmin"
 export const AdminMain = () => {
   return (
     <>
-    <NavBarAdmin/>
-  
-   
-    <AddGuard/>
- 
-    
-    
-</>
+      <NavBarAdmin />
+      <AddGuard />
+    </>
   )
 }

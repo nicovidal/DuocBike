@@ -24,7 +24,7 @@ export const GuardModal = () => {
 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const { activeGuardia, startSavingGuardia,startDeletingGuardia} = useGuardiaStore();
+  const { activeGuardia, startSavingGuardia, startDeletingGuardia } = useGuardiaStore();
 
 
   const [formValues, setFormValues] = useState({
@@ -58,18 +58,18 @@ export const GuardModal = () => {
     closeGuardiaModal();
 
     setFormSubmitted(false);
-    
+
   };
 
   useEffect(() => {
     if (activeGuardia !== null) {
-      setFormValues({ ...activeGuardia});
+      setFormValues({ ...activeGuardia });
     }
   }, [activeGuardia]);
 
 
 
-  const onDelete=()=>{
+  const onDelete = () => {
     startDeletingGuardia();
   }
 
@@ -83,52 +83,52 @@ export const GuardModal = () => {
 
   return (
     <>
-    <Modal
-    isOpen={isGuardiaModalOpen}
-    style={customStyles}
-    className="modal"
-    overlayClassName="modal-fondo"
-    onRequestClose={onCloseModal}
-    
-    >
-      <h1>Modificar Guardia</h1>
-      <hr />
-      <form className="container">
-        <div className="form-group mb-2">
-          <label>Nombre</label>
-          <input
-            type="text"
-            className={`form-control ${guardiaClass}`}
-            value={formValues.guardName}
-            onChange={(event) => onInputChanged(event, "guardName")}
-          />
-        </div>
-        <div className="form-group mb-2">
-          <label>Usuario</label>
-          <input
-            type="text"
-            className={`form-control ${guardiaClass}`}
-            value={formValues.guardUser}
-            onChange={(event) => onInputChanged(event, "guardUser")}
-          />
-        </div>
-        <div className="form-group mb-2">
-          <label>Contraseña</label>
-          <input
-            type="text"
-            className={`form-control ${guardiaClass}`}
-            value={formValues.guardPassword}
-            onChange={(event) => onInputChanged(event, "guardPassword")}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary"onClick={onSubmit}>
-          Guardar
-        </button>
-        <button type="submit" className="btn btn-danger" onClick={onDelete}>
-          Eliminar
-        </button>
-      </form>
-    </Modal>
+      <Modal
+        isOpen={isGuardiaModalOpen}
+        style={customStyles}
+        className="modal"
+        overlayClassName="modal-fondo"
+        onRequestClose={onCloseModal}
+
+      >
+        <h1>Modificar Guardia</h1>
+        <hr />
+        <form className="container">
+          <div className="form-group mb-2">
+            <label>Nombre</label>
+            <input
+              type="text"
+              className={`form-control ${guardiaClass}`}
+              value={formValues.guardName}
+              onChange={(event) => onInputChanged(event, "guardName")}
+            />
+          </div>
+          <div className="form-group mb-2">
+            <label>Usuario</label>
+            <input
+              type="text"
+              className={`form-control ${guardiaClass}`}
+              value={formValues.guardUser}
+              onChange={(event) => onInputChanged(event, "guardUser")}
+            />
+          </div>
+          <div className="form-group mb-2">
+            <label>Contraseña</label>
+            <input
+              type="text"
+              className={`form-control ${guardiaClass}`}
+              value={formValues.guardPassword}
+              onChange={(event) => onInputChanged(event, "guardPassword")}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary" onClick={onSubmit}>
+            Guardar
+          </button>
+          <button type="submit" className="btn btn-danger" onClick={onDelete}>
+            Eliminar
+          </button>
+        </form>
+      </Modal>
     </>
   )
 }

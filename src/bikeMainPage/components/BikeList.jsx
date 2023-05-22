@@ -14,47 +14,40 @@ import { AlumnoModal } from "./AlumnoModal";
 import { useAlumnoStore } from "../../hooks";
 
 export const BikeList = () => {
-
   const { alumno, startLoadingAlumno, setActiveAlumno } = useAlumnoStore();
   const [selectedRow, setSelectedRow] = useState(null);
   const [shouldReloadData, setShouldReloadData] = useState(false);
-
+  const { openAlumnoModal } = useModalStore();
 
   useEffect(() => {
     const fetchData = async () => {
       await startLoadingAlumno();
     };
-  
+
     fetchData();
   }, [startLoadingAlumno]);
-  
-  const { openAlumnoModal } = useModalStore();
 
-
-
-  const onDouble=()=>{
+  const onDouble = () => {
     openAlumnoModal();
-  }
+  };
 
-
-  const onSelectAlumno = (event,alumno) => {
+  const onSelectAlumno = (event, alumno) => {
     setActiveAlumno(alumno);
     setSelectedRow(alumno.id);
-    console.log(alumno)
-
-    
+    console.log(alumno);
   };
 
   const handleDataUpdate = () => {
     setShouldReloadData(!shouldReloadData);
-    startLoadingAlumno(); 
-
+    startLoadingAlumno();
   };
 
   const filteredAlumno = alumno.filter((a, index) => {
     return alumno.findIndex((b) => b.id === a.id) === index;
   });
-  
+
+  // Ordenar el arreglo filteredAlumno según el campo registerID
+  filteredAlumno.sort((a, b) => a.registerID.localeCompare(b.registerID));
 
   return (
     <>
@@ -78,7 +71,7 @@ export const BikeList = () => {
                     <TableRow
                       onClick={(event) => onSelectAlumno(event, a)}
                       onDoubleClick={onDouble}
-                      hover                    
+                      hover
                       key={a.id}
                       selected={selectedRow === a.id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -94,12 +87,10 @@ export const BikeList = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-        
           </div>
-                    
         </div>
       </div>
-      <AlumnoModal onDataUpdate={handleDataUpdate}/>
+      <AlumnoModal onDataUpdate={handleDataUpdate} />
     </>
   );
 };

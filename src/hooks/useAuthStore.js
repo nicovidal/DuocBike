@@ -53,7 +53,7 @@ export const useAuthStore=()=>{
             await bikeApi.post('/auth/newg',{guardName,guardUser,guardPassword})
 
      
-            Swal.fire('Guardia creado correctamente','','success')
+
 
         }catch(error){
          
@@ -69,8 +69,7 @@ export const useAuthStore=()=>{
         
             const {data}=await bikeApi.post('/auth/newa',{registerName,registerRut,registerCarrer,registerBrand,registerColor,registerID})
             localStorage.setItem('usuario',data.name)
-            
-            Swal.fire('Guardia creado correctamente','','success')
+        
 
         }catch(error){
   

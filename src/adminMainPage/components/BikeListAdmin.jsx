@@ -25,41 +25,33 @@ export const BikeListAdmin = () => {
     const fetchData = async () => {
       await startLoadingAlumno();
     };
-  
+
     fetchData();
   }, [startLoadingAlumno]);
-  
-  
 
 
-
-  const onDouble=()=>{
+  const onDouble = () => {
     openAlumnoModal();
   }
-
-
-  const onSelectAlumno = (event,alumno) => {
+  const onSelectAlumno = (event, alumno) => {
     setActiveAlumno(alumno);
     setSelectedRow(alumno.id);
     console.log(alumno)
 
-    
-  };
 
+  };
   const handleDataUpdate = () => {
     setShouldReloadData(!shouldReloadData);
-    startLoadingAlumno(); 
+    startLoadingAlumno();
 
   };
-
   const filteredAlumno = alumno.filter((a, index) => {
     return alumno.findIndex((b) => b.id === a.id) === index;
   });
-  
 
   return (
     <>
-    <NavBarAdmin/>
+      <NavBarAdmin />
       <div className="fondo4">
         <div className="body4">
           <div className="container4">
@@ -80,7 +72,7 @@ export const BikeListAdmin = () => {
                     <TableRow
                       onClick={(event) => onSelectAlumno(event, a)}
                       onDoubleClick={onDouble}
-                      hover                    
+                      hover
                       key={a.id}
                       selected={selectedRow === a.id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -96,12 +88,10 @@ export const BikeListAdmin = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-        
           </div>
-                    
         </div>
       </div>
-      <AlumnoModal onDataUpdate={handleDataUpdate}/>
+      <AlumnoModal onDataUpdate={handleDataUpdate} />
     </>
   );
 };

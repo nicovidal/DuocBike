@@ -1,4 +1,5 @@
 
+import Swal from 'sweetalert2';
 import { useAuthStore, useRegister } from '../../hooks';
 
 import '../styles/RegistrationBike.css'
@@ -24,7 +25,29 @@ export const RegistrationBike = () => {
 
     const registerSubmit = (event) => {
         event.preventDefault();
-        startRegisterAlumno({ registerName:registerName, registerRut:registerRut,registerCarrer: registerCarrer, registerBrand:registerBrand, registerColor:registerColor, registerID:registerID })
+   
+        Swal.fire({
+          title: '¿Desea agregar a este alumno?',
+          icon: 'question',
+/*           showDenyButton: true, */
+          showCancelButton: true, 
+          confirmButtonText: 'Agregar',
+   /*        denyButtonText: `No guardar`, */
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire('Agregado Correctamente', '', 'success')
+            startRegisterAlumno({ 
+                registerName:registerName, 
+                registerRut:registerRut,
+                registerCarrer: registerCarrer, 
+                registerBrand:registerBrand, 
+                registerColor:registerColor, 
+                registerID:registerID })
+
+          } else if (result.isDenied) {
+            Swal.fire('No agregado', '', 'info')
+          }
+        })
     }
 
     return (
