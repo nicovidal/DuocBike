@@ -7,6 +7,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TablePagination
 } from "@mui/material";
 import "../styles/BikeList.css";
 import { useModalStore } from "../../hooks/useModalStore";
@@ -18,6 +19,8 @@ export const BikeList = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [shouldReloadData, setShouldReloadData] = useState(false);
   const { openAlumnoModal } = useModalStore();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +52,17 @@ export const BikeList = () => {
   // Ordenar el arreglo filteredAlumno según el campo registerID
   filteredAlumno.sort((a, b) => a.registerID.localeCompare(b.registerID));
 
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, filteredAlumno.length - page * rowsPerPage);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <>
       <div className="fondo4">
@@ -67,7 +81,10 @@ export const BikeList = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {filteredAlumno.map((a) => (
+                  {(rowsPerPage > 0
+                    ? filteredAlumno.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    : filteredAlumno
+                  ).map((a) => (
                     <TableRow
                       onClick={(event) => onSelectAlumno(event, a)}
                       onDoubleClick={onDouble}
@@ -84,9 +101,25 @@ export const BikeList = () => {
                       <TableCell align="right">{a.registerColor}</TableCell>
                     </TableRow>
                   ))}
+
+                  {emptyRows > 0 && (
+                    <TableRow style={{ height: 53 * emptyRows }}>
+                      <TableCell colSpan={6} />
+                    </TableRow>
+                  )}
                 </TableBody>
               </Table>
             </TableContainer>
+
+            <TablePagination
+              rowsPerPageOptions={[5, 10]}
+              component="div"
+              count={filteredAlumno.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
           </div>
         </div>
       </div>
