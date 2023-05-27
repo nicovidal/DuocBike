@@ -3,6 +3,7 @@ import '../styles/RegistroVisitas.css'
 import { useVisitaStore } from '../../hooks/useVisitaStore';
 import Swal from 'sweetalert2';
 import { useRegister } from '../../hooks';
+import { ListaVisita } from './ListaVisita';
 
 const visitasFormFields = {
   visitaRut: '',
@@ -78,7 +79,12 @@ export const RegistroVisita = () => {
             </div>
             <button className='btn' value="Registrar">Registrar</button>
           </form>
+
+          <ListaVisita/>
         </div>
+        
+
+        
       </div>
       </div>
 
