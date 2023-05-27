@@ -32,7 +32,7 @@ export const guardiasSlice = createSlice({
 
         onDeleteGuardia:(state)=>{
             if(state.activeGuardia){
-                state.guardia=state.guardias.filter(guardias=>guardias.id !== state.activeGuardia.id);
+                state.guardia=state.guardia.filter(guardias=>guardias.id !== state.activeGuardia.id);
                 state.activeGuardia=null;
             }
         },
