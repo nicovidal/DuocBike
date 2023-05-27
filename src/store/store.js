@@ -4,6 +4,8 @@ import { alumnoSlice } from "./data/alumnoSlice";
 import { guardiasSlice } from "./data/guardiasSlice";
 import { modalAlumnoSlice } from "./modal/modalAlumnoSlice";
 import { modalGuardiaSlice } from "./modal/modalGuardiaSlice";
+import { visitaSlice } from "./data/visitaSlice";
+
 
 export const store = configureStore({
     reducer:{
@@ -12,5 +14,6 @@ export const store = configureStore({
         guardias:guardiasSlice.reducer,
         modalAlumno:modalAlumnoSlice.reducer,
         modalGuardia:modalGuardiaSlice.reducer,
+        visita:visitaSlice.reducer,
     }
 })
