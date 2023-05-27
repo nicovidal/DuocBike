@@ -1,5 +1,5 @@
-import { Navbar } from "./Navbar"
-import { RegistroVisita } from "./RegistroVisita"
+import { Navbar } from "../components/Navbar"
+import { RegistroVisita } from "../components/RegistroVisita"
 import '../styles/RegistroVisitas.css'
 
 export const Visitas = () => {

@@ -7,7 +7,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TablePagination
+  TablePagination,
 } from "@mui/material";
 import "../styles/BikeList.css";
 import { useModalStore } from "../../hooks/useModalStore";
@@ -19,6 +19,7 @@ export const BikeList = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [shouldReloadData, setShouldReloadData] = useState(false);
   const { openAlumnoModal } = useModalStore();
+  const [searchValue, setSearchValue] = useState("");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -43,17 +44,30 @@ export const BikeList = () => {
   const handleDataUpdate = () => {
     setShouldReloadData(!shouldReloadData);
     startLoadingAlumno();
+    setSearchValue("");
+  };
+  //filtro de alumno por rut o nombre
+  const filterAlumno = (alumno) => {
+    if (searchValue === "") {
+      return true;
+    } else {
+      const lowerCaseSearchValue = searchValue.toLowerCase();
+      return (
+        alumno.registerRut.toLowerCase().includes(lowerCaseSearchValue) ||
+        alumno.registerName.toLowerCase().includes(lowerCaseSearchValue)
+      );
+    }
   };
 
   const filteredAlumno = alumno.filter((a, index) => {
-    return alumno.findIndex((b) => b.id === a.id) === index;
+    return alumno.findIndex((b) => b.id === a.id) === index && filterAlumno(a);
   });
 
   // Ordenar el arreglo filteredAlumno según el campo registerID
   filteredAlumno.sort((a, b) => a.registerID.localeCompare(b.registerID));
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, filteredAlumno.length - page * rowsPerPage);
 
+  //paginacion
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -63,11 +77,22 @@ export const BikeList = () => {
     setPage(0);
   };
 
+  const slicedAlumno = filteredAlumno.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
   return (
     <>
       <div className="fondo4">
-        <div className="body4">
+        <div className="body4">      
           <div className="container4">
+          <input
+              type="text"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Buscar por rut o nombre"
+            />
             <TableContainer className="form4" component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
@@ -81,10 +106,7 @@ export const BikeList = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {(rowsPerPage > 0
-                    ? filteredAlumno.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    : filteredAlumno
-                  ).map((a) => (
+                  {slicedAlumno.map((a) => (
                     <TableRow
                       onClick={(event) => onSelectAlumno(event, a)}
                       onDoubleClick={onDouble}
@@ -101,25 +123,19 @@ export const BikeList = () => {
                       <TableCell align="right">{a.registerColor}</TableCell>
                     </TableRow>
                   ))}
-
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
                 </TableBody>
               </Table>
+              <TablePagination
+                rowsPerPageOptions={[5, 10]}
+                component="div"
+                count={filteredAlumno.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
             </TableContainer>
-
-            <TablePagination
-              rowsPerPageOptions={[5, 10]}
-              component="div"
-              count={filteredAlumno.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
+   
           </div>
         </div>
       </div>

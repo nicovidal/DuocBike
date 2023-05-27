@@ -19,7 +19,7 @@ const registerFormFields = {
 export const RegistrationBike = () => {
 
 
-    const { registerName, registerRut, registerCarrer, registerBrand, registerColor, registerID, onInputChange: onRegisterInputChange } = useRegister(registerFormFields);
+    const { registerName, registerRut, registerCarrer, registerBrand, registerColor, registerID, onInputChange: onRegisterInputChange,onResetForm } = useRegister(registerFormFields);
 
     const { startRegisterAlumno } = useAuthStore();
 
@@ -43,11 +43,13 @@ export const RegistrationBike = () => {
                 registerBrand:registerBrand, 
                 registerColor:registerColor, 
                 registerID:registerID })
+                onResetForm();
 
           } else if (result.isDenied) {
             Swal.fire('No agregado', '', 'info')
           }
         })
+      
     }
 
     return (
