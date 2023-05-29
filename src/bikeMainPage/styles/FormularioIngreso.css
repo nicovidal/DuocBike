@@ -37,16 +37,31 @@
     font-size: 16px;
     padding: 10px;
     margin-top: 26px;
-    margin-left: 5px;
+    margin-left: 160px;
     width: 40%;
     cursor: pointer;
     color: white;
     border-radius: 0.3rem;
     box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
 }
+.inputIngreso{
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    border: 1px solid #d3d6e4;
+    background-color: rgba(255, 184, 0, 1);
+    font-weight: bold;
+    padding: 0.25em 0.6em;
+    border-radius: 0.3rem;
+    text-align: center;
+    box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
+    margin-right: 700px;
+
+}
 
 .btn-2{
-    background-color: rgb(237, 31, 31);
+    background-color: rgba(255, 184, 0, 1);
     font-weight: bold;
     border-radius: 4px;
     display: block;
@@ -62,18 +77,20 @@
     box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
 
 }
-
-.inputIngreso{
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
-    outline: none;
-    resize: none;
-    border: 1px solid #d3d6e4;
-    background-color: rgba(255, 184, 0, 1);
+.btn-3{
+    background-color: rgba(255, 184, 0, 1); 
     font-weight: bold;
-    padding: 0.25em 0.6em;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 100px;
+    margin-left: 190px;
+    width: 40%;
+    cursor: pointer;
+    color: white;
     border-radius: 0.3rem;
-    text-align: center;
     box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
 
 }

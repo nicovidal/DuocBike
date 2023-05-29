@@ -4,9 +4,6 @@ export const FormularioIngreso = () => {
   return (
     <>
 
-
-
-    
     <div className='formularioIngreso'>
         <div className='bodyIngreso'>
 
@@ -16,15 +13,17 @@ export const FormularioIngreso = () => {
                     &nbsp;&nbsp;&nbsp;
                     <input placeholder="Rut" className='inputIngreso'></input>
                 </div>
+                    <div>
+                      <button className='btn btn-1' value="Buscar">Buscar</button>
+                    </div>
 
-                <button className='btn btn-1' value="Ingresar">Ingresar</button>
-                <div>
-                    <button className='btn btn-2' value="Salida">Salida</button>
-                </div>
             </form>
-            
+
+
         </div>
     </div>
+
+
     
     
 
