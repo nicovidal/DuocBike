@@ -1,8 +1,26 @@
-
+/*  
 .bodyIngreso {
     font-family: 'Open Sans', sans-serif;
-    display: flex;
+  display: flex;
     align-items:baseline;
+    justify-content: center;
+    min-height: 80vh;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    height: 92vh;
+    padding-bottom: 250px; 
+}  */
+
+.bodyIngreso {
+    width: 100%;
+    background-image: url(/assets/ola.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    align-items: baseline;
     justify-content: center;
     min-height: 80vh;
     margin: 0;
@@ -12,40 +30,47 @@
     padding-bottom: 250px;
 }
 
-.formularioIngreso{
-    width: 100%;
-    background-image: url(/assets/ola.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: bottom;
+
+.form-control-ingreso {
+    border: 1px solid black;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 40px;
+ 
+
+
 }
 
-.nuevoIngreso{
+.nuevoIngreso {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     text-align: center;
-    
+
 }
 
 
-.btn-1{
+
+
+.btn-1 {
     background-color: rgba(255, 184, 0, 1);
     font-weight: bold;
     border-radius: 4px;
-    display: block;
     font-family: inherit;
     font-size: 16px;
     padding: 10px;
     margin-top: 26px;
-    margin-left: 160px;
+    margin-left: 20px;
     width: 40%;
     cursor: pointer;
     color: white;
     border-radius: 0.3rem;
     box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
 }
-.inputIngreso{
-    font-family: 'Roboto', sans-serif;
+
+
+.datosAlumno{
+    font-family: 'Open Sans', sans-serif;
     box-sizing: border-box;
     outline: none;
     resize: none;
@@ -57,10 +82,47 @@
     text-align: center;
     box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
     margin-right: 700px;
+  
 
 }
 
-.btn-2{
+.form-container {
+    display: flex;
+    justify-content: center;
+  
+  }
+  
+  .form {
+    width: 500px;
+    margin-left: 600px;
+    margin-bottom: 100px;
+   
+
+  }
+  
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  .datosAlumnoForm{
+    border-radius: 5px;
+    box-shadow: 7px 13px 37px;
+    overflow: hidden;
+    width: 500px;
+    max-width: 100%;
+    background-color: white;
+    margin:auto;
+    border:1px solid black
+  }
+
+  .datosAlumnoForm input:focus{
+    outline: 0;
+    border-color: #000000;
+  }
+
+/* .btn-2{
     background-color: rgba(255, 184, 0, 1);
     font-weight: bold;
     border-radius: 4px;
@@ -94,3 +156,4 @@
     box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
 
 }
+   */

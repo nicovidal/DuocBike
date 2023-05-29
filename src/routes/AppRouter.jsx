@@ -4,10 +4,11 @@ import {RegisterGuard } from "../bikeMainPage";
 import { useAuthStore } from "../hooks";
 import { BikeListAdmin, GuardList } from "../adminMainPage/components";
 import { AdminMain } from "../adminMainPage/pages/adminMain";
-import { IngresoBike } from "../bikeMainPage/components/IngresoBike";
+
 import { Visitas } from "../bikeMainPage/pages/Visitas";
 import { ListaAlumnos } from "../bikeMainPage/pages/ListaAlumnos";
 import { ListaIngresos } from "../bikeMainPage/pages/ListaIngresos";
+import { Ingresar } from "../bikeMainPage/pages/Ingresar";
 
 /* import { Admin } from "../bikeMainPage/pages/Admin"; */
 
@@ -36,7 +37,7 @@ export const AppRouter = () => {
           <Route path='/registrar' element={<RegisterGuard />} />
           <Route path='/*' element={<Navigate to="/registrar" />} />
           <Route path='/list' element={<ListaAlumnos />} />
-          <Route path='/ingreso' element={<IngresoBike />} />
+          <Route path='/ingreso' element={<Ingresar/>} />
           <Route path='/visitas' element={<Visitas />} />
           <Route path='/ingresados' element={<ListaIngresos/>} />
 
