@@ -2,7 +2,7 @@ import { useIngresoStore } from '../../hooks/useIngresoStore';
 import '../styles/FormularioIngreso.css';
 
 export const FormularioIngreso = () => {
-  const { alumnoDatos, alumnoRut, startSearchAlumno, handleRutChange,startIngresandingALumno } = useIngresoStore();
+  const { alumnoDatos, alumnoRut, startSearchAlumno, handleRutChange,startIngresandingALumno,startSaliendingAlumno } = useIngresoStore();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -12,6 +12,12 @@ export const FormularioIngreso = () => {
   const onIngresar=(e)=>{
     e.preventDefault();
     startIngresandingALumno(alumnoRut);
+  }
+
+
+  const onSalir=(e)=>{
+    e.preventDefault();
+    startSaliendingAlumno(alumnoRut)
   }
   return (
     <>
@@ -59,7 +65,7 @@ export const FormularioIngreso = () => {
                   className="form-control datosAlumno"
                   id="inputRut"
                   placeholder="Rut"
-                  value={alumnoRut}
+                  value={alumnoDatos.registerRut}
                   disabled
                 />
               </div>
@@ -93,7 +99,7 @@ export const FormularioIngreso = () => {
             <button type="submit" className="btn btn-primary me-2" onClick={onIngresar}>
               ingresar
             </button>
-            <button type="submit" className="btn btn-danger me-2">
+            <button type="submit" className="btn btn-danger me-2" onClick={onSalir}>
               salir
             </button>
           </form>

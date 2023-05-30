@@ -64,12 +64,26 @@ export const useIngresoStore = () => {
 
   }
 
+  const startSaliendingAlumno=async(alumnoRut)=>{
+
+    try {
+
+      const {data}=await bikeApi.put("/ingreso/salida/",{rut:alumnoRut});
+      console.log('alumno se fue',data)
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+
   return {
     isBuscandoAlumno,
     alumnoDatos,
     alumnoRut,
     startSearchAlumno,
     handleRutChange,
-    startIngresandingALumno
+    startIngresandingALumno,
+    startSaliendingAlumno
   };
 };
