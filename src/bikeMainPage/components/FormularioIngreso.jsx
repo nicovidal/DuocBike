@@ -1,24 +1,65 @@
+import Swal from 'sweetalert2';
 import { useIngresoStore } from '../../hooks/useIngresoStore';
 import '../styles/FormularioIngreso.css';
 
 export const FormularioIngreso = () => {
-  const { alumnoDatos, alumnoRut, startSearchAlumno, handleRutChange,startIngresandingALumno,startSaliendingAlumno } = useIngresoStore();
+  const { alumnoDatos, alumnoRut, startSearchAlumno, handleRutChange, startIngresandingALumno, startSaliendingAlumno } = useIngresoStore();
 
   const onSubmit = (e) => {
     e.preventDefault();
     startSearchAlumno(alumnoRut);
   };
 
-  const onIngresar=(e)=>{
+  const onIngresar = (e) => {
     e.preventDefault();
-    startIngresandingALumno(alumnoRut);
+
+    Swal.fire({
+      title: `¿Confirmas el ingreso de ${alumnoDatos.registerName}?`,
+/*       text: "You won't be able to revert this!", */
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Ingreso realizado correctamente',
+          'Your file has been deleted.',
+          'success'
+        )
+        startIngresandingALumno(alumnoRut);
+      }
+    })
+
   }
 
 
-  const onSalir=(e)=>{
+  const onSalir = (e) => {
     e.preventDefault();
-    startSaliendingAlumno(alumnoRut)
+    Swal.fire({
+      title: `¿Confirmas la salida de ${alumnoDatos.registerName}?`,
+/*       text: "You won't be able to revert this!", */
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Salida realizado correctamente',
+          'Your file has been deleted.',
+          'success'
+        )
+        startSaliendingAlumno(alumnoRut);
+      }
+    })
   }
+
+  
   return (
     <>
       <div className="bodyIngreso">

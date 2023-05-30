@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { onSearchingAlumno, onAlumnoFound, onAlumnoNotFound, setAlumnoRut } from "../store/data/ingresoSlice";
 import bikeApi from "../api/bikeApi";
+import Swal from "sweetalert2";
 
 export const useIngresoStore = () => {
   const dispatch = useDispatch();
@@ -57,7 +58,10 @@ export const useIngresoStore = () => {
       console.log('alumno ingresado',data)
       
     } catch (error) {
-      console.log(error)
+      if(error){
+        Swal.fire('ya tiene un ingreso registrado')
+      }
+    
     }
 
 
@@ -72,6 +76,8 @@ export const useIngresoStore = () => {
       console.log('alumno se fue',data)
       
     } catch (error) {
+      if(error)
+      Swal.fire('Alumno no tiene registro de ingreso')
       console.log(error)
       
     }
