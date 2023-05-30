@@ -5,6 +5,7 @@ import { guardiasSlice } from "./data/guardiasSlice";
 import { modalAlumnoSlice } from "./modal/modalAlumnoSlice";
 import { modalGuardiaSlice } from "./modal/modalGuardiaSlice";
 import { visitaSlice } from "./data/visitaSlice";
+import { ingresoSlice } from "./data/ingresoSlice";
 
 
 export const store = configureStore({
@@ -15,5 +16,6 @@ export const store = configureStore({
         modalAlumno:modalAlumnoSlice.reducer,
         modalGuardia:modalGuardiaSlice.reducer,
         visita:visitaSlice.reducer,
+        ingreso:ingresoSlice.reducer,
     }
 })
