@@ -75,6 +75,7 @@ export const useIngresoStore = () => {
       const {data}=await bikeApi.put("/ingreso/salida/",{rut:alumnoRut});
       console.log('alumno se fue',data)
       
+      
     } catch (error) {
       if(error)
       Swal.fire('Alumno no tiene registro de ingreso')

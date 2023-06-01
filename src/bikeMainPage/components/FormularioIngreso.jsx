@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useIngresoStore } from '../../hooks/useIngresoStore';
 import '../styles/FormularioIngreso.css';
 
 export const FormularioIngreso = () => {
-  const { alumnoDatos, alumnoRut, startSearchAlumno, handleRutChange, startIngresandingALumno, startSaliendingAlumno } = useIngresoStore();
+  const { alumnoDatos, startSearchAlumno, startIngresandingALumno, startSaliendingAlumno } = useIngresoStore();
+
+  const [contador1, setContador1] = useState(2);
+  const [contador2, setContador2] = useState(0);
+  const [alumnoRut, setAlumnoRut] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -13,53 +18,57 @@ export const FormularioIngreso = () => {
   const onIngresar = (e) => {
     e.preventDefault();
 
+    if (contador1 === 0) {
+      Swal.fire('No hay más lugares disponibles', '', 'warning');
+      return;
+    }
+
     Swal.fire({
       title: `¿Confirmas el ingreso de ${alumnoDatos.registerName}?`,
-/*       text: "You won't be able to revert this!", */
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Confirmar',
-      cancelButtonText:'Cancelar'
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Ingreso realizado correctamente',
-          'Your file has been deleted.',
-          'success'
-        )
+        Swal.fire('Ingreso realizado correctamente', '', 'success');
         startIngresandingALumno(alumnoRut);
+        setContador1((prevContador) => prevContador - 1);
+        setContador2((prevContador) => prevContador + 1);
       }
-    })
-
-  }
-
+    });
+  };
 
   const onSalir = (e) => {
     e.preventDefault();
+
+
+
+    if (contador2 === 0) {
+      Swal.fire('Todos los lugares estan disponibles', '', 'warning');
+      return;
+    }
+
     Swal.fire({
       title: `¿Confirmas la salida de ${alumnoDatos.registerName}?`,
-/*       text: "You won't be able to revert this!", */
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Confirmar',
-      cancelButtonText:'Cancelar'
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Salida realizado correctamente',
-          'Your file has been deleted.',
-          'success'
-        )
+        Swal.fire('Salida realizada correctamente', '', 'success');
         startSaliendingAlumno(alumnoRut);
+        setContador1((prevContador) => prevContador + 1);
+        setContador2((prevContador) => prevContador - 1);
       }
-    })
-  }
+    });
+  };
 
-  
   return (
     <>
       <div className="bodyIngreso">
@@ -75,7 +84,7 @@ export const FormularioIngreso = () => {
                   value={alumnoRut}
                   name="alumnoRut"
                   className="inputIngreso"
-                  onChange={handleRutChange}
+                  onChange={(e) => setAlumnoRut(e.target.value)}
                 />
               </div>
               <div>
@@ -130,7 +139,7 @@ export const FormularioIngreso = () => {
                     type="text"
                     className="form-control datosAlumno"
                     id="inputCity"
-                    placeholder='Marca Bicicleta'
+                    placeholder="Marca Bicicleta"
                     value={alumnoDatos.registerBrand}
                     disabled
                   />
@@ -138,12 +147,22 @@ export const FormularioIngreso = () => {
               </div>
             </div>
             <button type="submit" className="btn btn-primary me-2" onClick={onIngresar}>
-              ingresar
+              Ingresar
             </button>
             <button type="submit" className="btn btn-danger me-2" onClick={onSalir}>
-              salir
+              Salir
             </button>
           </form>
+          <div className="contadores">
+            <div className="contador">
+              <h2>DISPONIBLES</h2>
+              <div className="valor">{contador1 > 0 ? contador1 : 0}</div>
+            </div>
+            <div className="contador">
+              <h2>OCUPADOS</h2>
+              <div className="valor">{contador2 >= 0 ? contador2 : 0}</div>
+            </div>
+          </div>
         </div>
       </div>
     </>
