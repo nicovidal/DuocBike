@@ -12,6 +12,11 @@
     padding-bottom: 250px; 
 }  */
 
+@font-face {
+  font-family: 'Digital-7';
+  src: url('/assets/digital-7.ttf') format('truetype');
+}
+
 .bodyIngreso {
     width: 100%;
     background-image: url(/assets/ola.png);
@@ -125,26 +130,47 @@
   .contadores {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+  
+
+ 
 
   }
   
   .contador {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding-top:25px;
+    border: 1px solid black;
+    height: 200px;
+    background-color: deepskyblue;
+    color: white;
+    border-radius: 30px;
+    
+   
   }
   
   .contador h2 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 5px;
+    
+    
   }
   
   .contador .valor {
-    font-size: 18px;
-    color: #888;
+    font-family: 'Digital-7', sans-serif;
+    font-size: 100px;
+    color: white;
+    background-color: deepskyblue;
+    width: 220px;
+    height: 100px;  
+    border-radius: 10px;
+    text-align: center;
+    
+    
   }
+
+
+
 /* .btn-2{
     background-color: rgba(255, 184, 0, 1);
     font-weight: bold;
