@@ -4,7 +4,7 @@ import { useIngresoStore } from '../../hooks/useIngresoStore';
 import '../styles/FormularioIngreso.css';
 
 export const FormularioIngreso = () => {
-  const { alumnoDatos, startSearchAlumno, startIngresandingALumno,startLoadingIngresos, startSaliendingAlumno } = useIngresoStore();
+  const { alumnoDatos,ingreso, startSearchAlumno, startIngresandingALumno, startLoadingIngresos, startSaliendingAlumno } = useIngresoStore();
 
   const [contador1, setContador1] = useState(20);
   const [contador2, setContador2] = useState(15);
@@ -37,11 +37,12 @@ export const FormularioIngreso = () => {
       confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
+    
       if (result.isConfirmed) {
 
-          startIngresandingALumno(alumnoRut);
-          setContador1((prevContador) => prevContador - 1);
-          setContador2((prevContador) => prevContador + 1);
+        startIngresandingALumno(alumnoRut);
+        setContador1((prevContador) => prevContador - 1);
+        setContador2((prevContador) => prevContador + 1);
         Swal.fire('Ingreso realizado correctamente', '', 'success');
       }
     });
@@ -66,10 +67,11 @@ export const FormularioIngreso = () => {
       confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      if (result.isConfirmed ) {
+      if (result.isConfirmed) {
         Swal.fire('Salida realizada correctamente', '', 'success');
         startSaliendingAlumno(alumnoRut);
-        setContador1((prevContador) => prevContador + 1);
+        
+          setContador1((prevContador) => prevContador + 1);
         setContador2((prevContador) => prevContador - 1);
       }
     });
@@ -77,11 +79,11 @@ export const FormularioIngreso = () => {
 
 
   useEffect(() => {
-    
+
     startLoadingIngresos();
 
   }, [])
-  
+
 
   return (
     <>

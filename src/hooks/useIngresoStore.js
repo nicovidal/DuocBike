@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 export const useIngresoStore = () => {
   const dispatch = useDispatch();
-  const { isBuscandoAlumno, alumnoDatos, alumnoRut } = useSelector((state) => state.ingreso);
+  const { isBuscandoAlumno, alumnoDatos, alumnoRut,ingreso } = useSelector((state) => state.ingreso);
 
   const startSearchAlumno = async (rut) => {
     try {
@@ -104,6 +104,7 @@ export const useIngresoStore = () => {
     isBuscandoAlumno,
     alumnoDatos,
     alumnoRut,
+    ingreso,
     startSearchAlumno,
     handleRutChange,
     startIngresandingALumno,
