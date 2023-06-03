@@ -6,6 +6,7 @@ export const ingresoSlice = createSlice({
     isBuscandoAlumno: false,
     alumnoDatos: [],
     alumnoRut: '',
+    ingreso:[],
   },
   reducers: {
     onSearchingAlumno: (state) => {
@@ -26,7 +27,16 @@ export const ingresoSlice = createSlice({
     setAlumnoRut: (state, action) => {
       state.alumnoRut = action.payload;
     },
+    onLoadingIngresos:(state,{payload=[]})=>{
+      state.isBuscandoAlumno=false;
+      payload.forEach(ingreso=>{
+        const exists=state.ingreso.some(dbIngreso=>dbIngreso.id===ingreso.id)
+        if(!exists){
+          state.ingreso.push(ingreso)
+        }
+      })
+    }
   },
 });
 
-export const { onSearchingAlumno, onAlumnoFound, onAlumnoNotFound, setAlumnoRut } = ingresoSlice.actions;
+export const { onSearchingAlumno, onAlumnoFound, onAlumnoNotFound, setAlumnoRut,onLoadingIngresos } = ingresoSlice.actions;

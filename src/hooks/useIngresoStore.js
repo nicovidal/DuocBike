@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onSearchingAlumno, onAlumnoFound, onAlumnoNotFound, setAlumnoRut } from "../store/data/ingresoSlice";
+import { onSearchingAlumno, onAlumnoFound, onAlumnoNotFound, setAlumnoRut, onLoadingIngresos } from "../store/data/ingresoSlice";
 import bikeApi from "../api/bikeApi";
 import Swal from "sweetalert2";
 
@@ -47,6 +47,22 @@ export const useIngresoStore = () => {
   };
 
 
+  const startLoadingIngresos=async()=>{
+    try {
+
+      const {data}=await bikeApi.get("/ingreso/listaIngresos");
+      console.log({data})
+      const ingreso=data.ingresos
+      dispatch(onLoadingIngresos(ingreso))
+      
+    } catch (error) {
+      console.log("error")
+      console.log(error)
+      
+    }
+  }
+
+
   const startIngresandingALumno =async(alumnoRut)=>{
 
 
@@ -59,7 +75,7 @@ export const useIngresoStore = () => {
       
     } catch (error) {
       if(error){
-        Swal.fire('ya tiene un ingreso registrado')
+        Swal.fire('ya tiene un ingreso registrado','','warning')
       }
     
     }
@@ -91,6 +107,7 @@ export const useIngresoStore = () => {
     startSearchAlumno,
     handleRutChange,
     startIngresandingALumno,
-    startSaliendingAlumno
+    startSaliendingAlumno,
+    startLoadingIngresos
   };
 };
