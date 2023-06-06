@@ -5,11 +5,13 @@ import { useVisitaStore } from '../../hooks/useVisitaStore';
 import Swal from 'sweetalert2';
 
 
+
 export const ListaVisita = () => {
   const { startLoadingVisitas, visita, setActiveVisita, startSaliendingVisita, activeVisita } = useVisitaStore();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [visitaList, setVisitaList] = useState([]);
+  const [selectedRow, setSelectedRow] = useState(null);
 
   useEffect(() => {
     startLoadingVisitas();
@@ -43,6 +45,7 @@ export const ListaVisita = () => {
 
   const onSelectVisita = (event, visita) => {
     setActiveVisita(visita);
+    setSelectedRow(visita.id);
   };
 
   const onSalirVisita = (e) => {
@@ -87,6 +90,8 @@ export const ListaVisita = () => {
               key={v.id}
               hover
               onClick={(event) => onSelectVisita(event, v)}
+              selected={selectedRow===v.id}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell align="right">{v.visitaRut}</TableCell>
                 <TableCell align="right">{v.visitaNombre}</TableCell>
