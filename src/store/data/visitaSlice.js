@@ -4,7 +4,8 @@ export const visitaSlice = createSlice({
     name: 'visitas',
     initialState: {
         isLoadingVisitas:true,
-        visita:[]
+        visita:[],
+        activeVisita:null,
     },
 reducers: {
     onLoadingVisitas: (state, {payload=[]} ) => {
@@ -16,9 +17,12 @@ reducers: {
             }
         })
     },
+    onSetActiveVisita:(state,{payload})=>{
+        state.activeVisita=payload
+    },
 
 }
 })
 
 
-export const { onLoadingVisitas} = visitaSlice.actions;
+export const { onLoadingVisitas,onSetActiveVisita} = visitaSlice.actions;

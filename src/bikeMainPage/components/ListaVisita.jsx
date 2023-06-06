@@ -3,8 +3,9 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { useEffect, useState } from 'react';
 import { useVisitaStore } from '../../hooks/useVisitaStore';
 
+
 export const ListaVisita = () => {
-  const { startLoadingVisitas, visita } = useVisitaStore();
+  const { startLoadingVisitas, visita,setActiveVisita } = useVisitaStore();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [visitaList, setVisitaList] = useState([]);
@@ -28,6 +29,14 @@ export const ListaVisita = () => {
 
   const paginatedVisita = visitaList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
+
+  const onSelectVisita=(event,visita)=>{
+    setActiveVisita(visita);
+    console.log(visita)
+
+  }
+
+
   return (
     <div>
       <TableContainer component={Paper} className='listaVisita'>
@@ -45,7 +54,11 @@ export const ListaVisita = () => {
           </TableHead>
           <TableBody>
             {paginatedVisita.map((v) => (
-              <TableRow key={v.id}>
+              <TableRow 
+              key={v.id}
+              hover
+              onClick={(event) => onSelectVisita(event, v)}
+              >
                 <TableCell align="right">{v.visitaRut}</TableCell>
                 <TableCell align="right">{v.visitaNombre}</TableCell>
                 <TableCell align="right">{v.visitaMarca}</TableCell>
@@ -58,7 +71,7 @@ export const ListaVisita = () => {
         </Table>
         <TablePagination
           component="div"
-          count={visitaList.length} // Usa visitaList en lugar de visita
+          count={visitaList.length} 
           page={page}
           onPageChange={handleChangePage}
           rowsPerPage={rowsPerPage}
@@ -67,6 +80,7 @@ export const ListaVisita = () => {
           rowsPerPageOptions={[5, 10]}
         />
       </TableContainer>
+      <button className='btn btn-danger'>Salida</button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import bikeApi from "../api/bikeApi"
-import { onLoadingVisitas } from "../store/data/visitaSlice";
+import { onLoadingVisitas, onSetActiveVisita } from "../store/data/visitaSlice";
 
 export	const useVisitaStore =() => {
     const dispatch=useDispatch();
@@ -33,10 +33,15 @@ export	const useVisitaStore =() => {
 
     }
 
+    const setActiveVisita=(visitaEvent)=>{
+        dispatch(onSetActiveVisita(visitaEvent));
+    }
+
 
     return{
     visita,
       startRegisterVisita,
-      startLoadingVisitas
+      startLoadingVisitas,
+      setActiveVisita
     }
 }
