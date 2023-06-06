@@ -35,13 +35,14 @@ export const RegistroVisita = () => {
           visitaMarca: visitaMarca,
           visitaLugar: visitaLugar,
           visitaMotivo: visitaMotivo,
+        
         });
-
-        startLoadingVisitas(); 
       } else if (result.isDenied) {
         Swal.fire('No agregado', '', 'info');
       }
     });
+
+    startLoadingVisitas(); 
   };
 
   return (
