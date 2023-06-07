@@ -3,6 +3,11 @@ import Swal from 'sweetalert2';
 import { useIngresoStore } from '../../hooks/useIngresoStore';
 import '../styles/FormularioIngreso.css';
 
+
+
+
+
+
 export const FormularioIngreso = () => {
   const { alumnoDatos,ingreso, startSearchAlumno, startIngresandingALumno, startLoadingIngresos, startSaliendingAlumno } = useIngresoStore();
 
@@ -10,9 +15,11 @@ export const FormularioIngreso = () => {
   const [contador2, setContador2] = useState(10);
   const [alumnoRut, setAlumnoRut] = useState('');
 
-
-
-
+  const resetForm=()=>{
+    setAlumnoRut('');
+    startIngresandingALumno();
+    
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -53,6 +60,10 @@ export const FormularioIngreso = () => {
           Swal.fire('Ingreso realizado correctamente', '', 'success');
           setContador1((prevContador) => prevContador - 1);
           setContador2((prevContador) => prevContador + 1);
+          resetForm();
+          
+
+
         }
       });
     } else {
@@ -73,6 +84,7 @@ export const FormularioIngreso = () => {
           Swal.fire('Ingreso realizado correctamente', '', 'success');
           setContador1((prevContador) => prevContador - 1);
           setContador2((prevContador) => prevContador + 1);
+          resetForm();
         }
       });
     }
@@ -110,6 +122,7 @@ export const FormularioIngreso = () => {
           
           setContador1((prevContador) => prevContador + 1);
           setContador2((prevContador) => prevContador - 1);
+          resetForm();
         }
       });
 
@@ -163,7 +176,7 @@ export const FormularioIngreso = () => {
                   className="form-control datosAlumno"
                   id="iDBicicleta"
                   placeholder="id bicicleta"
-                  value={alumnoDatos.registerID}
+                  value={alumnoDatos.registerID }
                   disabled
                 />
               </div>
