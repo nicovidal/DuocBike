@@ -28,6 +28,16 @@ export const FormularioIngreso = () => {
       return;
     }
 
+    if (!alumnoDatos || !alumnoDatos.registerName) {
+      Swal.fire('Falta ingresar datos', '', 'warning');
+      return;
+    }
+  
+
+    if(!alumnoDatos){
+      Swal.fire("debe ingresar datos")
+    }
+
     Swal.fire({
       title: `¿Confirmas el ingreso de ${alumnoDatos.registerName}?`,
       icon: 'warning',
@@ -41,9 +51,10 @@ export const FormularioIngreso = () => {
       if (result.isConfirmed) {
 
         startIngresandingALumno(alumnoRut);
+
+        Swal.fire('Ingreso realizado correctamente', '', 'success');
         setContador1((prevContador) => prevContador - 1);
         setContador2((prevContador) => prevContador + 1);
-        Swal.fire('Ingreso realizado correctamente', '', 'success');
       }
     });
   };
@@ -51,12 +62,18 @@ export const FormularioIngreso = () => {
   const onSalir = (e) => {
     e.preventDefault();
 
-
+    
 
     if (contador2 === 0) {
       Swal.fire('Todos los lugares estan disponibles', '', 'warning');
       return;
     }
+
+    if (!alumnoDatos || !alumnoDatos.registerName) {
+      Swal.fire('Falta ingresar datos', '', 'warning');
+      return;
+    }
+  
 
     Swal.fire({
       title: `¿Confirmas la salida de ${alumnoDatos.registerName}?`,
@@ -71,7 +88,7 @@ export const FormularioIngreso = () => {
         Swal.fire('Salida realizada correctamente', '', 'success');
         startSaliendingAlumno(alumnoRut);
         
-          setContador1((prevContador) => prevContador + 1);
+        setContador1((prevContador) => prevContador + 1);
         setContador2((prevContador) => prevContador - 1);
       }
     });
