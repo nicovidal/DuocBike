@@ -6,8 +6,8 @@ import '../styles/FormularioIngreso.css';
 export const FormularioIngreso = () => {
   const { alumnoDatos,ingreso, startSearchAlumno, startIngresandingALumno, startLoadingIngresos, startSaliendingAlumno } = useIngresoStore();
 
-  const [contador1, setContador1] = useState(20);
-  const [contador2, setContador2] = useState(15);
+  const [contador1, setContador1] = useState(10);
+  const [contador2, setContador2] = useState(0);
   const [alumnoRut, setAlumnoRut] = useState('');
 
 
