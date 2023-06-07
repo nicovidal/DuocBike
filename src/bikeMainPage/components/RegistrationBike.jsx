@@ -118,16 +118,8 @@ export const RegistrationBike = () => {
 
                         {/* Boton Registrar */}
                         <button className='btn' value="Registrar">Registrar</button>
-
-                        
-
-                        
-
-                        
-
-                        
-
                     </form>
+                    <img className="logo2" src="../assets/LogoDuoc.png"/>
                 </div>
             </div>
 
