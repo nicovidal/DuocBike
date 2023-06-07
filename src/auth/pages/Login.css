@@ -140,3 +140,10 @@
     font-weight: bold;
     font-family: 'Manrope', sans-serif;
 }
+
+.logo {
+    width: 120px;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 90px;
+}

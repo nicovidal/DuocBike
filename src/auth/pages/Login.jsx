@@ -66,8 +66,10 @@ export const Login = () => {
                     {/* Boton Entrar */}
                     <button className='btn' value="Entrar">Entrar</button>
                     <h1 className='copy'>Copyright ©2023 PipeloveINC.</h1>
+                    <img className="logo" src="../assets/LogoDuoc.png"/>
                 </form>
             </div>
+            
         </div>
     </div>
 
