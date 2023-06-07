@@ -7,7 +7,7 @@ export const FormularioIngreso = () => {
   const { alumnoDatos,ingreso, startSearchAlumno, startIngresandingALumno, startLoadingIngresos, startSaliendingAlumno } = useIngresoStore();
 
   const [contador1, setContador1] = useState(10);
-  const [contador2, setContador2] = useState(0);
+  const [contador2, setContador2] = useState(10);
   const [alumnoRut, setAlumnoRut] = useState('');
 
 
@@ -38,25 +38,45 @@ export const FormularioIngreso = () => {
       Swal.fire("debe ingresar datos")
     }
 
-    Swal.fire({
-      title: `¿Confirmas el ingreso de ${alumnoDatos.registerName}?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-    
-      if (result.isConfirmed) {
+    if (!alumnoDatos.horaSalida && !alumnoDatos.horaIngreso) {
+      Swal.fire({
+        title: `¿Confirmas el ingreso de ${alumnoDatos.registerName}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          startIngresandingALumno(alumnoRut);
+          Swal.fire('Ingreso realizado correctamente', '', 'success');
+          setContador1((prevContador) => prevContador - 1);
+          setContador2((prevContador) => prevContador + 1);
+        }
+      });
+    } else {
+      Swal.fire('Debe registrar salida primero', '', 'warning');
+    }
+    if (alumnoDatos.horaSalida && alumnoDatos.horaIngreso) {
+      Swal.fire({
+        title: `¿Confirmas el ingreso de ${alumnoDatos.registerName}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          startIngresandingALumno(alumnoRut);
+          Swal.fire('Ingreso realizado correctamente', '', 'success');
+          setContador1((prevContador) => prevContador - 1);
+          setContador2((prevContador) => prevContador + 1);
+        }
+      });
+    }
 
-        startIngresandingALumno(alumnoRut);
-
-        Swal.fire('Ingreso realizado correctamente', '', 'success');
-        setContador1((prevContador) => prevContador - 1);
-        setContador2((prevContador) => prevContador + 1);
-      }
-    });
   };
 
   const onSalir = (e) => {
@@ -73,25 +93,31 @@ export const FormularioIngreso = () => {
       Swal.fire('Falta ingresar datos', '', 'warning');
       return;
     }
-  
 
-    Swal.fire({
-      title: `¿Confirmas la salida de ${alumnoDatos.registerName}?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire('Salida realizada correctamente', '', 'success');
-        startSaliendingAlumno(alumnoRut);
-        
-        setContador1((prevContador) => prevContador + 1);
-        setContador2((prevContador) => prevContador - 1);
-      }
-    });
+    if(!alumnoDatos.horaSalida){
+      Swal.fire({
+        title: `¿Confirmas la salida de ${alumnoDatos.registerName}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire('Salida realizada correctamente', '', 'success');
+          startSaliendingAlumno(alumnoRut);
+          
+          setContador1((prevContador) => prevContador + 1);
+          setContador2((prevContador) => prevContador - 1);
+        }
+      });
+
+    }else{
+      Swal.fire('No hay ingreso asociado a ese rut','','warning')
+    }
+   
+   
   };
 
 
