@@ -6,16 +6,7 @@
 
 
 
-.form-control-ingreso {
-    border: 1px solid black;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 50px;
-    margin-bottom: 40px;
- 
 
-
-}
 
 .main-container {
   min-height: 95vh;
@@ -33,6 +24,16 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     text-align: center;
+
+}
+
+.form-control-ingreso {
+  border: 1px solid black;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+
+
 
 }
 
