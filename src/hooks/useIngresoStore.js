@@ -33,11 +33,13 @@ export const useIngresoStore = () => {
       } else {
         // Alumno no encontrado
         dispatch(onAlumnoNotFound());
+        Swal.fire('Alumno no registrado, por favor registrar','','warning')
       }
     } catch (error) {
       if (error.response && error.response.status === 404) {
         // Alumno no encontrado
         dispatch(onAlumnoNotFound());
+        Swal.fire('Alumno no registrado, por favor registrar','','warning')
       } else {
         // Error desconocido
         console.log(error);
