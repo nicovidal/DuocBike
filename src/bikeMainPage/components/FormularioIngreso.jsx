@@ -24,6 +24,12 @@ export const FormularioIngreso = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+  
+    if (alumnoRut === "") {
+      Swal.fire("Debe ingresar un rut", "", "warning");
+      return;
+    }
+  
     startSearchAlumno(alumnoRut);
     startLoadingIngresos();
   };

@@ -68,26 +68,26 @@ export const useIngresoStore = () => {
       console.log(error);
     }
   };
-
   const startIngresandingALumno = async (alumnoRut) => {
     try {
-      const { data } = await bikeApi.post("/ingreso/", { rut: alumnoRut });
-
-      console.log("alumno ingresado", data);
-      dispatch(onClearDatos());
-      dispatch(onLo)
-    } catch (error) {
-      if (error) {
-        Swal.fire("ya tiene un ingreso registrado", "", "warning");
+      if (!alumnoRut) {
+        console.log('El valor de alumnoRut está vacío o es undefined');
+        return;
       }
+      
+      const { data } = await bikeApi.post("/ingreso/newIngreso/", { rut: alumnoRut });
+  
+      console.log("alumno ingresado", data);
+      
+      dispatch(onClearDatos());
+    } catch (error) {
+      console.log(error)
     }
   };
 
   const startSaliendingAlumno = async (alumnoRut) => {
     try {
-      const { data } = await bikeApi.put("/ingreso/salida/", {
-        rut: alumnoRut,
-      });
+      const { data } = await bikeApi.put("/ingreso/salida/", { rut: alumnoRut});
       console.log("alumno se fue", data);
     } catch (error) {
       if (error) Swal.fire("Alumno no tiene registro de ingreso");
