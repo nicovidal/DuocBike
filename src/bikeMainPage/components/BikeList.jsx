@@ -53,8 +53,8 @@ export const BikeList = () => {
     } else {
       const lowerCaseSearchValue = searchValue.toLowerCase();
       return (
-        alumno.registerRut.toLowerCase().includes(lowerCaseSearchValue) ||
-        alumno.registerName.toLowerCase().includes(lowerCaseSearchValue)
+        alumno?.registerRut?.toLowerCase().includes(lowerCaseSearchValue) ||
+        alumno?.registerName?.toLowerCase().includes(lowerCaseSearchValue)
       );
     }
   };
@@ -64,7 +64,8 @@ export const BikeList = () => {
   });
 
   // Ordenar el arreglo filteredAlumno según el campo registerID
-  filteredAlumno.sort((a, b) => a.registerID.localeCompare(b.registerID));
+  filteredAlumno.sort((a, b) => (a.registerID && b.registerID) ? a.registerID.localeCompare(b.registerID) : 0);
+
 
 
   //paginacion
