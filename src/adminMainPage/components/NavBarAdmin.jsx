@@ -31,6 +31,9 @@ export const NavBarAdmin = () => {
           <NavLink  className="nav-link"  to="/listGuard">
             Gestion Guardias
           </NavLink>
+          <NavLink  className="nav-link"  to="/AdminVisita">
+            Gestion Visitas
+          </NavLink>
 
           </div>
      

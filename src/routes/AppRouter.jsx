@@ -12,6 +12,7 @@ import { Ingresar } from "../bikeMainPage/pages/Ingresar";
 import { AdminIngreso } from "../adminMainPage/pages/AdminIngreso";
 import { AdminBikeList } from "../adminMainPage/pages/AdminBikeList";
 import { AdminIngresoList } from "../adminMainPage/pages/AdminIngresoList";
+import { AdminVisitas } from "../adminMainPage/pages/AdminVisitas";
 
 /* import { Admin } from "../bikeMainPage/pages/Admin"; */
 
@@ -53,6 +54,7 @@ export const AppRouter = () => {
           <Route path='/listGuard' element={<GuardList />} />
           <Route path='/ingresoAdmin' element={<AdminIngreso />} />
           <Route path='/listaIngresoAdmin' element={<AdminIngresoList />} />
+          <Route path='/AdminVisita' element={<AdminVisitas />} />
 
         </>
       ) : null}
