@@ -17,6 +17,9 @@ export const NavBarAdmin = () => {
           <NavLink  className="nav-link"  to="/ingresoAdmin">
             Ingresar alumno
           </NavLink>
+          <NavLink  className="nav-link"  to="/listaIngresoAdmin">
+            Lista Ingresos
+          </NavLink>
         
           <NavLink className="nav-link"  to="/administracion">
             Nuevo Guardia
