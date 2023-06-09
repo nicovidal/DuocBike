@@ -37,9 +37,6 @@
 
 }
 
-
-
-
 .btn-1 {
     background-color: rgba(255, 184, 0, 1);
     font-weight: bold;
@@ -101,9 +98,9 @@
   
   .contador1 {
     padding-top:25px;
-    border: 1px solid black;
+    border: 2px solid black;
     height: 200px;;
-    background-color: deepskyblue;
+    background-color: rgba(255, 184, 0, 1);
     color: white;
     border-radius: 30px;
     margin-left: 30px
@@ -113,9 +110,9 @@
 
   .contador2 {
     padding-top:25px;
-    border: 1px solid black;
+    border: 2px solid black;
     height: 200px;;
-    background-color: deepskyblue;
+    background-color: rgba(255, 184, 0, 1);
     color: white;
     border-radius: 30px;
     
@@ -141,10 +138,8 @@
     font-family: 'Digital-7', sans-serif;
     font-size: 100px;
     color: white;
-    background-color: deepskyblue;
-    width: 220px;
+    background-color: rgba(255, 184, 0, 1);
     height: 100px;  
-    border-radius: 10px;
     text-align: center;
     
     
@@ -153,49 +148,11 @@
     font-family: 'Digital-7', sans-serif;
     font-size: 100px;
     color: white;
-    background-color: deepskyblue;
-    width: 220px;
+    background-color: rgba(255, 184, 0, 1);
     height: 100px;  
-    border-radius: 10px;
     text-align: center;
     
     
   }
 
 
-
-/* .btn-2{
-    background-color: rgba(255, 184, 0, 1);
-    font-weight: bold;
-    border-radius: 4px;
-    display: block;
-    font-family: inherit;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: -45px;
-    margin-left: 210px;
-    width: 40%;
-    cursor: pointer;
-    color: white;
-    border-radius: 0.3rem;
-    box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
-
-}
-.btn-3{
-    background-color: rgba(255, 184, 0, 1); 
-    font-weight: bold;
-    border-radius: 4px;
-    display: block;
-    font-family: inherit;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: 100px;
-    margin-left: 190px;
-    width: 40%;
-    cursor: pointer;
-    color: white;
-    border-radius: 0.3rem;
-    box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
-
-}
-   */
