@@ -14,7 +14,10 @@ export const NavBarAdmin = () => {
           {user.name}
           </span>
           <div className="nav-links">
-
+          <NavLink  className="nav-link"  to="/ingresoAdmin">
+            Ingresar alumno
+          </NavLink>
+        
           <NavLink className="nav-link"  to="/administracion">
             Nuevo Guardia
           </NavLink>
@@ -25,7 +28,7 @@ export const NavBarAdmin = () => {
           <NavLink  className="nav-link"  to="/listGuard">
             Gestion Guardias
           </NavLink>
-        
+
           </div>
      
     
