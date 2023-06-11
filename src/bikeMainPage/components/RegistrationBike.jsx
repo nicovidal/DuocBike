@@ -4,7 +4,6 @@ import { useAuthStore, useRegister } from '../../hooks';
 
 import '../styles/RegistrationBike.css'
 
-
 const registerFormFields = {
     registerName: '',
     registerRut: '',
@@ -15,9 +14,42 @@ const registerFormFields = {
 }
 
 
-
 export const RegistrationBike = () => {
 
+    function enviarFormulario(){
+        console.log('enviando')
+
+        var nombre = document.getElementById('name')
+        var rut = document.getElementById('rut')
+        var carrera = document.getElementById('carrera')
+        var marca = document.getElementById('marca')
+        var color = document.getElementById('color')
+        var id = document.getElementById('id')
+
+        var error = document.getElementById('error')
+        error.style.color= 'red'
+
+        var mensajesError = []
+
+        console.log(nombre.value)
+        console.log(rut.value)
+        console.log(carrera.value)
+        console.log(marca.value)
+        console.log(color.value)
+        console.log(id.value)
+
+        if(nombre.value === null || nombre.value === ''){
+            mensajesError.push('ingresa tu nombre')
+        }
+
+        if(nombre.value.length <3){
+            mensajesError.push('Debe ser mayor a 3')
+        }
+        error.innerHTML= mensajesError.join(', ')
+
+        
+        
+    }
 
     const { registerName, registerRut, registerCarrer, registerBrand, registerColor, registerID, onInputChange: onRegisterInputChange,onResetForm } = useRegister(registerFormFields);
 
@@ -25,7 +57,7 @@ export const RegistrationBike = () => {
 
     const registerSubmit = (event) => {
         event.preventDefault();
-   
+                
         Swal.fire({
           title: '¿Desea agregar a este alumno?',
           icon: 'question',
@@ -61,20 +93,20 @@ export const RegistrationBike = () => {
                     
                     <h2 className='nuevoal'>Nuevo Alumno</h2>
 
-                    <form className='form3' onSubmit={registerSubmit}>
+                    <form className='form3' onSubmit={registerSubmit} id='form'>
                         {/* Nombre */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Nombre' className='input3' 
+                            <input type='text' placeholder='Nombre' className='input3' id='name'
                             name="registerName"
                             value={registerName}
-                            onChange={onRegisterInputChange} required></input>
+                            onChange={onRegisterInputChange} ></input>
                         </div>
 
                         {/* Rut */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Rut' className='input3' 
+                            <input type='text' placeholder='Rut' className='input3' id='rut'
                             name="registerRut"
                             value={registerRut}
                             onChange={onRegisterInputChange} required></input>
@@ -83,7 +115,7 @@ export const RegistrationBike = () => {
                         {/* Carrera */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Carrera' className='input3' 
+                            <input type='text' placeholder='Carrera' className='input3' id='carrera'
                             name="registerCarrer"
                             value={registerCarrer}
                             onChange={onRegisterInputChange} required></input>
@@ -92,7 +124,7 @@ export const RegistrationBike = () => {
                         {/* Marca */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Marca' className='input3' 
+                            <input type='text' placeholder='Marca' className='input3' id='marca'
                             name="registerBrand"
                             value={registerBrand}
                             onChange={onRegisterInputChange} required></input>
@@ -101,7 +133,7 @@ export const RegistrationBike = () => {
                         {/* Color */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Color' className='input3' 
+                            <input type='text' placeholder='Color' className='input3' id='color'
                             name="registerColor"
                             value={registerColor}
                             onChange={onRegisterInputChange} required></input>
@@ -109,16 +141,17 @@ export const RegistrationBike = () => {
 
                         {/* ID */}
                         <div className="form-control3">
-                            
-                            <input type='text' placeholder='ID' className='input3' 
+    
+                            <input type='text' placeholder='ID' className='input3' id='id'
                             name="registerID"
                             value={registerID}
                             onChange={onRegisterInputChange} required></input>
                         </div>
 
                         {/* Boton Registrar */}
-                        <button className='btn' value="Registrar">Registrar</button>
+                        <button className='btn' value="Registrar" onClick={enviarFormulario}>Registrar</button>
                     </form>
+                    <div id='error'></div>
                     <img className="logo2" src="../assets/LogoDuoc.png"/>
                 </div>
             </div>

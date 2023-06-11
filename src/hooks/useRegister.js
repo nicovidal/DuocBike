@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 
+
+
 export const useRegister = ( initialForm = {}, formValidations = {}) => {
   
+    
+
     const [ formState, setFormState ] = useState( initialForm );
     const [ formValidation, setFormValidation ] = useState({});
 
