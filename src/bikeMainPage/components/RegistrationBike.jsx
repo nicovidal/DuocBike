@@ -15,41 +15,43 @@ const registerFormFields = {
 
 
 export const RegistrationBike = () => {
+    
 
     function enviarFormulario(){
-        console.log('enviando')
-
         var nombre = document.getElementById('name')
         var rut = document.getElementById('rut')
         var carrera = document.getElementById('carrera')
         var marca = document.getElementById('marca')
         var color = document.getElementById('color')
         var id = document.getElementById('id')
-
+        var btn = document.getElementById('btn')
         var error = document.getElementById('error')
         error.style.color= 'red'
-
         var mensajesError = []
-
-        console.log(nombre.value)
-        console.log(rut.value)
-        console.log(carrera.value)
-        console.log(marca.value)
-        console.log(color.value)
-        console.log(id.value)
-
+        var form = document.getElementById('form')
+        let deshabilitar = false;
+        
         if(nombre.value === null || nombre.value === ''){
-            mensajesError.push('ingresa tu nombre')
+            mensajesError.push('Ingresa tu nombre.')
+            deshabilitar=true;
         }
 
-        if(nombre.value.length <3){
-            mensajesError.push('Debe ser mayor a 3')
+        if(nombre.value.length >0 && nombre.value.length <3){
+            mensajesError.push('Debe ser mas largo.')
+            deshabilitar=true;
         }
         error.innerHTML= mensajesError.join(', ')
 
-        
-        
+        if(deshabilitar === true){
+            btn.disabled = true;
+        }
+        else{
+            btn.disabled = false;
+        }
+        form.addEventListener("keyup", enviarFormulario)
     }
+
+
 
     const { registerName, registerRut, registerCarrer, registerBrand, registerColor, registerID, onInputChange: onRegisterInputChange,onResetForm } = useRegister(registerFormFields);
 
@@ -101,6 +103,7 @@ export const RegistrationBike = () => {
                             name="registerName"
                             value={registerName}
                             onChange={onRegisterInputChange} ></input>
+                            <div id='error'></div>
                         </div>
 
                         {/* Rut */}
@@ -149,9 +152,8 @@ export const RegistrationBike = () => {
                         </div>
 
                         {/* Boton Registrar */}
-                        <button className='btn' value="Registrar" onClick={enviarFormulario}>Registrar</button>
+                        <button className='btn' value="Registrar" onClick={enviarFormulario} id='btn'>Registrar</button>
                     </form>
-                    <div id='error'></div>
                     <img className="logo2" src="../assets/LogoDuoc.png"/>
                 </div>
             </div>
