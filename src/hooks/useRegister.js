@@ -29,6 +29,7 @@ export const useRegister = ( initialForm = {}, formValidations = {}) => {
 
 
     const onInputChange = ({ target }) => {
+        var btn = document.getElementById('btn')
         const { name, value } = target;
         setFormState({
             ...formState,

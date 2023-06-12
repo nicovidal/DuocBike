@@ -4,6 +4,7 @@ import { useAuthStore, useRegister } from '../../hooks';
 
 import '../styles/RegistrationBike.css'
 
+
 const registerFormFields = {
     registerName: '',
     registerRut: '',
@@ -26,21 +27,81 @@ export const RegistrationBike = () => {
         var id = document.getElementById('id')
         var btn = document.getElementById('btn')
         var error = document.getElementById('error')
-        error.style.color= 'red'
+        
         var mensajesError = []
         var form = document.getElementById('form')
         let deshabilitar = false;
-        
+
+        /*VALIDACION NOMBRE*/
         if(nombre.value === null || nombre.value === ''){
-            mensajesError.push('Ingresa tu nombre.')
+            mensajesError.push('Ingresa tu nombre. <br>')
             deshabilitar=true;
         }
 
         if(nombre.value.length >0 && nombre.value.length <3){
-            mensajesError.push('Debe ser mas largo.')
+            mensajesError.push('El nombre debe ser mas largo. <br>')
             deshabilitar=true;
         }
-        error.innerHTML= mensajesError.join(', ')
+        /*VALIDACION NOMBRE*/
+
+        /*VALIDACION RUT*/
+        if(rut.value === null || rut.value === ''){
+            mensajesError.push('Ingresa rut. <br>')
+            deshabilitar=true;
+        }
+
+        if(rut.value.length >0 && rut.value.length <9){
+            mensajesError.push('Rut invalido. <br>')
+            deshabilitar=true;
+        }
+        /*VALIDACION RUT*/
+
+        /*VALIDACION CARRERA*/
+        if(carrera.value === null || carrera.value === ''){
+            mensajesError.push('Ingresa una carrera. <br>')
+            deshabilitar=true;
+        }
+        if(carrera.value.length >0 && carrera.value.length <3){
+            mensajesError.push('La carrera debe ser mas largo. <br>')
+            deshabilitar=true;
+        }
+        /*VALIDACION CARRERA*/
+
+        /*VALIDACION MARCA*/
+        if(marca.value === null || marca.value === ''){
+            mensajesError.push('Ingresa una marca. <br>')
+            deshabilitar=true;
+        }
+        if(marca.value.length >0 && marca.value.length <3){
+            mensajesError.push('La marca debe ser mas largo. <br>')
+            deshabilitar=true;
+        }
+        /*VALIDACION MARCA*/
+
+        /*VALIDACION COLOR*/
+        if(color.value === null || color.value === ''){
+            mensajesError.push('Ingresa un color. <br>')
+            deshabilitar=true;
+        }
+        if(color.value.length >0 && color.value.length <3){
+            mensajesError.push('El color debe ser mas largo. <br>')
+            deshabilitar=true;
+        }
+        /*VALIDACION COLOR*/
+
+        /*VALIDACION ID*/
+        if(color.value === null || color.value === ''){
+            mensajesError.push('Ingresa una ID. <br>')
+            deshabilitar=true;
+        }
+        if(color.value.length >0 && color.value.length <1){
+            mensajesError.push('La ID debe ser mas largo. <br>')
+            deshabilitar=true;
+        }
+        /*VALIDACION ID*/
+
+        error.innerHTML= mensajesError.join('')
+        form.addEventListener("keyup", enviarFormulario)
 
         if(deshabilitar === true){
             btn.disabled = true;
@@ -48,7 +109,6 @@ export const RegistrationBike = () => {
         else{
             btn.disabled = false;
         }
-        form.addEventListener("keyup", enviarFormulario)
     }
 
 
@@ -99,17 +159,16 @@ export const RegistrationBike = () => {
                         {/* Nombre */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Nombre' className='input3' id='name'
+                            <input type='text' placeholder='Nombre' className='input3' id='name' minLength={1}
                             name="registerName"
                             value={registerName}
                             onChange={onRegisterInputChange} ></input>
-                            <div id='error'></div>
                         </div>
 
                         {/* Rut */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Rut' className='input3' id='rut'
+                            <input type='text' placeholder='Rut ej: 11111111-1' className='input3' id='rut' maxLength={9}
                             name="registerRut"
                             value={registerRut}
                             onChange={onRegisterInputChange} required></input>
@@ -118,7 +177,7 @@ export const RegistrationBike = () => {
                         {/* Carrera */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Carrera' className='input3' id='carrera'
+                            <input type='text' placeholder='Carrera' className='input3' id='carrera' minLength={1}
                             name="registerCarrer"
                             value={registerCarrer}
                             onChange={onRegisterInputChange} required></input>
@@ -127,7 +186,7 @@ export const RegistrationBike = () => {
                         {/* Marca */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Marca' className='input3' id='marca'
+                            <input type='text' placeholder='Marca' className='input3' id='marca' minLength={1}
                             name="registerBrand"
                             value={registerBrand}
                             onChange={onRegisterInputChange} required></input>
@@ -136,7 +195,7 @@ export const RegistrationBike = () => {
                         {/* Color */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Color' className='input3' id='color'
+                            <input type='text' placeholder='Color' className='input3' id='color' minLength={1}
                             name="registerColor"
                             value={registerColor}
                             onChange={onRegisterInputChange} required></input>
@@ -145,14 +204,15 @@ export const RegistrationBike = () => {
                         {/* ID */}
                         <div className="form-control3">
     
-                            <input type='text' placeholder='ID' className='input3' id='id'
+                            <input type='text' placeholder='ID' className='input3' id='id' minLength={2}
                             name="registerID"
                             value={registerID}
                             onChange={onRegisterInputChange} required></input>
                         </div>
 
                         {/* Boton Registrar */}
-                        <button className='btn' value="Registrar" onClick={enviarFormulario} id='btn'>Registrar</button>
+                        <button className='btn' value="Registrar" onClick={enviarFormulario} id='btn' >Registrar</button>
+                        <div id='error' className='error'></div>
                     </form>
                     <img className="logo2" src="../assets/LogoDuoc.png"/>
                 </div>

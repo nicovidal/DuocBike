@@ -111,10 +111,12 @@
 }
 
 
-.warnings{
-    width: 200px;
+.error{
+    width: 300px;
     text-align: center;
     margin: auto;
     color: red;
-    padding-top: 20px;
+    padding-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
 }
