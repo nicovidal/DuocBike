@@ -169,6 +169,9 @@ export const FormularioIngreso = () => {
               Salir
             </button>
           </form>
+
+          <img className="logo5" src="../assets/LogoDuoc.png"/>
+
           <div className="contadores">
             <div className="contador">
               <h2>DISPONIBLES</h2>

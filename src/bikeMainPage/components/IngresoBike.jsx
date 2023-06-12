@@ -7,6 +7,7 @@ export const IngresoBike = () => {
     <>
     <Navbar/>
     <FormularioIngreso/>
+    
     </>
   )
 }

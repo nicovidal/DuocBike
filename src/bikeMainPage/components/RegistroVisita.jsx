@@ -190,8 +190,10 @@ export const RegistroVisita = () => {
             <button className='btn' value="Registrar" id='btn' onClick={validacion}>Registrar</button>
             <div id='error' className='error2'></div>
           </form>
+          
 
           <ListaVisita />
+          <img className="logo3" src="../assets/LogoDuoc.png"/>
         </div>
       </div>
     </div>
