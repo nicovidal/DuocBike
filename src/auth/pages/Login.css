@@ -133,7 +133,7 @@
 
 .copy{
     text-align: center;
-    padding-top: 60px;
+    padding-top: 130px;
     padding-left: 50px;
     position: absolute;
     font-size: 15px;
@@ -145,5 +145,15 @@
     width: 120px;
     position: absolute;
     margin-left: 100px;
-    margin-top: 90px;
+    margin-top: 150px;
+}
+
+.error2{
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    color: red;
+    padding-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
 }

@@ -35,12 +35,12 @@ export const RegistrationBike = () => {
         /*VALIDACION NOMBRE*/
         if(nombre.value === null || nombre.value === ''){
             mensajesError.push('Ingresa tu nombre. <br>')
-            deshabilitar=false;
+            deshabilitar=true;
         }
 
         if(nombre.value.length >0 && nombre.value.length <3){
             mensajesError.push('El nombre debe ser mas largo. <br>')
-            deshabilitar=false;
+            deshabilitar=true;
         }
         /*VALIDACION NOMBRE*/
 

@@ -17,7 +17,41 @@ export const Login = () => {
 
     const {startLogin,errorMessage}=useAuthStore();
 
+    function validacion(){
+        var usuario = document.getElementById('usuario')
+        var contraseña = document.getElementById('contraseña')
 
+        var btn = document.getElementById('btn')
+        var error = document.getElementById('error')
+
+        var mensajesError = []
+        var form = document.getElementById('form')
+        let deshabilitar = false;
+
+        if(usuario.value === null || usuario.value === ''){
+            mensajesError.push('El usuario no debe estar vacio. <br>')
+            deshabilitar=true;
+        }
+
+        if(contraseña.value === null || contraseña.value === ''){
+            mensajesError.push('La contraseña no debe estar vacio. <br>')
+            deshabilitar=true;
+        }
+        if(contraseña.value.length >0 && contraseña.value.length <2){
+            mensajesError.push('La contraseña debe ser mas larga. <br>')
+            deshabilitar=true;
+        }
+        
+
+        if(deshabilitar === true){
+            btn.disabled = true;
+        }
+        else{
+            btn.disabled = false;
+        }
+        error.innerHTML= mensajesError.join('')
+        form.addEventListener("keyup", validacion)
+    }
 
     const {loginUser,loginPassword,onInputChange:onLoginInputChange}=useRegister(loginFormFields);
 
@@ -46,28 +80,29 @@ export const Login = () => {
                 <img className='img1' src="../assets/logo.png"/>
                 <h2 className='h2'>DuocBike</h2>
 
-                <form className='form1' onSubmit={loginSubmit}>
+                <form className='form1' onSubmit={loginSubmit} id='form'>
                     {/* Usuario */}
                     <div className='form-control1'>
                         <FontAwesomeIcon icon={faUser} className='icono1'></FontAwesomeIcon>
-                        <input type='text' placeholder='Usuario' className='input'
+                        <input type='text' placeholder='Usuario' className='input' maxLength={15} id='usuario' minLength={1}
                         name='loginUser' 
                         value={loginUser}
                         onChange={onLoginInputChange} 
-                        required></input>
+                        ></input>
                     </div>
 
                     {/* Contraseña */}
                     <div className='form-control1'>
                         <FontAwesomeIcon icon={faLock} className='icono1'></FontAwesomeIcon>
-                        <input type='password' className='input' placeholder='Contraseña' name='loginPassword' value={loginPassword} onChange={onLoginInputChange} required></input>
+                        <input type='password' className='input' placeholder='Contraseña' name='loginPassword' value={loginPassword} onChange={onLoginInputChange} maxLength={15} id='contraseña' minLength={2} required></input>
                     </div>
                     
                     {/* Boton Entrar */}
-                    <button className='btn' value="Entrar">Entrar</button>
+                    <button className='btn' value="Entrar" onClick={validacion} id='btn'>Entrar</button>
                     <h1 className='copy'>Copyright ©2023 PipeloveINC.</h1>
                     <img className="logo" src="../assets/LogoDuoc.png"/>
                 </form>
+                <div id='error' className='error2'></div>
             </div>
             
         </div>
