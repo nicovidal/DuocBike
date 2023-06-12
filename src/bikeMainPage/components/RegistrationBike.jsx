@@ -35,12 +35,12 @@ export const RegistrationBike = () => {
         /*VALIDACION NOMBRE*/
         if(nombre.value === null || nombre.value === ''){
             mensajesError.push('Ingresa tu nombre. <br>')
-            deshabilitar=true;
+            deshabilitar=false;
         }
 
         if(nombre.value.length >0 && nombre.value.length <3){
             mensajesError.push('El nombre debe ser mas largo. <br>')
-            deshabilitar=true;
+            deshabilitar=false;
         }
         /*VALIDACION NOMBRE*/
 
@@ -90,11 +90,11 @@ export const RegistrationBike = () => {
         /*VALIDACION COLOR*/
 
         /*VALIDACION ID*/
-        if(color.value === null || color.value === ''){
+        if(id.value === null || id.value === ''){
             mensajesError.push('Ingresa una ID. <br>')
             deshabilitar=true;
         }
-        if(color.value.length >0 && color.value.length <1){
+        if(id.value.length >0 && id.value.length <1){
             mensajesError.push('La ID debe ser mas largo. <br>')
             deshabilitar=true;
         }
@@ -109,6 +109,8 @@ export const RegistrationBike = () => {
         else{
             btn.disabled = false;
         }
+
+        
     }
 
 
@@ -159,7 +161,7 @@ export const RegistrationBike = () => {
                         {/* Nombre */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Nombre' className='input3' id='name' minLength={1}
+                            <input type='text' placeholder='Nombre' className='input3' id='name' minLength={1} maxLength={15}
                             name="registerName"
                             value={registerName}
                             onChange={onRegisterInputChange} ></input>
@@ -177,7 +179,7 @@ export const RegistrationBike = () => {
                         {/* Carrera */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Carrera' className='input3' id='carrera' minLength={1}
+                            <input type='text' placeholder='Carrera' className='input3' id='carrera' minLength={1} maxLength={15}
                             name="registerCarrer"
                             value={registerCarrer}
                             onChange={onRegisterInputChange} required></input>
@@ -186,7 +188,7 @@ export const RegistrationBike = () => {
                         {/* Marca */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Marca' className='input3' id='marca' minLength={1}
+                            <input type='text' placeholder='Marca' className='input3' id='marca' minLength={1} maxLength={15}
                             name="registerBrand"
                             value={registerBrand}
                             onChange={onRegisterInputChange} required></input>
@@ -195,7 +197,7 @@ export const RegistrationBike = () => {
                         {/* Color */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Color' className='input3' id='color' minLength={1}
+                            <input type='text' placeholder='Color' className='input3' id='color' minLength={1} maxLength={10}
                             name="registerColor"
                             value={registerColor}
                             onChange={onRegisterInputChange} required></input>
@@ -204,7 +206,7 @@ export const RegistrationBike = () => {
                         {/* ID */}
                         <div className="form-control3">
     
-                            <input type='text' placeholder='ID' className='input3' id='id' minLength={2}
+                            <input type='number' placeholder='ID' className='input3' id='id'
                             name="registerID"
                             value={registerID}
                             onChange={onRegisterInputChange} required></input>
@@ -217,93 +219,6 @@ export const RegistrationBike = () => {
                     <img className="logo2" src="../assets/LogoDuoc.png"/>
                 </div>
             </div>
-
         </div>
-
-
-        // <div className="container">
-        //     <div className="row">
-        //         <div className="addBike-form">
-        //             <img src="../assets/logo.png" className='logo-addBike' />
-        //             <form onSubmit={registerSubmit}>
-
-        //                 <div className="form-group mb-2">
-        //                     <input
-        //                         type="text"
-        //                         className=" form-control-addBike"
-        //                         placeholder="Nombre"xxxxxxxx
-        //                         name="registerName"xxxxx
-        //                         value={registerName}xxxxx
-        //                         onChange={onRegisterInputChange}xxxxxxxx
-        //                     />
-        //                 </div>
-
-        //                 <div className="form-group mb-2">
-        //                     <input
-        //                         type="text"
-        //                         className=" form-control-addBike"
-        //                         placeholder="Rut"xxxxx
-        //                         name="registerRut"xxxxx
-        //                         value={registerRut}xxxxx
-        //                         onChange={onRegisterInputChange}xxxxxxx
-        //                     />
-        //                 </div>
-
-        //                 <div className="form-group mb-2">
-        //                     <input
-        //                         type="text"
-        //                         className=" form-control-addBike"
-        //                         placeholder="Carrera"xxxxxx
-        //                         name="registerCarrer"xxxxx
-        //                         value={registerCarrer}xxxxxx
-        //                         onChange={onRegisterInputChange}xxxxxxx
-        //                     />
-        //                 </div>
-
-        //                 <div className="form-group mb-2">
-        //                     <input
-        //                         type="text"
-        //                         className=" form-control-addBike"
-        //                         placeholder="Marca"xxxxxxxxx
-        //                         name="registerBrand"xxxxxxxxxx
-        //                         value={registerBrand}xxxxxxx
-        //                         onChange={onRegisterInputChange}xxxxxxxx
-        //                     />
-        //                 </div>
-
-        //                 <div className="form-group mb-2">
-        //                     <input
-        //                         type="text"
-        //                         className=" form-control-addBike"
-        //                         placeholder="Color"xxxxxxxxx
-        //                         name="registerColor"xxxxxxxxx
-        //                         value={registerColor}xxxxxxxxxxx
-        //                         onChange={onRegisterInputChange}
-        //                     />
-        //                 </div>
-
-        //                 <div className="form-group mb-2">
-        //                     <input
-        //                         type="text"
-        //                         className=" form-control-addBike"
-        //                         placeholder="ID"XXXXXX
-        //                         name="registerID"XXXXXXX
-        //                         value={registerID}XXXXXXXX
-        //                         onChange={onRegisterInputChange}
-        //                     />
-        //                 </div>
-
-        //                 <div className="form-group mb-2">
-        //                     <input
-        //                         type="submit"
-        //                         className="btnAddBike"
-        //                         value="Registrar"
-        //                     />
-        //                 </div>
-
-        //             </form>
-        //         </div>
-        //     </div>
-        // </div>
     )
 }
