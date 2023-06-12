@@ -38,10 +38,10 @@ export const AppRouter = () => {
         </>
       ) : status === 'authenticated' ? (
         <>
-          <Route path='/registrar' element={<RegisterGuard />} />
-          <Route path='/*' element={<Navigate to="/registrar" />} />
-          <Route path='/list' element={<ListaAlumnos />} />
           <Route path='/ingreso' element={<Ingresar/>} />
+          <Route path='/registrar' element={<RegisterGuard />} />
+          <Route path='/*' element={<Navigate to="/ingreso" />} />
+          <Route path='/list' element={<ListaAlumnos />} />    
           <Route path='/visitas' element={<Visitas />} />
           <Route path='/ingresados' element={<ListaIngresos/>} />
 
