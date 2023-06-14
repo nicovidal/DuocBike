@@ -1,10 +1,7 @@
-
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useVisitaStore } from '../../hooks/useVisitaStore';
 import Swal from 'sweetalert2';
-
-
 
 export const ListaVisita = () => {
   const { startLoadingVisitas, visita, setActiveVisita, startSaliendingVisita, activeVisita } = useVisitaStore();
@@ -12,6 +9,7 @@ export const ListaVisita = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [visitaList, setVisitaList] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     startLoadingVisitas();
@@ -41,7 +39,25 @@ export const ListaVisita = () => {
     setPage(0);
   };
 
-  const paginatedVisita = visitaList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  const filterVisita = (visita) => {
+    if (searchValue === "") {
+      return true;
+    } else {
+      const lowerCaseSearchValue = searchValue.toLowerCase();
+      return (
+        visita?.visitaRut?.toLowerCase().includes(lowerCaseSearchValue) ||
+        visita?.visitaNombre?.toLowerCase().includes(lowerCaseSearchValue)
+      );
+    }
+  };
+
+  const filteredVisita = visita.filter((v, index) => {
+    return visita.findIndex((b) => b.id === v.id) === index && filterVisita(v);
+  });
+
+  filteredVisita.sort((v, b) =>
+    v.visitaID && b.visitaID ? v.visitaID.localeCompare(b.visitaID) : 0
+  );
 
   const onSelectVisita = (event, visita) => {
     setActiveVisita(visita);
@@ -50,7 +66,7 @@ export const ListaVisita = () => {
 
   const onSalirVisita = (e) => {
     e.preventDefault();
-  
+
     Swal.fire({
       title: `¿Confirmas la salida de ${activeVisita.visitaNombre}?`,
       icon: 'warning',
@@ -69,9 +85,17 @@ export const ListaVisita = () => {
     });
   };
 
+  const paginatedVisita = filteredVisita.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
   return (
     <div>
-      <TableContainer component={Paper} className='listaVisita'>
+      <input
+        type="text"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        placeholder="Buscar por rut o nombre"
+      />
+      <TableContainer component={Paper} className="listaVisita">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -86,12 +110,12 @@ export const ListaVisita = () => {
           </TableHead>
           <TableBody>
             {paginatedVisita.map((v) => (
-              <TableRow 
-              key={v.id}
-              hover
-              onClick={(event) => onSelectVisita(event, v)}
-              selected={selectedRow===v.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              <TableRow
+                key={v.id}
+                hover
+                onClick={(event) => onSelectVisita(event, v)}
+                selected={selectedRow === v.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell align="right">{v.visitaRut}</TableCell>
                 <TableCell align="right">{v.visitaNombre}</TableCell>
@@ -106,7 +130,7 @@ export const ListaVisita = () => {
         </Table>
         <TablePagination
           component="div"
-          count={visitaList.length} 
+          count={filteredVisita.length}
           page={page}
           onPageChange={handleChangePage}
           rowsPerPage={rowsPerPage}
@@ -115,7 +139,9 @@ export const ListaVisita = () => {
           rowsPerPageOptions={[5, 10]}
         />
       </TableContainer>
-      <button className='btn btn-danger' onClick={onSalirVisita}>Salida</button>
+      <button className="btn btn-danger" onClick={onSalirVisita}>
+        Salida
+      </button>
     </div>
   );
 };
