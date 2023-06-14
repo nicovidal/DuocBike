@@ -22,8 +22,9 @@ export const FormularioIngreso = () => {
 
   const resetForm = () => {
     setAlumnoRut("");
-    startIngresandingALumno();
+ 
   };
+
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -180,7 +181,7 @@ export const FormularioIngreso = () => {
                     className="form-control datosAlumno"
                     id="iDBicicleta"
                     placeholder="id bicicleta"
-                    value={alumnoDatos.registerID}
+                    value={alumnoDatos.registerID || ""}
                     disabled
                   />
                 </div>
@@ -191,7 +192,7 @@ export const FormularioIngreso = () => {
                     className="form-control datosAlumno"
                     id="inputRut"
                     placeholder="Rut"
-                    value={alumnoDatos.registerRut}
+                    value={alumnoDatos.registerRut || ""}
                     disabled
                   />
                 </div>
@@ -203,36 +204,42 @@ export const FormularioIngreso = () => {
                   className="form-control datosAlumno"
                   id="inputAddress"
                   placeholder="Nombre Alumno"
-                  value={alumnoDatos.registerName}
+                  value={alumnoDatos.registerName || ""}
                   disabled
                 />
               </div>
               <div className="form-group">
-              <div className="form-row">
-                <div className="form-group ">
-                  <label>Modelo de bici</label>
-                  <input
-                    type="text"
-                    className="form-control datosAlumno"
-                    id="inputCity"
-                    placeholder="Marca Bicicleta"
-                    value={alumnoDatos.registerBrand}
-                    disabled
-                  />
+                <div className="form-row">
+                  <div className="form-group ">
+                    <label>Modelo de bici</label>
+                    <input
+                      type="text"
+                      className="form-control datosAlumno"
+                      id="inputCity"
+                      placeholder="Marca Bicicleta"
+                      value={alumnoDatos.registerBrand || ""}
+                      disabled
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-        
+
               <div className="form-group row text-center botonIngreso">
                 <button
                   className="btn btn-1"
                   value="Ingresar"
                   onClick={onIngresar}
+                  resetForm
                 >
                   Ingresar
                 </button>
                 &nbsp;&nbsp;&nbsp;
-                <button className="btn btn-1" value="Salir" onClick={onSalir}>
+                <button
+                  className="btn btn-1"
+                  value="Salir"
+                  onClick={onSalir}
+                 
+                >
                   Salir
                 </button>
               </div>
@@ -247,4 +254,3 @@ export const FormularioIngreso = () => {
     </>
   );
 };
-

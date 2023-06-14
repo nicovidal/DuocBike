@@ -59,6 +59,8 @@ export const useIngresoStore = () => {
 
   const startLoadingIngresos = async () => {
     try {
+      dispatch(onSearchingAlumno());
+
       const { data } = await bikeApi.get("/ingreso/listaIngresos");
       console.log({ data });
       const ingreso = data.ingresos;
@@ -70,6 +72,7 @@ export const useIngresoStore = () => {
   };
   const startIngresandingALumno = async (alumnoRut) => {
     try {
+      
       if (!alumnoRut) {
         console.log('El valor de alumnoRut está vacío o es undefined');
         return;
@@ -80,6 +83,7 @@ export const useIngresoStore = () => {
       console.log("alumno ingresado", data);
       
       dispatch(onClearDatos());
+
     } catch (error) {
       console.log(error)
     }
@@ -87,8 +91,11 @@ export const useIngresoStore = () => {
 
   const startSaliendingAlumno = async (alumnoRut) => {
     try {
+
+
       const { data } = await bikeApi.put("/ingreso/salida/", { rut: alumnoRut});
       console.log("alumno se fue", data);
+
     } catch (error) {
       if (error) Swal.fire("Alumno no tiene registro de ingreso");
       console.log(error);
