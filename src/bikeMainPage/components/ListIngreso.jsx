@@ -21,6 +21,8 @@ export const ListIngreso = () => {
     startLoadingIngresos();
   }, []);
 
+  const sortedIngresos = ingreso.slice().reverse();
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -31,7 +33,8 @@ export const ListIngreso = () => {
   };
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, ingreso.length - page * rowsPerPage);
+    rowsPerPage -
+    Math.min(rowsPerPage, sortedIngresos.length - page * rowsPerPage);
 
   return (
     <>
@@ -51,11 +54,11 @@ export const ListIngreso = () => {
                 </TableHead>
                 <TableBody>
                   {(rowsPerPage > 0
-                    ? ingreso.slice(
+                    ? sortedIngresos.slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
                       )
-                    : ingreso
+                    : sortedIngresos
                   ).map((i) => (
                     <TableRow key={i.id}>
                       <TableCell align="center">{i.rutAlumno}</TableCell>
@@ -76,7 +79,7 @@ export const ListIngreso = () => {
               <TablePagination
                 rowsPerPageOptions={[5, 10]}
                 component="div"
-                count={ingreso.length}
+                count={sortedIngresos.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 labelRowsPerPage="Filas por página"
