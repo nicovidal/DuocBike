@@ -232,17 +232,12 @@ export const FormularioIngreso = () => {
               Salir
             </button>
           </form>
-          <div className="contadores">
-            <div className="contador">
-              <h2>DISPONIBLES</h2>
-              <div className="valor">{contador1 > 0 ? contador1 : 0}</div>
-            </div>
-            <div className="contador">
-              <h2>OCUPADOS</h2>
-              <div className="valor">{contador2 >= 0 ? contador2 : 0}</div>
-            </div>
+          <div className="contador2 col-3">
+            <h2>OCUPADOS</h2>
+            <div className="valor">{contador2 >= 0 ? contador2 : 0}</div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );
