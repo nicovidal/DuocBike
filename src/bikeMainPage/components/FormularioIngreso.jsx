@@ -6,16 +6,19 @@ import "../styles/FormularioIngreso.css";
 export const FormularioIngreso = () => {
   const {
     alumnoDatos,
-    ingreso,
     startSearchAlumno,
     startIngresandingALumno,
     startLoadingIngresos,
     startSaliendingAlumno,
   } = useIngresoStore();
 
-  const [contador1, setContador1] = useState(10);
-  const [contador2, setContador2] = useState(10);
   const [alumnoRut, setAlumnoRut] = useState("");
+  const [contador1, setContador1] = useState(
+    parseInt(localStorage.getItem("contador1")) || 10
+  );
+  const [contador2, setContador2] = useState(
+    parseInt(localStorage.getItem("contador2")) || 10
+  );
 
   const resetForm = () => {
     setAlumnoRut("");
@@ -24,12 +27,12 @@ export const FormularioIngreso = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-  
+
     if (alumnoRut === "") {
       Swal.fire("Debe ingresar un rut", "", "warning");
       return;
     }
-  
+
     startSearchAlumno(alumnoRut);
     startLoadingIngresos();
   };
@@ -45,10 +48,6 @@ export const FormularioIngreso = () => {
     if (!alumnoDatos || !alumnoDatos.registerName) {
       Swal.fire("Falta ingresar datos", "", "warning");
       return;
-    }
-
-    if (!alumnoDatos) {
-      Swal.fire("debe ingresar datos");
     }
 
     if (!alumnoDatos.horaSalida && !alumnoDatos.horaIngreso) {
@@ -72,6 +71,7 @@ export const FormularioIngreso = () => {
     } else {
       Swal.fire("Debe registrar salida primero", "", "warning");
     }
+
     if (alumnoDatos.horaSalida && alumnoDatos.horaIngreso) {
       Swal.fire({
         title: `¿Confirmas el ingreso de ${alumnoDatos.registerName}?`,
@@ -97,7 +97,7 @@ export const FormularioIngreso = () => {
     e.preventDefault();
 
     if (contador2 === 0) {
-      Swal.fire("Todos los lugares estan disponibles", "", "warning");
+      Swal.fire("Todos los lugares están disponibles", "", "warning");
       return;
     }
 
@@ -134,75 +134,80 @@ export const FormularioIngreso = () => {
     startLoadingIngresos();
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("contador1", contador1);
+    localStorage.setItem("contador2", contador2);
+  }, [contador1, contador2]);
+
   return (
     <>
-    <div className="main-container">
-      <div className="container text-center containerInputIngreso ">
-        <div className="row">
-          <form className="form-control-ingreso" onSubmit={onSubmit}>
-            <div>
-              <label className="nuevoIngreso">Ingrese el rut:</label>
-              &nbsp;&nbsp;&nbsp;
-              <input
-                placeholder="Rut"
-                type="text"
-                value={alumnoRut}
-                name="alumnoRut"
-                className="inputIngreso"
-                onChange={(e) => setAlumnoRut(e.target.value)}
-              />
-            </div>
-            <div>
-              <button className="btn btn-1" value="Buscar" type="submit">
-                Buscar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div className="container  text-center containerFormIngreso">
-        <div className="row">
-          <div className="contador1 col-3 me-5">
-            <h2>DISPONIBLES</h2>
-            <div className="valor">{contador1 > 0 ? contador1 : 0}</div>
-          </div>
-          <form className="datosAlumnoForm  col-6 me-5">
-            <div className="form-row ">
-              <div className="form-group">
-                <label>ID bicicleta</label>
+      <div className="main-container">
+        <div className="container text-center containerInputIngreso ">
+          <div className="row">
+            <form className="form-control-ingreso" onSubmit={onSubmit}>
+              <div>
+                <label className="nuevoIngreso">Ingrese el rut:</label>
+                &nbsp;&nbsp;&nbsp;
                 <input
+                  placeholder="Rut"
                   type="text"
-                  className="form-control datosAlumno"
-                  id="iDBicicleta"
-                  placeholder="id bicicleta"
-                  value={alumnoDatos.registerID}
-                  disabled
+                  value={alumnoRut}
+                  name="alumnoRut"
+                  className="inputIngreso"
+                  onChange={(e) => setAlumnoRut(e.target.value)}
                 />
+              </div>
+              <div>
+                <button className="btn btn-1" value="Buscar" type="submit">
+                  Buscar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="container  text-center containerFormIngreso">
+          <div className="row">
+            <div className="contador1 col-3 me-5">
+              <h2>DISPONIBLES</h2>
+              <div className="valor">{contador1 > 0 ? contador1 : 0}</div>
+            </div>
+            <form className="datosAlumnoForm  col-6 me-5">
+              <div className="form-row ">
+                <div className="form-group">
+                  <label>ID bicicleta</label>
+                  <input
+                    type="text"
+                    className="form-control datosAlumno"
+                    id="iDBicicleta"
+                    placeholder="id bicicleta"
+                    value={alumnoDatos.registerID}
+                    disabled
+                  />
+                </div>
+                <div className="form-group ">
+                  <label>Rut</label>
+                  <input
+                    type="text"
+                    className="form-control datosAlumno"
+                    id="inputRut"
+                    placeholder="Rut"
+                    value={alumnoDatos.registerRut}
+                    disabled
+                  />
+                </div>
               </div>
               <div className="form-group ">
-                <label>Rut</label>
+                <label>Nombre Completo</label>
                 <input
                   type="text"
                   className="form-control datosAlumno"
-                  id="inputRut"
-                  placeholder="Rut"
-                  value={alumnoDatos.registerRut}
+                  id="inputAddress"
+                  placeholder="Nombre Alumno"
+                  value={alumnoDatos.registerName}
                   disabled
                 />
               </div>
-            </div>
-            <div className="form-group ">
-              <label>Nombre Completo</label>
-              <input
-                type="text"
-                className="form-control datosAlumno"
-                id="inputAddress"
-                placeholder="Nombre Alumno"
-                value={alumnoDatos.registerName}
-                disabled
-              />
-            </div>
-            <div className="form-group">
+              <div className="form-group">
               <div className="form-row">
                 <div className="form-group ">
                   <label>Modelo de bici</label>
@@ -217,28 +222,29 @@ export const FormularioIngreso = () => {
                 </div>
               </div>
             </div>
-            <button
-              type="submit"
-              className="btn btn-primary me-2"
-              onClick={onIngresar}
-            >
-              Ingresar
-            </button>
-            <button
-              type="submit"
-              className="btn btn-danger me-2"
-              onClick={onSalir}
-            >
-              Salir
-            </button>
-          </form>
-          <div className="contador2 col-3">
-            <h2>OCUPADOS</h2>
-            <div className="valor">{contador2 >= 0 ? contador2 : 0}</div>
+        
+              <div className="form-group row text-center botonIngreso">
+                <button
+                  className="btn btn-1"
+                  value="Ingresar"
+                  onClick={onIngresar}
+                >
+                  Ingresar
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <button className="btn btn-1" value="Salir" onClick={onSalir}>
+                  Salir
+                </button>
+              </div>
+            </form>
+            <div className="contador2 col-3">
+              <h2>OCUPADOS</h2>
+              <div className="valor">{contador2}</div>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </>
   );
 };
+
