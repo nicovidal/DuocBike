@@ -33,24 +33,28 @@ export const RegistroVisita = () => {
     let deshabilitar = false;
 
     /*VALIDACION NOMBRE*/
-    if(nombre.value === null || nombre.value === ''){
-      mensajesError.push('El usuario no debe estar vacio. <br>')
-      deshabilitar=true;
-    }
-    if(nombre.value.length >0 && nombre.value.length <3){
-      mensajesError.push('El nombre debe ser mas largo. <br>')
-      deshabilitar=true;
+    if (nombre.value === null || nombre.value === '') {
+      mensajesError.push('Ingresa tu nombre. <br>');
+      deshabilitar = true;
+    } else if (!/^[a-zA-Z]+$/.test(nombre.value)) {
+        mensajesError.push('El nombre solo debe contener letras. <br>');
+        deshabilitar = true;
+    } else if (nombre.value.length > 0 && nombre.value.length < 3) {
+        mensajesError.push('El nombre debe ser más largo. <br>');
+        deshabilitar = true;
     }
     /*VALIDACION NOMBRE*/
 
     /*VALIDACION RUT*/
-    if(rut.value === null || rut.value === ''){
-      mensajesError.push('Ingresa rut. <br>')
-      deshabilitar=true;
-    }
-    if(rut.value.length >0 && rut.value.length <9){
-      mensajesError.push('Rut invalido. <br>')
-      deshabilitar=true;
+    if (rut.value === null || rut.value === '') {
+      mensajesError.push('Ingresa un RUT. <br>');
+      deshabilitar = true;
+    } else if (!/^[0-9]+[0-9kK]$/.test(rut.value) || /-/.test(rut.value)) {
+        mensajesError.push('El RUT debe contener solo números y la "k" final, sin guiones. <br>');
+        deshabilitar = true;
+    } else if (rut.value.length < 9) {
+        mensajesError.push('El RUT debe tener al menos 9 dígitos. <br>');
+        deshabilitar = true;
     }
     /*VALIDACION RUT*/
 
@@ -59,20 +63,27 @@ export const RegistroVisita = () => {
       mensajesError.push('Ingresa una marca. <br>')
       deshabilitar=true;
     }
-    if(marca.value.length >0 && marca.value.length <3){
-        mensajesError.push('La marca debe ser mas largo. <br>')
-        deshabilitar=true;
+    else if (!/^[a-zA-Z]+$/.test(marca.value)) {
+        mensajesError.push('La marca solo debe contener letras. <br>');
+        deshabilitar = true;
+    } else if (marca.value.length > 0 && marca.value.length < 3) {
+        mensajesError.push('La marca debe ser más largo. <br>');
+        deshabilitar = true;
     }
     /*VALIDACION MARCA*/
 
+    
     /*VALIDACION LUGAR*/
     if(lugar.value === null || lugar.value === ''){
       mensajesError.push('Ingresa un lugar. <br>')
       deshabilitar=true;
     }
-    if(lugar.value.length >0 && lugar.value.length <3){
-        mensajesError.push('El lugar debe ser mas largo. <br>')
-        deshabilitar=true;
+    else if (!/^[a-zA-Z]+$/.test(lugar.value)) {
+        mensajesError.push('El lugar solo debe contener letras. <br>');
+        deshabilitar = true;
+    } else if (lugar.value.length > 0 && lugar.value.length < 3) {
+        mensajesError.push('El lugar debe ser más largo. <br>');
+        deshabilitar = true;
     }
     /*VALIDACION LUGAR*/
 
@@ -141,17 +152,19 @@ export const RegistroVisita = () => {
                 value={visitaNombre}
                 onChange={onRegisterInputChange}
                 id='nombre' maxLength={15} minLength={1}
+                onClick={validacion}
               />
               &nbsp;&nbsp;&nbsp;
               
               <input
                 type="text"
-                placeholder='Rut'
+                placeholder='Rut: 123456785'
                 className='inputVisitas'
                 name="visitaRut"
                 value={visitaRut}
                 onChange={onRegisterInputChange}
                 id='rut' maxLength={9} min={1}
+                onClick={validacion}
               />
               &nbsp;&nbsp;&nbsp;
 
@@ -163,6 +176,7 @@ export const RegistroVisita = () => {
                 value={visitaMarca}
                 onChange={onRegisterInputChange}
                 id='marca' maxLength={15}
+                onClick={validacion}
               />
               &nbsp;&nbsp;&nbsp;
 
@@ -174,6 +188,7 @@ export const RegistroVisita = () => {
                 value={visitaLugar}
                 onChange={onRegisterInputChange}
                 id='lugar' maxLength={15}
+                onClick={validacion}
               />
               &nbsp;&nbsp;&nbsp;
 
@@ -185,9 +200,10 @@ export const RegistroVisita = () => {
                 value={visitaMotivo}
                 onChange={onRegisterInputChange}
                 id='motivo' maxLength={30}
+                onClick={validacion}
               />
             </div>
-            <button className='btn' value="Registrar" id='btn' onClick={validacion}>Registrar</button>
+            <button className='btn' value="Registrar" id='btn' disabled>Registrar</button>
             <div id='error' className='error2'></div>
           </form>
           
