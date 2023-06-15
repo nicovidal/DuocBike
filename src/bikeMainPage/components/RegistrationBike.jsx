@@ -1,7 +1,7 @@
 
 import Swal from 'sweetalert2';
 import { useAuthStore, useRegister } from '../../hooks';
-
+import React, { useState } from 'react';
 import '../styles/RegistrationBike.css'
 
 
@@ -16,11 +16,49 @@ const registerFormFields = {
 
 
 export const RegistrationBike = () => {
-    
 
-    function enviarFormulario(){
+    function validarRut(rut) {
+        rut = rut.replace(/[^\dkK0-9]/g, ''); // Remover todos los caracteres excepto números, 'k', 'K' y '0-9'
+        rut = rut.slice(0, 9); // Limitar a un máximo de 9 caracteres
+        const digitoVerificador = rut.slice(-1).toUpperCase();
+        const digitosRut = rut.slice(0, -1);
+
+        // Validar RUTs con dígitos repetidos
+        if (/^(\d)\1+$/.test(digitosRut)) {
+            return false;
+        }
+
+        const factor = [2, 3, 4, 5, 6, 7, 2, 3]; // Factores de multiplicación para cada dígito del RUT
+        let suma = 0;
+
+        for (let i = digitosRut.length - 1, j = 0; i >= 0; i--, j++) {
+            suma += parseInt(digitosRut[i]) * factor[j];
+        }
+
+        let digitoVerificadorEsperado;
+        if (suma % 11 === 0) {
+            digitoVerificadorEsperado = '0';
+        } else if (suma % 11 === 1) {
+            digitoVerificadorEsperado = 'K';
+        } else {
+            digitoVerificadorEsperado = (11 - (suma % 11)).toString();
+        }
+        if (digitoVerificador === digitoVerificadorEsperado) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+    
+    console.log(validarRut('21228078'));
+    function enviarFormulario(rut){
         var nombre = document.getElementById('name')
-        var rut = document.getElementById('rut')
+        
+        //para validar rut//
+        var rutInput = document.getElementById('rut')
+        var rut = rutInput.value;
+        //para validar rut//
+
         var carrera = document.getElementById('carrera')
         var marca = document.getElementById('marca')
         var color = document.getElementById('color')
@@ -45,14 +83,12 @@ export const RegistrationBike = () => {
         /*VALIDACION NOMBRE*/
 
         /*VALIDACION RUT*/
-        if(rut.value === null || rut.value === ''){
-            mensajesError.push('Ingresa rut. <br>')
+        if(validarRut(rut)){
             deshabilitar=true;
-        }
-
-        if(rut.value.length >0 && rut.value.length <9){
+            mensajesError.push('Rut valido. <br>')
+        }else{
+            deshabilitar=true;
             mensajesError.push('Rut invalido. <br>')
-            deshabilitar=true;
         }
         /*VALIDACION RUT*/
 
@@ -108,9 +144,7 @@ export const RegistrationBike = () => {
         }
         else{
             btn.disabled = false;
-        }
-
-        
+        }        
     }
 
 
@@ -149,31 +183,27 @@ export const RegistrationBike = () => {
     }
 
     return (
-
         <div className='fondo3'>
             <div className='body3'>
                 <div className='container3'>
-                    {/* imagen */}
-                    
                     <h2 className='nuevoal'>Nuevo Alumno</h2>
-
                     <form className='form3' onSubmit={registerSubmit} id='form'>
                         {/* Nombre */}
                         <div className="form-control3">
-                            
+    
                             <input type='text' placeholder='Nombre' className='input3' id='name' minLength={1} maxLength={15}
                             name="registerName"
                             value={registerName}
-                            onChange={onRegisterInputChange} ></input>
+                            onChange={onRegisterInputChange} onClick={enviarFormulario}></input>
                         </div>
 
                         {/* Rut */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Rut ej: 11111111-1' className='input3' id='rut' maxLength={9}
+                            <input type='text' placeholder='Rut: 123456785' className='input3' id='rut' maxLength={11}
                             name="registerRut"
                             value={registerRut}
-                            onChange={onRegisterInputChange} required></input>
+                            onChange={onRegisterInputChange} ></input>
                         </div>
 
                         {/* Carrera */}
@@ -182,7 +212,7 @@ export const RegistrationBike = () => {
                             <input type='text' placeholder='Carrera' className='input3' id='carrera' minLength={1} maxLength={15}
                             name="registerCarrer"
                             value={registerCarrer}
-                            onChange={onRegisterInputChange} required></input>
+                            onChange={onRegisterInputChange} onClick={enviarFormulario}></input>
                         </div>
 
                         {/* Marca */}
@@ -191,7 +221,7 @@ export const RegistrationBike = () => {
                             <input type='text' placeholder='Marca' className='input3' id='marca' minLength={1} maxLength={15}
                             name="registerBrand"
                             value={registerBrand}
-                            onChange={onRegisterInputChange} required></input>
+                            onChange={onRegisterInputChange} onClick={enviarFormulario}></input>
                         </div>
 
                         {/* Color */}
@@ -200,7 +230,7 @@ export const RegistrationBike = () => {
                             <input type='text' placeholder='Color' className='input3' id='color' minLength={1} maxLength={10}
                             name="registerColor"
                             value={registerColor}
-                            onChange={onRegisterInputChange} required></input>
+                            onChange={onRegisterInputChange} onClick={enviarFormulario}></input>
                         </div>
 
                         {/* ID */}
@@ -209,12 +239,13 @@ export const RegistrationBike = () => {
                             <input type='number' placeholder='ID' className='input3' id='id'
                             name="registerID"
                             value={registerID}
-                            onChange={onRegisterInputChange} required></input>
+                            onChange={onRegisterInputChange} onClick={enviarFormulario}></input>
                         </div>
 
                         {/* Boton Registrar */}
-                        <button className='btn' value="Registrar" onClick={enviarFormulario} id='btn' >Registrar</button>
+                        <button className='btn' value="Registrar" id='btn' >Registrar</button>
                         <div id='error' className='error'></div>
+                        <div id="resultado"></div>
                     </form>
                     <img className="logo2" src="../assets/LogoDuoc.png"/>
                 </div>
