@@ -17,46 +17,13 @@ const registerFormFields = {
 
 export const RegistrationBike = () => {
 
-    function validarRut(rut) {
-        rut = rut.replace(/[^\dkK0-9]/g, ''); // Remover todos los caracteres excepto números, 'k', 'K' y '0-9'
-        rut = rut.slice(0, 9); // Limitar a un máximo de 9 caracteres
-        const digitoVerificador = rut.slice(-1).toUpperCase();
-        const digitosRut = rut.slice(0, -1);
-
-        // Validar RUTs con dígitos repetidos
-        if (/^(\d)\1+$/.test(digitosRut)) {
-            return false;
-        }
-
-        const factor = [2, 3, 4, 5, 6, 7, 2, 3]; // Factores de multiplicación para cada dígito del RUT
-        let suma = 0;
-
-        for (let i = digitosRut.length - 1, j = 0; i >= 0; i--, j++) {
-            suma += parseInt(digitosRut[i]) * factor[j];
-        }
-
-        let digitoVerificadorEsperado;
-        if (suma % 11 === 0) {
-            digitoVerificadorEsperado = '0';
-        } else if (suma % 11 === 1) {
-            digitoVerificadorEsperado = 'K';
-        } else {
-            digitoVerificadorEsperado = (11 - (suma % 11)).toString();
-        }
-        if (digitoVerificador === digitoVerificadorEsperado) {
-            return true;
-        } else {
-            return false;
-        } 
-    }
     
-    console.log(validarRut('21228078'));
-    function enviarFormulario(rut){
+    
+    function enviarFormulario(){
         var nombre = document.getElementById('name')
         
         //para validar rut//
-        var rutInput = document.getElementById('rut')
-        var rut = rutInput.value;
+        var rut = document.getElementById('rut')
         //para validar rut//
 
         var carrera = document.getElementById('carrera')
@@ -84,12 +51,15 @@ export const RegistrationBike = () => {
         /*VALIDACION NOMBRE*/
 
         /*VALIDACION RUT*/
-        if(validarRut(rut)){
-            deshabilitar=true;
-            mensajesError.push('Rut valido. <br>')
-        }else{
-            deshabilitar=true;
-            mensajesError.push('Rut invalido. <br>')
+        if (rut.value === null || rut.value === '') {
+            mensajesError.push('Ingresa un RUT. <br>');
+            deshabilitar = true;
+        } else if (!/^[0-9]+[0-9kK]$/.test(rut.value) || /-/.test(rut.value)) {
+            mensajesError.push('El RUT debe contener solo números y la "k" final, sin guiones. <br>');
+            deshabilitar = true;
+        } else if (rut.value.length < 9) {
+            mensajesError.push('El RUT debe tener al menos 9 dígitos. <br>');
+            deshabilitar = true;
         }
         /*VALIDACION RUT*/
 
@@ -205,7 +175,7 @@ export const RegistrationBike = () => {
                         {/* Rut */}
                         <div className="form-control3">
                             
-                            <input type='text' placeholder='Rut: 123456785' className='input3' id='rut' maxLength={11}
+                            <input type='text' placeholder='Rut: 123456785' className='input3' id='rut' maxLength={9}
                             name="registerRut"
                             value={registerRut}
                             onChange={onRegisterInputChange} ></input>
