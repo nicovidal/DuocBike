@@ -116,7 +116,7 @@ export const AddGuard = () => {
           <div className="container add-container">
             <div className="row">
               <div className="col-md-6 add-form-1">
-                <h1 className="titulo">Ingresar Nuevo Guardia</h1>
+                <h1 className="titulo">Ingresar Guardia</h1>
                 <form onSubmit={registerSubmit} id="form">
                   <div className="form-group mb-2">
                     <input
