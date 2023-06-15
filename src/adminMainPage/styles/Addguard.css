@@ -83,3 +83,10 @@
   color: red;
   margin-top: 10px;
 }
+
+.logoguard {
+  width: 120px;
+  position: absolute;
+  margin-left: 160px;
+  margin-top: 180px;
+}
