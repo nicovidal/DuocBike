@@ -142,6 +142,7 @@ export const BikeList = () => {
         </div>
       </div>
       <AlumnoModal onDataUpdate={handleDataUpdate} />
+      <img className="logo4" src="../assets/LogoDuoc.png"/>
     </>
   );
 };

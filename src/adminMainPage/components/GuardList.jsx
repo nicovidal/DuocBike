@@ -67,7 +67,9 @@ export const GuardList = () => {
               </Table>
             </TableContainer>
           </div>
+          <img className="logogestion" src="../assets/LogoDuoc.png"/>
         </div>
+        
       </div>
       <GuardModal />
     </>

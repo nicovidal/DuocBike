@@ -89,7 +89,7 @@
     font-family: inherit;
     font-size: 16px;
     padding: 10px;
-    margin-top: 40px;
+    margin-top: 20px;
     width: 100%;
     cursor: pointer;
     color: white;
@@ -134,10 +134,27 @@
 
 .copy{
     text-align: center;
-    padding-top: 60px;
+    padding-top: 130px;
     padding-left: 50px;
     position: absolute;
     font-size: 15px;
     font-weight: bold;
     font-family: 'Manrope', sans-serif;
+}
+
+.logo {
+    width: 120px;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 150px;
+}
+
+.error2{
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    color: red;
+    
+    font-weight: bold;
+    font-size: 14px;
 }

@@ -20,3 +20,10 @@
     height: 90vh;
     padding-bottom: 250px;
 }
+
+.logogestion {
+    width: 120px;
+    position: absolute;
+    margin-left: -20px;
+    margin-top: 600px;
+  }

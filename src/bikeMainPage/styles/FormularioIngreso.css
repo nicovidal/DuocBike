@@ -155,4 +155,11 @@
     
   }
 
+  .logoformulario {
+    width: 120px;
+    position: absolute;
+    margin-left: -520px;
+    margin-top: 300px;
+}
+
 
