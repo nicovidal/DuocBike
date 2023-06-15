@@ -22,10 +22,16 @@ export const ingresoSlice = createSlice({
     onAlumnoNotFound: (state) => {
       state.isBuscandoAlumno = false;
       state.alumnoDatos = [];
-      state.alumnoRut = '';
+      state.alumnoRut = ''
     },
     setAlumnoRut: (state, action) => {
       state.alumnoRut = action.payload;
+    },
+
+    onClearDatos:(state)=>{
+      state.alumnoDatos=[];
+      state.alumnoRut='';
+      state.ingreso=[];
     },
     onLoadingIngresos:(state,{payload=[]})=>{
       state.isBuscandoAlumno=false;
@@ -39,4 +45,4 @@ export const ingresoSlice = createSlice({
   },
 });
 
-export const { onSearchingAlumno, onAlumnoFound, onAlumnoNotFound, setAlumnoRut,onLoadingIngresos } = ingresoSlice.actions;
+export const { onSearchingAlumno, onAlumnoFound, onAlumnoNotFound, setAlumnoRut,onLoadingIngresos,onClearDatos } = ingresoSlice.actions;

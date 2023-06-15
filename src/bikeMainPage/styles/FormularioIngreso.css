@@ -1,51 +1,24 @@
-/*  
-.bodyIngreso {
-    font-family: 'Open Sans', sans-serif;
-  display: flex;
-    align-items:baseline;
-    justify-content: center;
-    min-height: 80vh;
-    margin: 0;
-    position: relative;
-    width: 100%;
-    height: 92vh;
-    padding-bottom: 250px; 
-}  */
 
 @font-face {
   font-family: 'Digital-7';
   src: url('/assets/digital-7.ttf') format('truetype');
 }
 
-.bodyIngreso {
-    width: 100%;
-    background-image: url(/assets/ola.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: bottom;
-    font-family: 'Open Sans', sans-serif;
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    min-height: 80vh;
-    margin: 0;
-    position: relative;
-    width: 100%;
-    height: 92vh;
-    padding-bottom: 250px;
+
+
+
+
+.main-container {
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-image: url(/assets/ola.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
 }
 
-
-.form-control-ingreso {
-    border: 1px solid black;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 50px;
-    margin-bottom: 40px;
- 
-
-
-}
 
 .nuevoIngreso {
     font-family: 'Open Sans', sans-serif;
@@ -54,8 +27,15 @@
 
 }
 
+.form-control-ingreso {
+  border: 1px solid black;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 40px;
 
 
+
+}
 
 .btn-1 {
     background-color: rgba(255, 184, 0, 1);
@@ -86,24 +66,11 @@
     border-radius: 0.3rem;
     text-align: center;
     box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
-    margin-right: 700px;
+
   
 
 }
 
-.form-container {
-    display: flex;
-    justify-content: center;
-  
-  }
-  
-  .form {
-    width: 500px;
-    margin-left: 600px;
-    margin-bottom: 100px;
-   
-
-  }
   
   .buttons-container {
     display: flex;
@@ -118,7 +85,7 @@
     width: 500px;
     max-width: 100%;
     background-color: white;
-    margin:auto;
+
     border:1px solid black
   }
 
@@ -127,28 +94,39 @@
     border-color: #000000;
   }
 
-  .contadores {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  
 
- 
-
-  }
   
-  .contador {
+  .contador1 {
     padding-top:25px;
-    border: 1px solid black;
-    height: 200px;
-    background-color: deepskyblue;
+    border: 2px solid black;
+    height: 200px;;
+    background-color: rgba(255, 184, 0, 1);
+    color: white;
+    border-radius: 30px;
+    margin-left: 30px
+    
+   
+  }
+
+  .contador2 {
+    padding-top:25px;
+    border: 2px solid black;
+    height: 200px;;
+    background-color: rgba(255, 184, 0, 1);
     color: white;
     border-radius: 30px;
     
    
   }
   
-  .contador h2 {
+  .contador1 h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    
+    
+  }
+  .contador2 h2 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -156,14 +134,22 @@
     
   }
   
-  .contador .valor {
+  .contador1 .valor {
     font-family: 'Digital-7', sans-serif;
     font-size: 100px;
     color: white;
-    background-color: deepskyblue;
-    width: 220px;
+    background-color: rgba(255, 184, 0, 1);
     height: 100px;  
-    border-radius: 10px;
+    text-align: center;
+    
+    
+  }
+  .contador2 .valor {
+    font-family: 'Digital-7', sans-serif;
+    font-size: 100px;
+    color: white;
+    background-color: rgba(255, 184, 0, 1);
+    height: 100px;  
     text-align: center;
     
     
@@ -177,39 +163,3 @@
 }
 
 
-
-/* .btn-2{
-    background-color: rgba(255, 184, 0, 1);
-    font-weight: bold;
-    border-radius: 4px;
-    display: block;
-    font-family: inherit;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: -45px;
-    margin-left: 210px;
-    width: 40%;
-    cursor: pointer;
-    color: white;
-    border-radius: 0.3rem;
-    box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
-
-}
-.btn-3{
-    background-color: rgba(255, 184, 0, 1); 
-    font-weight: bold;
-    border-radius: 4px;
-    display: block;
-    font-family: inherit;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: 100px;
-    margin-left: 190px;
-    width: 40%;
-    cursor: pointer;
-    color: white;
-    border-radius: 0.3rem;
-    box-shadow: 0 2px 3px rgba(85, 95, 224, 0.15);
-
-}
-   */

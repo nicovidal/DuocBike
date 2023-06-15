@@ -9,10 +9,7 @@ export const ListaAlumnos = () => {
   return (
     <>
     <Navbar/>
-    <BikeList
-
-    
-    />
+    <BikeList/>
 
 
     
