@@ -42,7 +42,7 @@ export const AddGuard = () => {
 
     /*VALIDACION USUARIO*/
     if (usuario.value === null || usuario.value === '') {
-        mensajesError2.push('Ingresa tu usuario. <br>');
+        mensajesError2.push('Ingresa un usuario. <br>');
         deshabilitar = true;
     }else if (usuario.value.length > 0 && usuario.value.length < 3) {
         mensajesError2.push('Debe ser más largo. <br>');
@@ -51,7 +51,7 @@ export const AddGuard = () => {
     /*VALIDACION USUARIO*/
     /*VALIDACION CONTRASEÑA*/
     if(contraseña.value === null || contraseña.value === ''){
-        mensajesError3.push('Ingresa tu contraseña. <br>')
+        mensajesError3.push('Ingresa una contraseña. <br>')
         deshabilitar=true;
     }
     if(contraseña.value.length >0 && contraseña.value.length <2){
