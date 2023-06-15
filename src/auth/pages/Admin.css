@@ -80,7 +80,7 @@
     font-family: inherit;
     font-size: 16px;
     padding: 10px;
-    margin-top: 40px;
+    margin-top: 20px;
     width: 100%;
     cursor: pointer;
     color: white;
@@ -118,4 +118,11 @@
     font-size: 15px;
     font-weight: bold;
     font-family: 'Manrope', sans-serif;
+}
+
+.logoadmin {
+    width: 120px;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 95px;
 }
