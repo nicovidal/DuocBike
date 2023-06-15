@@ -1,4 +1,4 @@
-import { ListaIngresos } from "../../bikeMainPage"
+import { ListIngreso, ListaIngresos } from "../../bikeMainPage"
 import { NavBarAdmin } from "../components/NavBarAdmin"
 
 
@@ -6,7 +6,7 @@ export const AdminIngresoList = () => {
   return (
     <>
         <NavBarAdmin/>
-        <ListaIngresos/>
+        <ListIngreso/>
     
     </>
   )

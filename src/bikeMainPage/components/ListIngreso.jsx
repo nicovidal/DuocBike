@@ -87,8 +87,11 @@ export const ListIngreso = () => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
               />
             </TableContainer>
+  
           </div>
+          <img className="logoIngreso" src="../assets/LogoDuoc.png"/>
         </div>
+        
       </div>
     </>
   );
