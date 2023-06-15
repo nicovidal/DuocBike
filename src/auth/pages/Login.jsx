@@ -14,42 +14,50 @@ const loginFormFields={
 
 
 export const Login = () => {
-
     const {startLogin,errorMessage}=useAuthStore();
-
     function validacion(){
         var usuario = document.getElementById('usuario')
         var contraseña = document.getElementById('contraseña')
-
         var btn = document.getElementById('btn')
-        var error = document.getElementById('error')
+        
+        var error1 = document.getElementById('error1')
+        var error2 = document.getElementById('error2')
+        var mensajesError1 = []
+        var mensajesError2 = []
 
-        var mensajesError = []
         var form = document.getElementById('form')
         let deshabilitar = false;
 
-        if(usuario.value === null || usuario.value === ''){
-            mensajesError.push('El usuario no debe estar vacio. <br>')
-            deshabilitar=true;
+        /*VALIDACION USUARIO*/
+        if (usuario.value === null || usuario.value === '') {
+            mensajesError1.push('Ingresa tu usuario. <br>');
+            deshabilitar = true;
+        } else if (!/^[a-zA-Z]+$/.test(usuario.value)) {
+            mensajesError1.push('Solo debe contener letras. <br>');
+            deshabilitar = true;
+        } else if (usuario.value.length > 0 && usuario.value.length < 3) {
+            mensajesError1.push('Debe ser más largo. <br>');
+            deshabilitar = true;
         }
-
+        /*VALIDACION USUARIO*/
+        /*VALIDACION CONTRASEÑA*/
         if(contraseña.value === null || contraseña.value === ''){
-            mensajesError.push('La contraseña no debe estar vacio. <br>')
+            mensajesError2.push('Ingresa tu contraseña. <br>')
             deshabilitar=true;
         }
         if(contraseña.value.length >0 && contraseña.value.length <2){
-            mensajesError.push('La contraseña debe ser mas larga. <br>')
+            mensajesError2.push('Debe ser mas larga. <br>')
             deshabilitar=true;
         }
-        
-
+        /*VALIDACION CONTRASEÑA*/
         if(deshabilitar === true){
             btn.disabled = true;
         }
         else{
             btn.disabled = false;
         }
-        error.innerHTML= mensajesError.join('')
+        error1.innerHTML= mensajesError1.join('')
+        error2.innerHTML= mensajesError2.join('')
         form.addEventListener("keyup", validacion)
     }
 
@@ -67,11 +75,8 @@ export const Login = () => {
         Swal.fire('Error en credenciales',errorMessage,'error')
       }
     
-   
     }, [errorMessage])
     
-
-
   return (
     <div className='fondo'>
         <div className='body1'>
@@ -79,7 +84,6 @@ export const Login = () => {
                 {/* imagen */}
                 <img className='img1' src="../assets/logo.png"/>
                 <h2 className='h2'>DuocBike</h2>
-
                 <form className='form1' onSubmit={loginSubmit} id='form'>
                     {/* Usuario */}
                     <div className='form-control1'>
@@ -88,72 +92,24 @@ export const Login = () => {
                         name='loginUser' 
                         value={loginUser}
                         onChange={onLoginInputChange} 
+                        onClick={validacion}
                         ></input>
+                        <div id='error1' className='error2'></div>
                     </div>
-
                     {/* Contraseña */}
                     <div className='form-control1'>
                         <FontAwesomeIcon icon={faLock} className='icono1'></FontAwesomeIcon>
-                        <input type='password' className='input' placeholder='Contraseña' name='loginPassword' value={loginPassword} onChange={onLoginInputChange} maxLength={15} id='contraseña' minLength={2} required></input>
+                        <input type='password' className='input' placeholder='Contraseña' name='loginPassword' value={loginPassword} onChange={onLoginInputChange} maxLength={15} id='contraseña' minLength={2} onClick={validacion}></input>
+                        <div id='error2' className='error2'></div>
                     </div>
-                    
                     {/* Boton Entrar */}
-                    <button className='btn' value="Entrar" onClick={validacion} id='btn'>Entrar</button>
+                    <button className='btn' value="Entrar" id='btn' disabled>Entrar</button>
                     <h1 className='copy'>Copyright ©2023 PipeloveINC.</h1>
                     <img className="logo" src="../assets/LogoDuoc.png"/>
                 </form>
-                <div id='error' className='error2'></div>
             </div>
-            
         </div>
     </div>
-
-
-    // Login del nicosexo
-
-    // <div className="container login-container">
-      
-    //     <div className="row">
-    //         <div className="col-md-6 login-form-1">
-    //         <img src="../assets/logo.png" className='logo'/>
-        
-    //             <form onSubmit={loginSubmit} xxxxx>
-    //                 <div className="form-group mb-2">                     
-    //                     <input 
-    //                         type="text"
-    //                         className=" form-control"
-    //                         placeholder="Usuario"
-    //                         name="loginUser xxxxx"
-    //                         value={loginUser}xxxx
-    //                         onChange={onLoginInputChange}xxxxx
-    //                     />
-    //               {/*       <i className="fa-solid fa-user"></i> */}
-                     
-    //                 </div>
-    //                 <div className="form-group mb-2">
-    //                     <input
-    //                         type="password"
-    //                         className="form-control"
-    //                         placeholder="Contraseña"
-    //                         name="loginPassword"xxxxx
-    //                         value={loginPassword}xxxxxxxx
-    //                         onChange={onLoginInputChange}xxxxxx
-    //                     />
-    //                 </div>
-    //                 <div className="form-group mb-2">
-    //                     <input 
-    //                         type="submit"
-    //                         className="btnSubmit"
-    //                         value="Entrar" xxxxxxxx
-    //                     />
-    //                     {/* <i className="fa-solid fa-lock"></i> */}
-    //                 </div>
-    //             </form>
-    //         </div>
-
-            
-    //     </div>
-    // </div>
 )
 }
 
