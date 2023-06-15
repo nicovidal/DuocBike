@@ -71,14 +71,15 @@ export const RegistrationBike = () => {
         let deshabilitar = false;
 
         /*VALIDACION NOMBRE*/
-        if(nombre.value === null || nombre.value === ''){
-            mensajesError.push('Ingresa tu nombre. <br>')
-            deshabilitar=true;
-        }
-
-        if(nombre.value.length >0 && nombre.value.length <3){
-            mensajesError.push('El nombre debe ser mas largo. <br>')
-            deshabilitar=true;
+        if (nombre.value === null || nombre.value === '') {
+            mensajesError.push('Ingresa tu nombre. <br>');
+            deshabilitar = true;
+        } else if (!/^[a-zA-Z]+$/.test(nombre.value)) {
+            mensajesError.push('El nombre solo debe contener letras. <br>');
+            deshabilitar = true;
+        } else if (nombre.value.length > 0 && nombre.value.length < 3) {
+            mensajesError.push('El nombre debe ser más largo. <br>');
+            deshabilitar = true;
         }
         /*VALIDACION NOMBRE*/
 
@@ -132,6 +133,10 @@ export const RegistrationBike = () => {
         }
         if(id.value.length >0 && id.value.length <1){
             mensajesError.push('La ID debe ser mas largo. <br>')
+            deshabilitar=true;
+        }
+        if(id.value <0){
+            mensajesError.push('Tiene que ser positivo. <br>')
             deshabilitar=true;
         }
         /*VALIDACION ID*/
@@ -191,7 +196,7 @@ export const RegistrationBike = () => {
                         {/* Nombre */}
                         <div className="form-control3">
     
-                            <input type='text' placeholder='Nombre' className='input3' id='name' minLength={1} maxLength={15}
+                            <input type='text' placeholder='Nombre' className='input3' id='name' minLength={1} maxLength={15} pattern="[a-z]"
                             name="registerName"
                             value={registerName}
                             onChange={onRegisterInputChange} onClick={enviarFormulario}></input>
@@ -243,7 +248,7 @@ export const RegistrationBike = () => {
                         </div>
 
                         {/* Boton Registrar */}
-                        <button className='btn' value="Registrar" id='btn' >Registrar</button>
+                        <button className='btn' value="Registrar" id='btn' disabled>Registrar</button>
                         <div id='error' className='error'></div>
                         <div id="resultado"></div>
                     </form>
