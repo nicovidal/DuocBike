@@ -136,7 +136,7 @@ export const ListaVisita = () => {
           rowsPerPage={rowsPerPage}
           onRowsPerPageChange={handleChangeRowsPerPage}
           labelRowsPerPage="Filas por página"
-          rowsPerPageOptions={[5, 10]}
+          rowsPerPageOptions={[5]}
         />
       </TableContainer>
       <button className="btn btn-danger" onClick={onSalirVisita}>
