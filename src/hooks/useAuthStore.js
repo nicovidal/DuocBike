@@ -54,7 +54,7 @@ export const useAuthStore = () => {
         adminPassword,
       });
       localStorage.setItem("usuario", data.name);
-      localStorage.setItem("token", "el-token-de-autenticacion");
+      localStorage.setItem("token", "admin");
       dispatch(onLoginAdmin({ name: data.name, uid: data.uid }));
     } catch (error) {
       dispatch(onLogout("Credenciales Incorrectas"));
