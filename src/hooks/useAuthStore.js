@@ -1,103 +1,117 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import bikeApi from "../api/bikeApi";
-import { clearErrorMessage, onChecking, onLogin, onLoginAdmin, onLogout } from "../store/auth/authSlice";
+import {
+  clearErrorMessage,
+  onChecking,
+  onLogin,
+  onLoginAdmin,
+  onLogout,
+} from "../store/auth/authSlice";
 import Swal from "sweetalert2";
 
-export const useAuthStore=()=>{
+export const useAuthStore = () => {
+  const { status, user, errorMessage } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-    const {status,user,errorMessage}=useSelector(state=>state.auth);
-
-    const dispatch=useDispatch();
-
-    const startLogin=async({guardUser,guardPassword})=>{
-
-        dispatch(onChecking());
-
-        try{       
-            const {data}=await bikeApi.post('/auth',{guardUser,guardPassword})
-            localStorage.setItem('usuario',data.name)
-            dispatch(onLogin({name:data.name,uid:data.uid}))
-
-        }catch(error){
-            dispatch(onLogout('Credenciales Incorrectas'))
-            setTimeout(() => {
-                dispatch(clearErrorMessage())
-            }, 10);
-        }
+  const checkLocalStorageToken = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // El usuario está autenticado, realiza las acciones necesarias
+      dispatch(onLogin({ name: localStorage.getItem("usuario"), uid: "dummy-uid" }));
+    } else {
+      // El usuario no está autenticado, redirige a la página de inicio de sesión
+      dispatch(onLogout());
     }
-    const startLoginAdmin=async({adminUser,adminPassword})=>{
+  };
 
-        dispatch(onChecking());
+  useEffect(() => {
+    checkLocalStorageToken();
+  }, []);
 
-        try{       
-            const {data}=await bikeApi.post('/auth/adminLogin',{adminUser,adminPassword})
-            localStorage.setItem('usuario',data.name)
-            dispatch(onLoginAdmin({name:data.name,uid:data.uid}))
+  const startLogin = async ({ guardUser, guardPassword }) => {
+    dispatch(onChecking());
 
-        }catch(error){
-            dispatch(onLogout('Credenciales Incorrectas'))
-            setTimeout(() => {
-                dispatch(clearErrorMessage())
-            }, 10);
-        }
+    try {
+      const { data } = await bikeApi.post("/auth", { guardUser, guardPassword });
+      localStorage.setItem("usuario", data.name);
+      localStorage.setItem("token", "el-token-de-autenticacion");
+      dispatch(onLogin({ name: data.name, uid: data.uid }));
+    } catch (error) {
+      dispatch(onLogout("Credenciales Incorrectas"));
+      setTimeout(() => {
+        dispatch(clearErrorMessage());
+      }, 10);
     }
+  };
 
-    
-    const startRegisterGuard=async({guardName,guardUser,guardPassword})=>{
+  const startLoginAdmin = async ({ adminUser, adminPassword }) => {
+    dispatch(onChecking());
 
-   
-
-        try{
-
-        
-            await bikeApi.post('/auth/newg',{guardName,guardUser,guardPassword})
-
-     
-
-
-        }catch(error){
-         
-            Swal.fire('Error','Registro invalido','error')
-       
-        }
+    try {
+      const { data } = await bikeApi.post("/auth/adminLogin", {
+        adminUser,
+        adminPassword,
+      });
+      localStorage.setItem("usuario", data.name);
+      localStorage.setItem("token", "el-token-de-autenticacion");
+      dispatch(onLoginAdmin({ name: data.name, uid: data.uid }));
+    } catch (error) {
+      dispatch(onLogout("Credenciales Incorrectas"));
+      setTimeout(() => {
+        dispatch(clearErrorMessage());
+      }, 10);
     }
-    const startRegisterAlumno=async({registerName,registerRut,registerCarrer,registerBrand,registerColor,registerID})=>{
+  };
 
-
-
-        try{
-        
-            const {data}=await bikeApi.post('/auth/newa',{registerName,registerRut,registerCarrer,registerBrand,registerColor,registerID})
-            localStorage.setItem('usuario',data.name)
-        
-
-        }catch(error){
-  
-            setTimeout(() => {
-                dispatch(clearErrorMessage())
-            }, 10);
-        }
+  const startRegisterGuard = async ({ guardName, guardUser, guardPassword }) => {
+    try {
+      await bikeApi.post("/auth/newg", { guardName, guardUser, guardPassword });
+    } catch (error) {
+      Swal.fire("Error", "Registro invalido", "error");
     }
+  };
 
-
-    const startLogout=()=>{
-        localStorage.clear();
-        dispatch(onLogout());
-      }
-      
-
-
-    return{
-        //propiedades
-        status,user,errorMessage,
-
-
-        //methods
-        startLogin,
-        startRegisterGuard,
-        startLogout,
-        startRegisterAlumno,
-        startLoginAdmin,
-       
+  const startRegisterAlumno = async ({
+    registerName,
+    registerRut,
+    registerCarrer,
+    registerBrand,
+    registerColor,
+    registerID,
+  }) => {
+    try {
+      const { data } = await bikeApi.post("/auth/newa", {
+        registerName,
+        registerRut,
+        registerCarrer,
+        registerBrand,
+        registerColor,
+        registerID,
+      });
+      localStorage.setItem("usuario", data.name);
+      localStorage.setItem("token", "el-token-de-autenticacion");
+    } catch (error) {
+      setTimeout(() => {
+        dispatch(clearErrorMessage());
+      }, 10);
     }
-}
+  };
+
+  const startLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    dispatch(onLogout());
+  };
+
+  return {
+    status,
+    user,
+    errorMessage,
+    startLogin,
+    startRegisterGuard,
+    startLogout,
+    startRegisterAlumno,
+    startLoginAdmin,
+  };
+};

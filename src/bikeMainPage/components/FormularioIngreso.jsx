@@ -247,6 +247,7 @@ export const FormularioIngreso = () => {
             <div className="contador2 col-3">
               <h2>OCUPADOS</h2>
               <div className="valor">{contador2}</div>
+              <img className="logoformulario" src="../assets/LogoDuoc.png"/>
             </div>
           </div>
         </div>

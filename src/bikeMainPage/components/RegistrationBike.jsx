@@ -177,7 +177,13 @@ export const RegistrationBike = () => {
                         {/* Nombre */}
                         <div className="form-control3">
     
-                            <input type='text' placeholder='Nombre' className='input3' id='name' minLength={1} maxLength={15} pattern="[a-z]"
+                            <input type='text'
+                            placeholder='Nombre' 
+                             className='input3' 
+                             id='name'
+                              minLength={1} 
+                              maxLength={15} 
+                      
                             name="registerName"
                             value={registerName}
                             onChange={onRegisterInputChange} onClick={enviarFormulario}></input>

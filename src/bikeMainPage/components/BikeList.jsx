@@ -137,12 +137,14 @@ export const BikeList = () => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
               />
             </TableContainer>
-   
+
           </div>
+          <img className="logo4" src="../assets/LogoDuoc.png"/>
         </div>
+
       </div>
       <AlumnoModal onDataUpdate={handleDataUpdate} />
-      <img className="logo4" src="../assets/LogoDuoc.png"/>
+
     </>
   );
 };
