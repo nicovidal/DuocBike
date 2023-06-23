@@ -9,6 +9,7 @@ import {
   TableRow,
   TablePagination,
 } from "@mui/material";
+import * as XLSX from "xlsx";
 import "../styles/BikeList.css";
 import { useModalStore } from "../../hooks/useModalStore";
 import { AlumnoModal } from "./AlumnoModal";
@@ -46,7 +47,7 @@ export const BikeList = () => {
     startLoadingAlumno();
     setSearchValue("");
   };
-  //filtro de alumno por rut o nombre
+
   const filterAlumno = (alumno) => {
     if (searchValue === "") {
       return true;
@@ -63,12 +64,8 @@ export const BikeList = () => {
     return alumno.findIndex((b) => b.id === a.id) === index && filterAlumno(a);
   });
 
-  // Ordenar el arreglo filteredAlumno según el campo registerID
   filteredAlumno.sort((a, b) => (a.registerID && b.registerID) ? a.registerID.localeCompare(b.registerID) : 0);
 
-
-
-  //paginacion
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -83,17 +80,49 @@ export const BikeList = () => {
     page * rowsPerPage + rowsPerPage
   );
 
+  const exportToExcel = () => {
+    const dataSet = filteredAlumno.map((a) => ({
+      "ID Bicicleta": a.registerID,
+      Nombre: a.registerName,
+      Rut: a.registerRut,
+      Carrera: a.registerCarrer,
+      Marca: a.registerBrand,
+      Color: a.registerColor,
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(dataSet);
+    const workbook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Alumnos");
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const fileName = "Alumnos.xlsx";
+    const file = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(file);
+    downloadLink.download = fileName;
+    downloadLink.click();
+  };
+
   return (
     <>
       <div className="fondo4">
         <div className="body4">      
           <div className="container4">
-          <input
+            <input
               type="text"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Buscar por rut o nombre"
             />
+            <button className="btn btn-ligh"  onClick={exportToExcel}>Exportar a Excel</button>
             <TableContainer className="form4" component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
@@ -137,14 +166,11 @@ export const BikeList = () => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
               />
             </TableContainer>
-
           </div>
-          <img className="logo4" src="../assets/LogoDuoc.png"/>
+          <img className="logo4" src="../assets/LogoDuoc.png" alt="Logo Duoc" />
         </div>
-
       </div>
       <AlumnoModal onDataUpdate={handleDataUpdate} />
-
     </>
   );
 };

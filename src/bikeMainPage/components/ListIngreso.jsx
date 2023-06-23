@@ -74,7 +74,7 @@ export const ListIngreso = () => {
         <div className="body9">
           <div className="container9">
             <div>
-              <button onClick={exportToExcel}>Exportar a Excel</button>
+              <button className="btn btn-ligh" onClick={exportToExcel}>Exportar a Excel</button>
             </div>
             <TableContainer className="form9" component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
