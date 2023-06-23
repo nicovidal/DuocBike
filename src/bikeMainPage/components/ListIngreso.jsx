@@ -11,6 +11,7 @@ import {
   TablePagination,
 } from "@mui/material";
 import "../styles/ListIngreso.css";
+import * as XLSX from "xlsx";
 
 export const ListIngreso = () => {
   const { startLoadingIngresos, ingreso } = useIngresoStore();
@@ -36,11 +37,45 @@ export const ListIngreso = () => {
     rowsPerPage -
     Math.min(rowsPerPage, sortedIngresos.length - page * rowsPerPage);
 
+  const exportToExcel = () => {
+    const dataSet = sortedIngresos.map((i) => ({
+      Rut: i.rutAlumno,
+      Nombre: i.nombreAlumno,
+      "Modelo Bicicleta": i.biciAlumno,
+      "Hora Ingreso": i.horaIngreso,
+      "Hora Salida": i.horaSalida,
+      Guardia: i.guardia,
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(dataSet);
+    const workbook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Ingresos");
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const fileName = "Ingresos.xlsx";
+    const file = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(file);
+    downloadLink.download = fileName;
+    downloadLink.click();
+  };
+
   return (
     <>
       <div className="fondo9">
         <div className="body9">
           <div className="container9">
+            <div>
+              <button onClick={exportToExcel}>Exportar a Excel</button>
+            </div>
             <TableContainer className="form9" component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
@@ -89,11 +124,13 @@ export const ListIngreso = () => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
               />
             </TableContainer>
-  
           </div>
-          <img className="logoIngreso" src="../assets/LogoDuoc.png"/>
+          <img
+            className="logoIngreso"
+            src="../assets/LogoDuoc.png"
+            alt="Logo Duoc"
+          />
         </div>
-        
       </div>
     </>
   );
