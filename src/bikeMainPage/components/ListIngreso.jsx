@@ -17,6 +17,7 @@ export const ListIngreso = () => {
   const { startLoadingIngresos, ingreso } = useIngresoStore();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     startLoadingIngresos();
@@ -38,14 +39,21 @@ export const ListIngreso = () => {
     Math.min(rowsPerPage, sortedIngresos.length - page * rowsPerPage);
 
   const exportToExcel = () => {
-    const dataSet = sortedIngresos.map((i) => ({
-      Rut: i.rutAlumno,
-      Nombre: i.nombreAlumno,
-      "Modelo Bicicleta": i.biciAlumno,
-      "Hora Ingreso": i.horaIngreso,
-      "Hora Salida": i.horaSalida,
-      Guardia: i.guardia,
-    }));
+    const dataSet = sortedIngresos
+      .filter(
+        (i) =>
+          i.rutAlumno.toLowerCase().includes(searchValue.toLowerCase()) ||
+          i.nombreAlumno.toLowerCase().includes(searchValue.toLowerCase()) ||
+          i.guardia.toLowerCase().includes(searchValue.toLowerCase())
+      )
+      .map((i) => ({
+        Rut: i.rutAlumno,
+        Nombre: i.nombreAlumno,
+        "Modelo Bicicleta": i.biciAlumno,
+        "Hora Ingreso": i.horaIngreso,
+        "Hora Salida": i.horaSalida,
+        Guardia: i.guardia,
+      }));
 
     const worksheet = XLSX.utils.json_to_sheet(dataSet);
     const workbook = XLSX.utils.book_new();
@@ -74,7 +82,16 @@ export const ListIngreso = () => {
         <div className="body9">
           <div className="container9">
             <div>
-              <button className="btn btn-ligh" onClick={exportToExcel}>Exportar a Excel</button>
+              <input
+                type="text"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Rut, nombre de alumno o nombre de guardia"
+                style={{ width: "30%" }}
+              />
+              <button className="btn btn-light " onClick={exportToExcel}>
+                Exportar a Excel
+              </button>
             </div>
             <TableContainer className="form9" component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -90,10 +107,23 @@ export const ListIngreso = () => {
                 </TableHead>
                 <TableBody>
                   {(rowsPerPage > 0
-                    ? sortedIngresos.slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
+                    ? sortedIngresos
+                        .filter(
+                          (i) =>
+                            i.rutAlumno
+                              .toLowerCase()
+                              .includes(searchValue.toLowerCase()) ||
+                            i.nombreAlumno
+                              .toLowerCase()
+                              .includes(searchValue.toLowerCase()) ||
+                            i.guardia
+                              .toLowerCase()
+                              .includes(searchValue.toLowerCase())
+                        )
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
                     : sortedIngresos
                   ).map((i) => (
                     <TableRow key={i.id}>
