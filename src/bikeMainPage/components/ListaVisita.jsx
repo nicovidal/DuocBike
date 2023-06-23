@@ -2,6 +2,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { useEffect, useState } from 'react';
 import { useVisitaStore } from '../../hooks/useVisitaStore';
 import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx';
 
 export const ListaVisita = () => {
   const { startLoadingVisitas, visita, setActiveVisita, startSaliendingVisita, activeVisita } = useVisitaStore();
@@ -87,6 +88,38 @@ export const ListaVisita = () => {
 
   const paginatedVisita = filteredVisita.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
+  const exportToExcel = () => {
+    const dataSet = filteredVisita.map((v) => ({
+      Rut: v.visitaRut,
+      Nombre: v.visitaNombre,
+      Marca: v.visitaMarca,
+      Lugar: v.visitaLugar,
+      Motivo: v.visitaMotivo,
+      "Hora Ingreso": v.horaIngreso,
+      "Hora Salida": v.horaSalida,
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(dataSet);
+    const workbook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Visitas");
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const fileName = "Visitas.xlsx";
+    const file = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(file);
+    downloadLink.download = fileName;
+    downloadLink.click();
+  };
+
   return (
     <div>
       <input
@@ -95,6 +128,7 @@ export const ListaVisita = () => {
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="Buscar por rut o nombre"
       />
+      <button className="btn btn-ligh" onClick={exportToExcel}>Exportar a Excel</button>
       <TableContainer component={Paper} className="listaVisita">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
