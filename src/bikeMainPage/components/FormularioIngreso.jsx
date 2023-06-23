@@ -6,6 +6,7 @@ import "../styles/FormularioIngreso.css";
 export const FormularioIngreso = () => {
   const {
     alumnoDatos,
+    user,
     startSearchAlumno,
     startIngresandingALumno,
     startLoadingIngresos,
@@ -62,7 +63,7 @@ export const FormularioIngreso = () => {
         cancelButtonText: "Cancelar",
       }).then((result) => {
         if (result.isConfirmed) {
-          startIngresandingALumno(alumnoRut);
+          startIngresandingALumno(alumnoRut,user);
           Swal.fire("Ingreso realizado correctamente", "", "success");
           setContador1((prevContador) => prevContador - 1);
           setContador2((prevContador) => prevContador + 1);
@@ -84,7 +85,7 @@ export const FormularioIngreso = () => {
         cancelButtonText: "Cancelar",
       }).then((result) => {
         if (result.isConfirmed) {
-          startIngresandingALumno(alumnoRut);
+          startIngresandingALumno(alumnoRut,user);
           Swal.fire("Ingreso realizado correctamente", "", "success");
           setContador1((prevContador) => prevContador - 1);
           setContador2((prevContador) => prevContador + 1);

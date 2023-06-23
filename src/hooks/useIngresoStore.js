@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 
 export const useIngresoStore = () => {
   const dispatch = useDispatch();
+  const { user }= useSelector ((state)=>state.auth);
   const { isBuscandoAlumno, alumnoDatos, alumnoRut, ingreso } = useSelector(
     (state) => state.ingreso
   );
@@ -70,15 +71,15 @@ export const useIngresoStore = () => {
       console.log(error);
     }
   };
-  const startIngresandingALumno = async (alumnoRut) => {
+  const startIngresandingALumno = async (alumnoRut,user) => {
     try {
-      
+      console.log(user)
       if (!alumnoRut) {
         console.log('El valor de alumnoRut está vacío o es undefined');
         return;
       }
       
-      const { data } = await bikeApi.post("/ingreso/newIngreso/", { rut: alumnoRut });
+      const { data } = await bikeApi.post("/ingreso/newIngreso/", { rut: alumnoRut ,guardia:user.name, });
   
       console.log("alumno ingresado", data);
       
@@ -107,6 +108,7 @@ export const useIngresoStore = () => {
     alumnoDatos,
     alumnoRut,
     ingreso,
+    user,
     startSearchAlumno,
     handleRutChange,
     startIngresandingALumno,

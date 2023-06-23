@@ -50,6 +50,7 @@ export const ListIngreso = () => {
                     <TableCell align="right">Modelo Bicicleta</TableCell>
                     <TableCell align="right">Hora Ingreso</TableCell>
                     <TableCell align="right">Hora Salida</TableCell>
+                    <TableCell align="right">Guardia</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -66,6 +67,7 @@ export const ListIngreso = () => {
                       <TableCell align="right">{i.biciAlumno}</TableCell>
                       <TableCell align="right">{i.horaIngreso}</TableCell>
                       <TableCell align="right">{i.horaSalida}</TableCell>
+                      <TableCell align="right">{i.guardia}</TableCell>
                     </TableRow>
                   ))}
 
