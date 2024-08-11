@@ -3,7 +3,7 @@ import { AdminLogin, Login } from "../auth";
 import {RegisterGuard } from "../bikeMainPage";
 import { useAuthStore } from "../hooks";
 import {  GuardList } from "../adminMainPage/components";
-import { AdminMain } from "../adminMainPage/pages/adminMain";
+import { AdminMain } from "../adminMainPage/pages/AdminMain";
 
 import { Visitas } from "../bikeMainPage/pages/Visitas";
 import { ListaAlumnos } from "../bikeMainPage/pages/ListaAlumnos";
