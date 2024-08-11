@@ -1,5 +1,5 @@
 import { useAuthStore, useRegister } from "../../hooks";
-import "../styles/AddGuard.css";
+import "../styles/Addguard.css";
 import Swal from "sweetalert2";
 
 const guardFormFields = {
