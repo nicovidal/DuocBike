@@ -3,4 +3,12 @@
 Esta realizado con el stack de desarrollo MEAN
 
 
-Yarn install
+npm install
+
+npm run dev
+
+##Pagina Web para vistiar
+#https://duocbike.onrender.com
+
+usuario:pedro
+contraseña:pedro15
