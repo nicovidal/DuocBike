@@ -12,7 +12,6 @@ export const Bike = () => {
     const handleOnline = () => {
       console.log('Conexión restablecida');
       setIsOnline(true);
-      // Aquí puedes agregar lógica adicional para recargar datos o sincronizar el estado si es necesario, sin recargar la página
     };
 
     // Función para manejar cuando estamos fuera de línea
@@ -32,16 +31,11 @@ export const Bike = () => {
     };
   }, []);
 
+  // Si no hay conexión, devuelve null para mostrar la página de error del navegador
   return (
     <Provider store={store}>
       <BrowserRouter>
-        {isOnline ? (
-          <AppRouter />
-        ) : (
-          <div>
-            <h1>Sin conexión. Esperando reconexión...</h1>
-          </div>
-        )}
+        {isOnline ? <AppRouter /> : null}  {/* No se muestra nada si no hay conexión */}
       </BrowserRouter>
     </Provider>
   );
